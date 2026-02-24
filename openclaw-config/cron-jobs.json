@@ -1,0 +1,230 @@
+{
+  "jobs": [
+    {
+      "id": "72085852-050e-4ecd-a88b-290e80082b38",
+      "agentId": "main",
+      "name": "MikroTik ATL 5G R16 stock check (15:00)",
+      "enabled": true,
+      "createdAtMs": 1770567044973,
+      "updatedAtMs": 1771851624230,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "MikroTik ATL 5G R16 availability check.\n\nSTEP 1: Check these 3 product pages using shell curl + grep to detect stock status from raw HTML:\n\n**getic.com:**\n```\ncurl -sL 'https://www.getic.com/product/mikrotik-atl-5g-r16' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|available|notify me'\n```\n\n**nasstore.eu:**\n```\ncurl -sL 'https://nasstore.eu/product/mikrotik-atl-5g-r16-atlgmrg520f-eu/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|backorder|unavailable|available|notify me|waitlist'\n```\n\n**router.lv:**\n```\ncurl -sL 'https://router.lv/product/757/lv/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|pieejams|nav noliktava|pirkt|grozs'\n```\n\nA product is AVAILABLE if you see 'in stock' or 'add to cart' WITHOUT 'out of stock'. Currently all should show out of stock / backorder / unavailable.\n\nSTEP 2: Check Gmail for smartech.ee reply:\n```\ncd ~/clawd && gog gmail search 'from:smartech.ee' --max 5\n```\n\nSTEP 3: If ANY page shows IN STOCK or ADD TO CART (not 'out of stock'), OR if smartech.ee replied, send Telegram message to Ugis with details and links using the message tool (channel=telegram).\n\nSTEP 4: If all out of stock and no email, just log the status silently. No message needed.",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1771938000000,
+        "lastRunAtMs": 1771851600004,
+        "lastStatus": "ok",
+        "lastDurationMs": 24226,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
+      "agentId": "main",
+      "name": "Lizete Dzirnas schedule check",
+      "enabled": true,
+      "createdAtMs": 1770570235785,
+      "updatedAtMs": 1771918109531,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0). Weekly tabs have dated column headers like '16.02. PIRMDIENA'. gid=0 has undated headers like just 'PIRMDIENA' — this is the fallback/general schedule, NOT the current week.\n\nSTEP 1: Get all sheet gids from the HTML view:\n  curl -sL 'https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview' | grep -oP 'gid=\\d+' | sort -u\n\nSTEP 2: For each gid, fetch the first 4 lines of CSV to check for dated headers:\n  curl -sL 'https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>' | head -4\n\nLook for headers containing dates matching the NEXT week (Mon-Fri). The Monday date identifies the week. If today is within the current week and the current week's tab exists but next week's doesn't, use the current week's tab.\n\nSTEP 3: Once you find the correct gid, fetch the full CSV for that gid and find the '4B SAGATAVOŠANA' row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. '16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)'.\n   - IMPORTANT: Create a SEPARATE calendar event for EACH individual class/time slot, NOT one merged event per day.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n\nSTEP 5: List existing 'Lizete Dzirnas' or 'Lizetei Dzirnas' events on the Family calendar:\n   GOG_ACCOUNT=ugis.springis@gmail.com gog calendar events family10512579686066508808@group.calendar.google.com --from <monday> --to <saturday> --plain --max 50 2>&1 | grep -i dzirnas\n\nSTEP 6: Compare and sync:\n   - Create missing events\n   - Delete events with wrong times using: gog calendar delete family10512579686066508808@group.calendar.google.com <eventId> --force\n   - Delete events for days that no longer have classes\n   - Don't create duplicates\n   - When comparing, match by date and time — each individual class is its own event now.\n\nSTEP 7: For creating EACH individual class event:\n   gog calendar create family10512579686066508808@group.calendar.google.com --summary \"Lizetei Dzirnas: <class name> (<teacher>)\" --from \"YYYY-MM-DDTHH:MM:SS+02:00\" --to \"YYYY-MM-DDTHH:MM:SS+02:00\"\n   Example: \"Lizetei Dzirnas: muzikālā nodarbība (Igeta)\" from 16:30 to 17:00\n\nSTEP 8: If no weekly tab found for the target week, fall back to gid=0 (general schedule) but note this in the report.\n\nSTEP 9: Report what changed. List each individual event created/deleted/unchanged. Be accurate.",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1771956000000,
+        "lastRunAtMs": 1771918070103,
+        "lastStatus": "ok",
+        "lastDurationMs": 39428,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
+      "agentId": "main",
+      "name": "Daily OpenClaw Maintenance",
+      "enabled": true,
+      "createdAtMs": 1771743698150,
+      "updatedAtMs": 1771745374129,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the daily OpenClaw maintenance routine. Do these steps in order, stopping and reporting if any step fails:\n\n1. Run openclaw update --yes --no-restart 2>&1 to update the OpenClaw package WITHOUT restarting the gateway. Capture the full output.\n2. Run clawhub sync --no-input 2>&1 to update all installed skills.\n3. Run openclaw --version 2>&1 and openclaw update status 2>&1 to get current version info.\n4. Send a Telegram message to Ugis summarizing: what was updated (package version changes, skill updates), current version numbers, any errors with fix suggestions.\n5. AFTER sending the report, run openclaw gateway restart 2>&1 as the final step. This will kill this session, which is expected.\n\nIf ANY step before the restart fails, stop there, report exactly what failed and the error output, and suggest a fix. Do not silently continue past errors.",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {
+        "nextRunAtMs": 1771984800000
+      }
+    },
+    {
+      "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
+      "name": "AI Twitter Digest",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1769423157675,
+      "updatedAtMs": 1771913740282,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Fetch the AI list timeline from Twitter/X using bird CLI (list ID from TOOLS.md). Create a comprehensive English-language digest of all tweets. Include ALL tweets — do not truncate or summarize into fewer items. Format as a clean digest with categories, tweet summaries, and links to the most interesting tweets. The digest MUST be in English regardless of tweet language. IMPORTANT: Include tweet URLs for notable items so the reader can click through.",
+        "timeoutSeconds": 300
+      },
+      "state": {
+        "lastRunAtMs": 1771913667243,
+        "lastStatus": "ok",
+        "lastDurationMs": 73039,
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1771999200000,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      }
+    },
+    {
+      "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
+      "agentId": "main",
+      "name": "Bolt Invoice Processor",
+      "enabled": true,
+      "createdAtMs": 1769429947976,
+      "updatedAtMs": 1771916438649,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the Bolt invoice processing script. Execute: bash /home/uspringis/clawd/scripts/bolt-invoices.sh. Check the output.\n\nAfter running the script, also check Gmail for new Bolt monthly invoices: search for emails from 'noreply@bolt.eu' with subject containing 'invoice' or 'rēķins' or 'monthly' received in the last 24 hours.\n\nCommand: cd ~/clawd && gog gmail messages search \"from:noreply@bolt.eu newer_than:1d\" --max 5 --account ugis.springis@gmail.com --plain\n\nIf a NEW monthly invoice email is found, send a Telegram message to Ugis about it using the message tool (channel=telegram). Otherwise, complete silently - do NOT send any message.",
+        "timeoutSeconds": 120
+      },
+      "state": {
+        "nextRunAtMs": 1772002800000,
+        "lastRunAtMs": 1771916400006,
+        "lastStatus": "ok",
+        "lastDurationMs": 38643,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "telegram",
+        "to": "181860584"
+      }
+    },
+    {
+      "id": "07202afa-c84f-4778-bf30-ed003e1aaadd",
+      "agentId": "main",
+      "name": "MikroTik ATL 5G R16 stock check (10:00)",
+      "enabled": true,
+      "createdAtMs": 1770567044958,
+      "updatedAtMs": 1771920026060,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "MikroTik ATL 5G R16 availability check.\n\nSTEP 1: Check these 3 product pages using shell curl + grep to detect stock status from raw HTML:\n\n**getic.com:**\n```\ncurl -sL 'https://www.getic.com/product/mikrotik-atl-5g-r16' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|available|notify me'\n```\n\n**nasstore.eu:**\n```\ncurl -sL 'https://nasstore.eu/product/mikrotik-atl-5g-r16-atlgmrg520f-eu/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|backorder|unavailable|available|notify me|waitlist'\n```\n\n**router.lv:**\n```\ncurl -sL 'https://router.lv/product/757/lv/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|pieejams|nav noliktava|pirkt|grozs'\n```\n\nA product is AVAILABLE if you see 'in stock' or 'add to cart' WITHOUT 'out of stock'. Currently all should show out of stock / backorder / unavailable.\n\nSTEP 2: Check Gmail for smartech.ee reply:\n```\ncd ~/clawd && gog gmail search 'from:smartech.ee' --max 5\n```\n\nSTEP 3: If ANY page shows IN STOCK or ADD TO CART (not 'out of stock'), OR if smartech.ee replied, send Telegram message to Ugis with details and links using the message tool (channel=telegram).\n\nSTEP 4: If all out of stock and no email, just log the status silently. No message needed.",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772006400000,
+        "lastRunAtMs": 1771920000007,
+        "lastStatus": "ok",
+        "lastDurationMs": 26053,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered"
+      }
+    },
+    {
+      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
+      "agentId": "main",
+      "name": "Waste Schedule Check",
+      "enabled": true,
+      "createdAtMs": 1770563229509,
+      "updatedAtMs": 1771581614743,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * 5",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check waste collection schedule from namsaimnieks:\n\n1. Search Gmail for emails from namsaimnieks@latvijasnamsaimnieks.lv in the last 14 days about 'atkritumu izvešanas grafiks'\n\n2. If found a new schedule PDF:\n   - Download the PDF attachment\n   - Extract dates for:\n     - Sadzīves atkritumi (general waste)\n     - Šķiroto atkritumu izvešana (sorted/cardboard)\n     - Stikla iepakojuma izvešana (glass)\n\n3. Check BUS calendar (0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com) for existing events:\n   - 'Kartona miskaste' for Šķiroto atkritumu\n   - 'Stikla miskaste' for Stikla iepakojuma\n\n4. Add any missing future events as whole-day events with reminder popup:3h (21:00 previous day)\n\n5. IMPORTANT: Check if Sadzīves atkritumi dates have changed from Saturday. If general waste is NOT on Saturday:\n   - Send email using: gog gmail send ugis.springis@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n   - Also send to: gog gmail send baiba.springe@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n\n6. If no new emails found or no changes needed, just confirm 'No waste schedule updates needed.'\n\nUse gog CLI for Gmail and Calendar operations.",
+        "timeoutSeconds": 300
+      },
+      "state": {
+        "nextRunAtMs": 1772186400000,
+        "lastRunAtMs": 1771581600004,
+        "lastStatus": "ok",
+        "lastDurationMs": 14739,
+        "consecutiveErrors": 0
+      },
+      "delivery": {
+        "mode": "announce"
+      }
+    }
+  ]
+}

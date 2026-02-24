@@ -1,0 +1,15 @@
+[Unit]
+Description=Clawdbot MCP Server
+After=network.target clawdbot.service
+
+[Service]
+Type=simple
+User=uspringis
+WorkingDirectory=/home/uspringis/clawd/clawdbot-mcp
+EnvironmentFile=/home/uspringis/clawd/clawdbot-mcp/.env
+ExecStart=/usr/bin/node /home/uspringis/clawd/clawdbot-mcp/dist/index.js
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
