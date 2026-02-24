@@ -89,9 +89,9 @@
       "gog": {
         "enabled": true,
         "env": {
-          "GOG_KEYRING_PASSWORD": "secure-pass-secure-2123",
+          "GOG_KEYRING_PASSWORD": "[REDACTED]",
           "GOG_ACCOUNT": "ugis.springis@gmail.com",
-          "GOG_KEYRING_BACKEND": "file"
+          "GOG_KEYRING_BACKEND": "[REDACTED]"
         }
       }
     }
