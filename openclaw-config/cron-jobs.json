@@ -1,69 +1,30 @@
 {
   "jobs": [
     {
-      "id": "72085852-050e-4ecd-a88b-290e80082b38",
+      "id": "871fa841-5efc-4cf1-b8e8-f440b2970119",
       "agentId": "main",
-      "name": "MikroTik ATL 5G R16 stock check (15:00)",
+      "name": "Daily GitHub Backup",
       "enabled": true,
-      "createdAtMs": 1770567044973,
-      "updatedAtMs": 1771851624230,
+      "createdAtMs": 1771920646022,
+      "updatedAtMs": 1771920846411,
       "schedule": {
         "kind": "cron",
-        "expr": "0 15 * * *",
-        "tz": "Europe/Riga"
+        "expr": "0 0 4 * * *"
       },
       "sessionTarget": "isolated",
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "MikroTik ATL 5G R16 availability check.\n\nSTEP 1: Check these 3 product pages using shell curl + grep to detect stock status from raw HTML:\n\n**getic.com:**\n```\ncurl -sL 'https://www.getic.com/product/mikrotik-atl-5g-r16' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|available|notify me'\n```\n\n**nasstore.eu:**\n```\ncurl -sL 'https://nasstore.eu/product/mikrotik-atl-5g-r16-atlgmrg520f-eu/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|backorder|unavailable|available|notify me|waitlist'\n```\n\n**router.lv:**\n```\ncurl -sL 'https://router.lv/product/757/lv/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|pieejams|nav noliktava|pirkt|grozs'\n```\n\nA product is AVAILABLE if you see 'in stock' or 'add to cart' WITHOUT 'out of stock'. Currently all should show out of stock / backorder / unavailable.\n\nSTEP 2: Check Gmail for smartech.ee reply:\n```\ncd ~/clawd && gog gmail search 'from:smartech.ee' --max 5\n```\n\nSTEP 3: If ANY page shows IN STOCK or ADD TO CART (not 'out of stock'), OR if smartech.ee replied, send Telegram message to Ugis with details and links using the message tool (channel=telegram).\n\nSTEP 4: If all out of stock and no email, just log the status silently. No message needed.",
+        "message": "Run the daily backup to GitHub. Execute: bash /home/uspringis/clawd/scripts/backup-to-github.sh 2>&1\n\nCheck the output. If it says \"BACKUP_ERRORS\" or the exit code is non-zero, send a Telegram message to Ugis with the error details using the message tool (channel=telegram).\n\nIf successful, complete silently. Do NOT send any message on success.",
         "timeoutSeconds": 120
       },
       "delivery": {
-        "mode": "none"
+        "mode": "none",
+        "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1771938000000,
-        "lastRunAtMs": 1771851600004,
-        "lastStatus": "ok",
-        "lastDurationMs": 24226,
-        "consecutiveErrors": 0
-      }
-    },
-    {
-      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
-      "agentId": "main",
-      "name": "Lizete Dzirnas schedule check",
-      "enabled": true,
-      "createdAtMs": 1770570235785,
-      "updatedAtMs": 1771918109531,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 20 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0). Weekly tabs have dated column headers like '16.02. PIRMDIENA'. gid=0 has undated headers like just 'PIRMDIENA' — this is the fallback/general schedule, NOT the current week.\n\nSTEP 1: Get all sheet gids from the HTML view:\n  curl -sL 'https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview' | grep -oP 'gid=\\d+' | sort -u\n\nSTEP 2: For each gid, fetch the first 4 lines of CSV to check for dated headers:\n  curl -sL 'https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>' | head -4\n\nLook for headers containing dates matching the NEXT week (Mon-Fri). The Monday date identifies the week. If today is within the current week and the current week's tab exists but next week's doesn't, use the current week's tab.\n\nSTEP 3: Once you find the correct gid, fetch the full CSV for that gid and find the '4B SAGATAVOŠANA' row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. '16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)'.\n   - IMPORTANT: Create a SEPARATE calendar event for EACH individual class/time slot, NOT one merged event per day.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n\nSTEP 5: List existing 'Lizete Dzirnas' or 'Lizetei Dzirnas' events on the Family calendar:\n   GOG_ACCOUNT=ugis.springis@gmail.com gog calendar events family10512579686066508808@group.calendar.google.com --from <monday> --to <saturday> --plain --max 50 2>&1 | grep -i dzirnas\n\nSTEP 6: Compare and sync:\n   - Create missing events\n   - Delete events with wrong times using: gog calendar delete family10512579686066508808@group.calendar.google.com <eventId> --force\n   - Delete events for days that no longer have classes\n   - Don't create duplicates\n   - When comparing, match by date and time — each individual class is its own event now.\n\nSTEP 7: For creating EACH individual class event:\n   gog calendar create family10512579686066508808@group.calendar.google.com --summary \"Lizetei Dzirnas: <class name> (<teacher>)\" --from \"YYYY-MM-DDTHH:MM:SS+02:00\" --to \"YYYY-MM-DDTHH:MM:SS+02:00\"\n   Example: \"Lizetei Dzirnas: muzikālā nodarbība (Igeta)\" from 16:30 to 17:00\n\nSTEP 8: If no weekly tab found for the target week, fall back to gid=0 (general schedule) but note this in the report.\n\nSTEP 9: Report what changed. List each individual event created/deleted/unchanged. Be accurate.",
-        "timeoutSeconds": 180
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1771956000000,
-        "lastRunAtMs": 1771918070103,
-        "lastStatus": "ok",
-        "lastDurationMs": 39428,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered"
+        "nextRunAtMs": 1771984800000,
+        "runningAtMs": 1771984800006
       }
     },
     {
@@ -72,11 +33,10 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1771745374129,
+      "updatedAtMs": 1771920840521,
       "schedule": {
         "kind": "cron",
-        "expr": "0 4 * * *",
-        "tz": "Europe/Riga"
+        "expr": "0 30 4 * * *"
       },
       "sessionTarget": "isolated",
       "wakeMode": "now",
@@ -89,7 +49,7 @@
         "mode": "announce"
       },
       "state": {
-        "nextRunAtMs": 1771984800000
+        "nextRunAtMs": 1771986600000
       }
     },
     {
@@ -98,11 +58,10 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1771913740282,
+      "updatedAtMs": 1771920847929,
       "schedule": {
         "kind": "cron",
-        "expr": "0 8 * * *",
-        "tz": "Europe/Riga"
+        "expr": "0 0 7 * * *"
       },
       "sessionTarget": "isolated",
       "wakeMode": "now",
@@ -116,7 +75,7 @@
         "lastStatus": "ok",
         "lastDurationMs": 73039,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1771999200000,
+        "nextRunAtMs": 1771995600000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -194,6 +153,75 @@
         "lastRunStatus": "ok",
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered"
+      }
+    },
+    {
+      "id": "72085852-050e-4ecd-a88b-290e80082b38",
+      "agentId": "main",
+      "name": "MikroTik ATL 5G R16 stock check (15:00)",
+      "enabled": true,
+      "createdAtMs": 1770567044973,
+      "updatedAtMs": 1771938025781,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "MikroTik ATL 5G R16 availability check.\n\nSTEP 1: Check these 3 product pages using shell curl + grep to detect stock status from raw HTML:\n\n**getic.com:**\n```\ncurl -sL 'https://www.getic.com/product/mikrotik-atl-5g-r16' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|available|notify me'\n```\n\n**nasstore.eu:**\n```\ncurl -sL 'https://nasstore.eu/product/mikrotik-atl-5g-r16-atlgmrg520f-eu/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|backorder|unavailable|available|notify me|waitlist'\n```\n\n**router.lv:**\n```\ncurl -sL 'https://router.lv/product/757/lv/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|pieejams|nav noliktava|pirkt|grozs'\n```\n\nA product is AVAILABLE if you see 'in stock' or 'add to cart' WITHOUT 'out of stock'. Currently all should show out of stock / backorder / unavailable.\n\nSTEP 2: Check Gmail for smartech.ee reply:\n```\ncd ~/clawd && gog gmail search 'from:smartech.ee' --max 5\n```\n\nSTEP 3: If ANY page shows IN STOCK or ADD TO CART (not 'out of stock'), OR if smartech.ee replied, send Telegram message to Ugis with details and links using the message tool (channel=telegram).\n\nSTEP 4: If all out of stock and no email, just log the status silently. No message needed.",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772024400000,
+        "lastRunAtMs": 1771938000007,
+        "lastStatus": "ok",
+        "lastDurationMs": 25774,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered"
+      }
+    },
+    {
+      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
+      "agentId": "main",
+      "name": "Lizete Dzirnas schedule check",
+      "enabled": true,
+      "createdAtMs": 1770570235785,
+      "updatedAtMs": 1771958757326,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0). Weekly tabs have dated column headers like '16.02. PIRMDIENA'. gid=0 has undated headers like just 'PIRMDIENA' — this is the fallback/general schedule, NOT the current week.\n\nSTEP 1: Get all sheet gids from the HTML view:\n  curl -sL 'https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview' | grep -oP 'gid=\\d+' | sort -u\n\nSTEP 2: For each gid, fetch the first 4 lines of CSV to check for dated headers:\n  curl -sL 'https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>' | head -4\n\nLook for headers containing dates matching the NEXT week (Mon-Fri). The Monday date identifies the week. If today is within the current week and the current week's tab exists but next week's doesn't, use the current week's tab.\n\nSTEP 3: Once you find the correct gid, fetch the full CSV for that gid and find the '4B SAGATAVOŠANA' row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. '16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)'.\n   - IMPORTANT: Create a SEPARATE calendar event for EACH individual class/time slot, NOT one merged event per day.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n\nSTEP 5: List existing 'Lizete Dzirnas' or 'Lizetei Dzirnas' events on the Family calendar:\n   GOG_ACCOUNT=ugis.springis@gmail.com gog calendar events family10512579686066508808@group.calendar.google.com --from <monday> --to <saturday> --plain --max 50 2>&1 | grep -i dzirnas\n\nSTEP 6: Compare and sync:\n   - Create missing events\n   - Delete events with wrong times using: gog calendar delete family10512579686066508808@group.calendar.google.com <eventId> --force\n   - Delete events for days that no longer have classes\n   - Don't create duplicates\n   - When comparing, match by date and time — each individual class is its own event now.\n\nSTEP 7: For creating EACH individual class event:\n   gog calendar create family10512579686066508808@group.calendar.google.com --summary \"Lizetei Dzirnas: <class name> (<teacher>)\" --from \"YYYY-MM-DDTHH:MM:SS+02:00\" --to \"YYYY-MM-DDTHH:MM:SS+02:00\"\n   Example: \"Lizetei Dzirnas: muzikālā nodarbība (Igeta)\" from 16:30 to 17:00\n\nSTEP 8: If no weekly tab found for the target week, fall back to gid=0 (general schedule) but note this in the report.\n\nSTEP 9: Report what changed. List each individual event created/deleted/unchanged. Be accurate.",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1772042400000,
+        "lastRunAtMs": 1771958715654,
+        "lastStatus": "ok",
+        "lastDurationMs": 41672,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
       }
     },
     {
