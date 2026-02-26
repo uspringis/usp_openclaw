@@ -1,11 +1,11 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.2.15",
-    "lastTouchedAt": "2026-02-16T07:36:24.834Z"
+    "lastTouchedVersion": "2026.2.23",
+    "lastTouchedAt": "2026-02-25T06:17:50.667Z"
   },
   "wizard": {
-    "lastRunAt": "2026-02-16T07:36:24.824Z",
-    "lastRunVersion": "2026.2.15",
+    "lastRunAt": "2026-02-25T06:17:50.649Z",
+    "lastRunVersion": "2026.2.23",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -19,6 +19,15 @@
   },
   "agents": {
     "defaults": {
+      "model": {
+        "primary": "anthropic/claude-opus-4-6"
+      },
+      "models": {
+        "anthropic/claude-opus-4-6": {},
+        "anthropic/claude-sonnet-4-6": {},
+        "openai/gpt-5.2": {},
+        "openai/gpt-5.3-codex": {}
+      },
       "workspace": "/home/uspringis/clawd",
       "compaction": {
         "mode": "safeguard"
@@ -29,12 +38,24 @@
       }
     }
   },
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": false
+      },
+      "fetch": {
+        "enabled": true
+      }
+    }
+  },
   "messages": {
     "ackReactionScope": "group-mentions"
   },
   "commands": {
     "native": "auto",
-    "nativeSkills": "auto"
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
   },
   "hooks": {
     "internal": {
@@ -58,13 +79,13 @@
       "dmPolicy": "pairing",
       "botToken": "[REDACTED]",
       "groupPolicy": "allowlist",
-      "streamMode": "partial"
+      "streaming": "partial"
     }
   },
   "gateway": {
     "port": 18789,
     "mode": "local",
-    "bind": "lan",
+    "bind": "loopback",
     "controlUi": {
       "allowInsecureAuth": true
     },
@@ -77,8 +98,8 @@
       "127.0.0.1"
     ],
     "tailscale": {
-      "mode": "off",
-      "resetOnExit": false
+      "mode": "serve",
+      "resetOnExit": true
     }
   },
   "skills": {
@@ -102,5 +123,11 @@
         "enabled": true
       }
     }
+  },
+  "browser": {
+    "enabled": true,
+    "headless": true,
+    "noSandbox": true,
+    "executablePath": "/home/uspringis/.cache/ms-playwright/chromium-1208/chrome-linux64/chrome"
   }
 }
