@@ -46,6 +46,7 @@
 - [ ] Prepare presentation for Botswana
 - [ ] Nosutit Martai YouTube materialus par AI
 - [ ] Write to Linards on yacht valve project — Noresca
+- [ ] Zemesgrāmatā reģistrēt būvi
 - [x] Emilija sickness tracker — resolved, file deleted 23.02
 
 ## Preferences (Ugis)
