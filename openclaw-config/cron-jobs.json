@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1772083273704,
+      "updatedAtMs": 1772157611999,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772157600000,
-        "lastRunAtMs": 1772071200005,
+        "nextRunAtMs": 1772244000000,
+        "lastRunAtMs": 1772157600005,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 12445,
+        "lastDurationMs": 11994,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772157600005
+        "runningAtMs": 1772244000006
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1772083275287,
+      "updatedAtMs": 1772167816158,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -52,15 +52,18 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run the daily OpenClaw maintenance routine. Do these steps in order, stopping and reporting if any step fails:\n\n1. Run openclaw update --yes --no-restart 2>&1 to update the OpenClaw package WITHOUT restarting the gateway. Capture the full output.\n2. Run clawhub sync --no-input 2>&1 to update all installed skills.\n3. Run openclaw --version 2>&1 and openclaw update status 2>&1 to get current version info.\n4. Send a Telegram message to Ugis summarizing: what was updated (package version changes, skill updates), current version numbers, any errors with fix suggestions.\n5. AFTER sending the report, run openclaw gateway restart 2>&1 as the final step. This will kill this session, which is expected.\n\nIf ANY step before the restart fails, stop there, report exactly what failed and the error output, and suggest a fix. Do not silently continue past errors.",
+        "message": "Run the daily OpenClaw maintenance routine. Do these steps in order, stopping and reporting if any step fails:\n\n1. Run openclaw update --yes --no-restart 2>&1 to update the OpenClaw package WITHOUT restarting the gateway. Capture the full output.\n2. Run clawhub sync --no-input 2>&1 to update all installed skills.\n3. Run openclaw --version 2>&1 and openclaw update status 2>&1 to get current version info.\n4. Send a Telegram message to Ugis summarizing: what was updated (package version changes, skill updates), current version numbers, any errors with fix suggestions.\n5. AFTER sending the report, schedule a delayed gateway restart by running: nohup sh -c \"sleep 15 && openclaw gateway restart\" >/dev/null 2>&1 & — This gives the cron framework time to record the run as complete before the gateway restarts.\n\nIf ANY step before the restart fails, stop there, report exactly what failed and the error output, and suggest a fix. Do not silently continue past errors.",
         "timeoutSeconds": 600,
         "model": "anthropic/claude-opus-4-6"
       },
       "delivery": {
-        "mode": "announce"
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772159400000
+        "nextRunAtMs": 1772245800000
       }
     },
     {
@@ -69,7 +72,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1772083276853,
+      "updatedAtMs": 1772168503099,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -84,11 +87,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1772082000006,
+        "lastRunAtMs": 1772168400005,
         "lastStatus": "ok",
-        "lastDurationMs": 70743,
+        "lastDurationMs": 103094,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1772168400000,
+        "nextRunAtMs": 1772254800000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -106,7 +109,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1772089235289,
+      "updatedAtMs": 1772175609817,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -121,10 +124,10 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1772175600000,
-        "lastRunAtMs": 1772089200005,
+        "nextRunAtMs": 1772262000000,
+        "lastRunAtMs": 1772175600006,
         "lastStatus": "ok",
-        "lastDurationMs": 35284,
+        "lastDurationMs": 9811,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": false,
@@ -142,7 +145,7 @@
       "name": "MikroTik ATL 5G R16 stock check (10:00)",
       "enabled": true,
       "createdAtMs": 1770567044958,
-      "updatedAtMs": 1772092827170,
+      "updatedAtMs": 1772179222299,
       "schedule": {
         "kind": "cron",
         "expr": "0 10 * * *",
@@ -160,45 +163,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772179200000,
-        "lastRunAtMs": 1772092800008,
+        "nextRunAtMs": 1772265600000,
+        "lastRunAtMs": 1772179200005,
         "lastStatus": "ok",
-        "lastDurationMs": 27162,
+        "lastDurationMs": 22294,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered"
-      }
-    },
-    {
-      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
-      "agentId": "main",
-      "name": "Waste Schedule Check",
-      "enabled": true,
-      "createdAtMs": 1770563229509,
-      "updatedAtMs": 1771997990482,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 12 * * 5",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "next-heartbeat",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Check waste collection schedule from namsaimnieks:\n\n1. Search Gmail for emails from namsaimnieks@latvijasnamsaimnieks.lv in the last 14 days about 'atkritumu izvešanas grafiks'\n\n2. If found a new schedule PDF:\n   - Download the PDF attachment\n   - Extract dates for:\n     - Sadzīves atkritumi (general waste)\n     - Šķiroto atkritumu izvešana (sorted/cardboard)\n     - Stikla iepakojuma izvešana (glass)\n\n3. Check BUS calendar (0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com) for existing events:\n   - 'Kartona miskaste' for Šķiroto atkritumu\n   - 'Stikla miskaste' for Stikla iepakojuma\n\n4. Add any missing future events as whole-day events with reminder popup:3h (21:00 previous day)\n\n5. IMPORTANT: Check if Sadzīves atkritumi dates have changed from Saturday. If general waste is NOT on Saturday:\n   - Send email using: gog gmail send ugis.springis@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n   - Also send to: gog gmail send baiba.springe@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n\n6. If no new emails found or no changes needed, just confirm 'No waste schedule updates needed.'\n\nUse gog CLI for Gmail and Calendar operations.",
-        "timeoutSeconds": 300,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "state": {
-        "nextRunAtMs": 1772186400000,
-        "lastRunAtMs": 1771581600004,
-        "lastStatus": "ok",
-        "lastDurationMs": 14739,
-        "consecutiveErrors": 0
-      },
-      "delivery": {
-        "mode": "announce"
       }
     },
     {
@@ -207,7 +179,7 @@
       "name": "MikroTik ATL 5G R16 stock check (15:00)",
       "enabled": true,
       "createdAtMs": 1770567044973,
-      "updatedAtMs": 1772110825851,
+      "updatedAtMs": 1772197222562,
       "schedule": {
         "kind": "cron",
         "expr": "0 15 * * *",
@@ -225,10 +197,10 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772197200000,
-        "lastRunAtMs": 1772110800008,
+        "nextRunAtMs": 1772283600000,
+        "lastRunAtMs": 1772197200006,
         "lastStatus": "ok",
-        "lastDurationMs": 25843,
+        "lastDurationMs": 22556,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": false,
@@ -241,7 +213,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1772128920619,
+      "updatedAtMs": 1772215380015,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -262,14 +234,51 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772215200000,
-        "lastRunAtMs": 1772128800006,
+        "nextRunAtMs": 1772301600000,
+        "lastRunAtMs": 1772215200005,
+        "lastStatus": "error",
+        "lastDurationMs": 180010,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "unknown",
+        "lastError": "cron: job execution timed out"
+      }
+    },
+    {
+      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
+      "agentId": "main",
+      "name": "Waste Schedule Check",
+      "enabled": true,
+      "createdAtMs": 1770563229509,
+      "updatedAtMs": 1772186540915,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * 5",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check waste collection schedule from namsaimnieks:\n\n1. Search Gmail for emails from namsaimnieks@latvijasnamsaimnieks.lv in the last 14 days about 'atkritumu izvešanas grafiks'\n\n2. If found a new schedule PDF:\n   - Download the PDF attachment\n   - Extract dates for:\n     - Sadzīves atkritumi (general waste)\n     - Šķiroto atkritumu izvešana (sorted/cardboard)\n     - Stikla iepakojuma izvešana (glass)\n\n3. Check BUS calendar (0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com) for existing events:\n   - 'Kartona miskaste' for Šķiroto atkritumu\n   - 'Stikla miskaste' for Stikla iepakojuma\n\n4. Add any missing future events as whole-day events with reminder popup:3h (21:00 previous day)\n\n5. IMPORTANT: Check if Sadzīves atkritumi dates have changed from Saturday. If general waste is NOT on Saturday:\n   - Send email using: gog gmail send ugis.springis@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n   - Also send to: gog gmail send baiba.springe@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n\n6. If no new emails found or no changes needed, just confirm 'No waste schedule updates needed.'\n\nUse gog CLI for Gmail and Calendar operations.",
+        "timeoutSeconds": 300,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "state": {
+        "nextRunAtMs": 1772791200000,
+        "lastRunAtMs": 1772186400007,
         "lastStatus": "ok",
-        "lastDurationMs": 120613,
+        "lastDurationMs": 140908,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
       }
     }
   ],
