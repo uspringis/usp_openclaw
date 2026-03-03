@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1772330411169,
+      "updatedAtMs": 1772416813014,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772416800000,
-        "lastRunAtMs": 1772330400006,
+        "nextRunAtMs": 1772503200000,
+        "lastRunAtMs": 1772416800007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 11163,
+        "lastDurationMs": 13007,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772416800007
+        "runningAtMs": 1772503200005
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1772245952916,
+      "updatedAtMs": 1772418801334,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,14 +63,15 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772418600000,
-        "lastRunAtMs": 1772245800005,
+        "nextRunAtMs": 1772505000000,
+        "lastRunAtMs": 1772418600005,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 152911,
+        "lastDurationMs": 201329,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 1
+        "consecutiveErrors": 2,
+        "lastError": "⚠️ ✉️ Message failed"
       }
     },
     {
@@ -79,7 +80,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1772341291398,
+      "updatedAtMs": 1772427680518,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -94,11 +95,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1772341200006,
+        "lastRunAtMs": 1772427600007,
         "lastStatus": "ok",
-        "lastDurationMs": 91392,
+        "lastDurationMs": 80511,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1772427600000,
+        "nextRunAtMs": 1772514000000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -116,7 +117,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1772348442892,
+      "updatedAtMs": 1772434920016,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -131,14 +132,14 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1772434800000,
-        "lastRunAtMs": 1772348400007,
-        "lastStatus": "ok",
-        "lastDurationMs": 42885,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDelivered": false,
-        "lastDeliveryStatus": "not-delivered"
+        "nextRunAtMs": 1772521200000,
+        "lastRunAtMs": 1772434800006,
+        "lastStatus": "error",
+        "lastDurationMs": 120010,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "not-requested",
+        "lastError": "cron: job execution timed out"
       },
       "delivery": {
         "mode": "none",
@@ -152,7 +153,7 @@
       "name": "MikroTik ATL 5G R16 stock check (10:00)",
       "enabled": true,
       "createdAtMs": 1770567044958,
-      "updatedAtMs": 1772352025719,
+      "updatedAtMs": 1772438425295,
       "schedule": {
         "kind": "cron",
         "expr": "0 10 * * *",
@@ -170,10 +171,10 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772438400000,
-        "lastRunAtMs": 1772352000007,
+        "nextRunAtMs": 1772524800000,
+        "lastRunAtMs": 1772438400006,
         "lastStatus": "ok",
-        "lastDurationMs": 25712,
+        "lastDurationMs": 25289,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": false,
@@ -186,7 +187,7 @@
       "name": "MikroTik ATL 5G R16 stock check (15:00)",
       "enabled": true,
       "createdAtMs": 1770567044973,
-      "updatedAtMs": 1772370023089,
+      "updatedAtMs": 1772456426712,
       "schedule": {
         "kind": "cron",
         "expr": "0 15 * * *",
@@ -204,10 +205,10 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772456400000,
-        "lastRunAtMs": 1772370000006,
+        "nextRunAtMs": 1772542800000,
+        "lastRunAtMs": 1772456400006,
         "lastStatus": "ok",
-        "lastDurationMs": 23083,
+        "lastDurationMs": 26706,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": false,
@@ -220,7 +221,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1772388105577,
+      "updatedAtMs": 1772474511027,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -241,10 +242,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772474400000,
-        "lastRunAtMs": 1772388000006,
+        "nextRunAtMs": 1772560800000,
+        "lastRunAtMs": 1772474400007,
         "lastStatus": "ok",
-        "lastDurationMs": 105571,
+        "lastDurationMs": 111020,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
