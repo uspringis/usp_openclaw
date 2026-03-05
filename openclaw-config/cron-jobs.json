@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1772503211795,
+      "updatedAtMs": 1772589612939,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772589600000,
-        "lastRunAtMs": 1772503200005,
+        "nextRunAtMs": 1772676000000,
+        "lastRunAtMs": 1772589600006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 11790,
+        "lastDurationMs": 12933,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772589600006
+        "runningAtMs": 1772676000007
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1772505304538,
+      "updatedAtMs": 1772591613698,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,14 +63,14 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772591400000,
-        "lastRunAtMs": 1772505000007,
+        "nextRunAtMs": 1772677800000,
+        "lastRunAtMs": 1772591400005,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 304531,
+        "lastDurationMs": 213693,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 3,
+        "consecutiveErrors": 4,
         "lastError": "⚠️ ✉️ Message failed"
       }
     },
@@ -80,7 +80,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1772514072838,
+      "updatedAtMs": 1772600463869,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -95,11 +95,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1772514000008,
+        "lastRunAtMs": 1772600400006,
         "lastStatus": "ok",
-        "lastDurationMs": 72830,
+        "lastDurationMs": 63863,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1772600400000,
+        "nextRunAtMs": 1772686800000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -117,7 +117,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1772521270357,
+      "updatedAtMs": 1772607650701,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -132,16 +132,14 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1772607600000,
-        "lastRunAtMs": 1772521200004,
-        "lastStatus": "error",
-        "lastDurationMs": 70353,
-        "consecutiveErrors": 2,
-        "lastRunStatus": "error",
+        "nextRunAtMs": 1772694000000,
+        "lastRunAtMs": 1772607600005,
+        "lastStatus": "ok",
+        "lastDurationMs": 50696,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
-        "lastError": "The AI service is temporarily overloaded. Please try again in a moment.",
-        "lastDelivered": false,
-        "lastDeliveryError": "The AI service is temporarily overloaded. Please try again in a moment."
+        "lastDelivered": false
       },
       "delivery": {
         "mode": "none",
@@ -155,7 +153,7 @@
       "name": "MikroTik ATL 5G R16 stock check (10:00)",
       "enabled": true,
       "createdAtMs": 1770567044958,
-      "updatedAtMs": 1772524882972,
+      "updatedAtMs": 1772611247698,
       "schedule": {
         "kind": "cron",
         "expr": "0 10 * * *",
@@ -173,16 +171,16 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772611200000,
-        "lastRunAtMs": 1772524800008,
+        "nextRunAtMs": 1772697600000,
+        "lastRunAtMs": 1772611200005,
         "lastStatus": "error",
-        "lastDurationMs": 82964,
-        "consecutiveErrors": 1,
+        "lastDurationMs": 47693,
+        "consecutiveErrors": 2,
         "lastRunStatus": "error",
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "lastError": "The AI service is temporarily overloaded. Please try again in a moment.",
-        "lastDeliveryError": "The AI service is temporarily overloaded. Please try again in a moment."
+        "lastDeliveryError": "⚠️ ✉️ Message failed",
+        "lastError": "⚠️ ✉️ Message failed"
       }
     },
     {
@@ -191,7 +189,7 @@
       "name": "MikroTik ATL 5G R16 stock check (15:00)",
       "enabled": true,
       "createdAtMs": 1770567044973,
-      "updatedAtMs": 1772542871259,
+      "updatedAtMs": 1772629248138,
       "schedule": {
         "kind": "cron",
         "expr": "0 15 * * *",
@@ -209,16 +207,16 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772629200000,
-        "lastRunAtMs": 1772542800007,
+        "nextRunAtMs": 1772715600000,
+        "lastRunAtMs": 1772629200006,
         "lastStatus": "error",
-        "lastDurationMs": 71252,
-        "consecutiveErrors": 1,
+        "lastDurationMs": 48132,
+        "consecutiveErrors": 2,
         "lastRunStatus": "error",
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
-        "lastError": "The AI service is temporarily overloaded. Please try again in a moment.",
-        "lastDeliveryError": "The AI service is temporarily overloaded. Please try again in a moment."
+        "lastDeliveryError": "⚠️ ✉️ Message failed",
+        "lastError": "⚠️ ✉️ Message failed"
       }
     },
     {
@@ -227,7 +225,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1772564058379,
+      "updatedAtMs": 1772647290863,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -248,10 +246,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772647200000,
-        "lastRunAtMs": 1772563994180,
+        "nextRunAtMs": 1772733600000,
+        "lastRunAtMs": 1772647200007,
         "lastStatus": "ok",
-        "lastDurationMs": 64199,
+        "lastDurationMs": 90856,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
@@ -264,7 +262,7 @@
       "name": "Waste Schedule Check",
       "enabled": true,
       "createdAtMs": 1770563229509,
-      "updatedAtMs": 1772186540915,
+      "updatedAtMs": 1772640766905,
       "schedule": {
         "kind": "cron",
         "expr": "0 12 * * 5",
@@ -274,7 +272,7 @@
       "wakeMode": "next-heartbeat",
       "payload": {
         "kind": "agentTurn",
-        "message": "Check waste collection schedule from namsaimnieks:\n\n1. Search Gmail for emails from namsaimnieks@latvijasnamsaimnieks.lv in the last 14 days about 'atkritumu izvešanas grafiks'\n\n2. If found a new schedule PDF:\n   - Download the PDF attachment\n   - Extract dates for:\n     - Sadzīves atkritumi (general waste)\n     - Šķiroto atkritumu izvešana (sorted/cardboard)\n     - Stikla iepakojuma izvešana (glass)\n\n3. Check BUS calendar (0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com) for existing events:\n   - 'Kartona miskaste' for Šķiroto atkritumu\n   - 'Stikla miskaste' for Stikla iepakojuma\n\n4. Add any missing future events as whole-day events with reminder popup:3h (21:00 previous day)\n\n5. IMPORTANT: Check if Sadzīves atkritumi dates have changed from Saturday. If general waste is NOT on Saturday:\n   - Send email using: gog gmail send ugis.springis@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n   - Also send to: gog gmail send baiba.springe@gmail.com 'Atkritumu izvešanas grafiks mainīts' 'Sadzīves atkritumu izvešanas diena mainīta. Skatīt pielikumu.' --attach /tmp/grafiks.pdf\n\n6. If no new emails found or no changes needed, just confirm 'No waste schedule updates needed.'\n\nUse gog CLI for Gmail and Calendar operations.",
+        "message": "Check waste collection schedule from Eco Baltia Vide:\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gog gmail messages search \"from:babite@ecobaltiavide.lv\" --max 5\n\n2. If found a new email with PDF attachment:\n   - Download the PDF attachment using gog gmail attachment <messageId> <attachmentId> --out /tmp/waste-grafiks.pdf\n   - Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   - Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   - Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n3. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gog calendar events 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --from <first_date> --to <last_date_plus_1> --plain --max 100 | grep -i miskaste\n\n4. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gog calendar delete 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com <eventId> --force\n\n5. Create new whole-day events for each date with reminder popup:180 (3h before = 21:00 previous day):\n   gog calendar create 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --summary \"<event name>\" --from \"YYYY-MM-DDT00:00:00+03:00\" --to \"YYYY-MM-DD+1T00:00:00+03:00\" --reminder popup:180\n\n6. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n7. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"\n\nUse gog CLI for Gmail and Calendar operations.",
         "timeoutSeconds": 300,
         "model": "anthropic/claude-opus-4-6"
       },
