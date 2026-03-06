@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1772589612939,
+      "updatedAtMs": 1772676016134,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772676000000,
-        "lastRunAtMs": 1772589600006,
+        "nextRunAtMs": 1772762400000,
+        "lastRunAtMs": 1772676000007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 12933,
+        "lastDurationMs": 16127,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772676000007
+        "runningAtMs": 1772762400006
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1772591613698,
+      "updatedAtMs": 1772678144940,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,15 +63,14 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772677800000,
-        "lastRunAtMs": 1772591400005,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 213693,
+        "nextRunAtMs": 1772764200000,
+        "lastRunAtMs": 1772677800006,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 344934,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 4,
-        "lastError": "⚠️ ✉️ Message failed"
+        "consecutiveErrors": 0
       }
     },
     {
@@ -80,7 +79,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1772600463869,
+      "updatedAtMs": 1772686896172,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -95,11 +94,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1772600400006,
+        "lastRunAtMs": 1772686800007,
         "lastStatus": "ok",
-        "lastDurationMs": 63863,
+        "lastDurationMs": 96165,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1772686800000,
+        "nextRunAtMs": 1772773200000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -117,7 +116,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1772607650701,
+      "updatedAtMs": 1772694104314,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -132,10 +131,10 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1772694000000,
-        "lastRunAtMs": 1772607600005,
+        "nextRunAtMs": 1772780400000,
+        "lastRunAtMs": 1772694000006,
         "lastStatus": "ok",
-        "lastDurationMs": 50696,
+        "lastDurationMs": 104308,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
@@ -153,7 +152,7 @@
       "name": "MikroTik ATL 5G R16 stock check (10:00)",
       "enabled": true,
       "createdAtMs": 1770567044958,
-      "updatedAtMs": 1772611247698,
+      "updatedAtMs": 1772697677257,
       "schedule": {
         "kind": "cron",
         "expr": "0 10 * * *",
@@ -171,89 +170,16 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772697600000,
-        "lastRunAtMs": 1772611200005,
+        "nextRunAtMs": 1772784000000,
+        "lastRunAtMs": 1772697600006,
         "lastStatus": "error",
-        "lastDurationMs": 47693,
-        "consecutiveErrors": 2,
+        "lastDurationMs": 77251,
+        "consecutiveErrors": 3,
         "lastRunStatus": "error",
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "lastDeliveryError": "⚠️ ✉️ Message failed",
         "lastError": "⚠️ ✉️ Message failed"
-      }
-    },
-    {
-      "id": "72085852-050e-4ecd-a88b-290e80082b38",
-      "agentId": "main",
-      "name": "MikroTik ATL 5G R16 stock check (15:00)",
-      "enabled": true,
-      "createdAtMs": 1770567044973,
-      "updatedAtMs": 1772629248138,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 15 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "MikroTik ATL 5G R16 availability check.\n\nSTEP 1: Check these 3 product pages using shell curl + grep to detect stock status from raw HTML:\n\n**getic.com:**\n```\ncurl -sL 'https://www.getic.com/product/mikrotik-atl-5g-r16' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|available|notify me'\n```\n\n**nasstore.eu:**\n```\ncurl -sL 'https://nasstore.eu/product/mikrotik-atl-5g-r16-atlgmrg520f-eu/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|backorder|unavailable|available|notify me|waitlist'\n```\n\n**router.lv:**\n```\ncurl -sL 'https://router.lv/product/757/lv/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|pieejams|nav noliktava|pirkt|grozs'\n```\n\nA product is AVAILABLE if you see 'in stock' or 'add to cart' WITHOUT 'out of stock'. Currently all should show out of stock / backorder / unavailable.\n\nSTEP 2: Check Gmail for smartech.ee reply:\n```\ncd ~/clawd && gog gmail search 'from:smartech.ee' --max 5\n```\n\nSTEP 3: If ANY page shows IN STOCK or ADD TO CART (not 'out of stock'), OR if smartech.ee replied, send Telegram message to Ugis with details and links using the message tool (channel=telegram).\n\nSTEP 4: If all out of stock and no email, just log the status silently. No message needed.",
-        "timeoutSeconds": 120,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "delivery": {
-        "mode": "none"
-      },
-      "state": {
-        "nextRunAtMs": 1772715600000,
-        "lastRunAtMs": 1772629200006,
-        "lastStatus": "error",
-        "lastDurationMs": 48132,
-        "consecutiveErrors": 2,
-        "lastRunStatus": "error",
-        "lastDelivered": false,
-        "lastDeliveryStatus": "not-delivered",
-        "lastDeliveryError": "⚠️ ✉️ Message failed",
-        "lastError": "⚠️ ✉️ Message failed"
-      }
-    },
-    {
-      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
-      "agentId": "main",
-      "name": "Lizete Dzirnas schedule check",
-      "enabled": true,
-      "createdAtMs": 1770570235785,
-      "updatedAtMs": 1772647290863,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 20 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\nLog progress to /tmp/lizete-cron.log at each step. Use: echo \"[$(date +%H:%M:%S)] STEP N: description\" >> /tmp/lizete-cron.log\nClear the log at the start: echo \"\" > /tmp/lizete-cron.log\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n\nSTEP 1: Log \"STEP 1: Fetching spreadsheet tabs\". Fetch the htmlview page ONCE and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Log \"STEP 2: Finding matching tab for current/next week\". Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. Fall back to gid=0 (Pamatgrafiks) if no weekly tab found. Log which tab and gid was selected.\n\nSTEP 3: Log \"STEP 3: Fetching CSV for tab <name> gid=<gid>\". Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Log \"STEP 4: Parsing classes\". Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   Log the total number of classes parsed.\n\nSTEP 5: Log \"STEP 5: Listing existing calendar events\". List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar:\n   export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\" GOG_ACCOUNT=\"ugis.springis@gmail.com\" GOG_KEYRING_BACKEND=\"file\" && gog calendar events family10512579686066508808@group.calendar.google.com --from <monday> --to <saturday> --plain --max 50 2>&1 | grep -i dzirnas\n\nSTEP 6: Log \"STEP 6: Comparing and syncing\". Compare and sync:\n   - Create missing events\n   - Delete events with wrong times using: gog calendar delete family10512579686066508808@group.calendar.google.com <eventId> --force\n   - Delete events for days that no longer have classes\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events (see STANDING RULES above).\n   Log each create/delete action.\n\nSTEP 7: For creating EACH individual class event:\n   gog calendar create family10512579686066508808@group.calendar.google.com --summary \"Lizetei Dzirnas: <class name> (<teacher>)\" --from \"YYYY-MM-DDTHH:MM:SS+03:00\" --to \"YYYY-MM-DDTHH:MM:SS+03:00\"\n\nSTEP 8: Log \"STEP 8: Done\". Report what changed. List each individual event created/deleted/unchanged.",
-        "timeoutSeconds": 600,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1772733600000,
-        "lastRunAtMs": 1772647200007,
-        "lastStatus": "ok",
-        "lastDurationMs": 90856,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "delivered",
-        "lastDelivered": true
       }
     },
     {
@@ -291,6 +217,79 @@
         "channel": "telegram",
         "to": "181860584",
         "bestEffort": true
+      }
+    },
+    {
+      "id": "72085852-050e-4ecd-a88b-290e80082b38",
+      "agentId": "main",
+      "name": "MikroTik ATL 5G R16 stock check (15:00)",
+      "enabled": true,
+      "createdAtMs": 1770567044973,
+      "updatedAtMs": 1772715663385,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "MikroTik ATL 5G R16 availability check.\n\nSTEP 1: Check these 3 product pages using shell curl + grep to detect stock status from raw HTML:\n\n**getic.com:**\n```\ncurl -sL 'https://www.getic.com/product/mikrotik-atl-5g-r16' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|available|notify me'\n```\n\n**nasstore.eu:**\n```\ncurl -sL 'https://nasstore.eu/product/mikrotik-atl-5g-r16-atlgmrg520f-eu/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|backorder|unavailable|available|notify me|waitlist'\n```\n\n**router.lv:**\n```\ncurl -sL 'https://router.lv/product/757/lv/' | grep -i -E 'out of stock|in stock|add to cart|add-to-cart|unavailable|pieejams|nav noliktava|pirkt|grozs'\n```\n\nA product is AVAILABLE if you see 'in stock' or 'add to cart' WITHOUT 'out of stock'. Currently all should show out of stock / backorder / unavailable.\n\nSTEP 2: Check Gmail for smartech.ee reply:\n```\ncd ~/clawd && gog gmail search 'from:smartech.ee' --max 5\n```\n\nSTEP 3: If ANY page shows IN STOCK or ADD TO CART (not 'out of stock'), OR if smartech.ee replied, send Telegram message to Ugis with details and links using the message tool (channel=telegram).\n\nSTEP 4: If all out of stock and no email, just log the status silently. No message needed.",
+        "timeoutSeconds": 120,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1772802000000,
+        "lastRunAtMs": 1772715600006,
+        "lastStatus": "error",
+        "lastDurationMs": 63379,
+        "consecutiveErrors": 3,
+        "lastRunStatus": "error",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "lastDeliveryError": "⚠️ ✉️ Message failed",
+        "lastError": "⚠️ ✉️ Message failed"
+      }
+    },
+    {
+      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
+      "agentId": "main",
+      "name": "Lizete Dzirnas schedule check",
+      "enabled": true,
+      "createdAtMs": 1770570235785,
+      "updatedAtMs": 1772733674790,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\nLog progress to /tmp/lizete-cron.log at each step. Use: echo \"[$(date +%H:%M:%S)] STEP N: description\" >> /tmp/lizete-cron.log\nClear the log at the start: echo \"\" > /tmp/lizete-cron.log\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n\nSTEP 1: Log \"STEP 1: Fetching spreadsheet tabs\". Fetch the htmlview page ONCE and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Log \"STEP 2: Finding matching tab for current/next week\". Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. Fall back to gid=0 (Pamatgrafiks) if no weekly tab found. Log which tab and gid was selected.\n\nSTEP 3: Log \"STEP 3: Fetching CSV for tab <name> gid=<gid>\". Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Log \"STEP 4: Parsing classes\". Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   Log the total number of classes parsed.\n\nSTEP 5: Log \"STEP 5: Listing existing calendar events\". List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar:\n   export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\" GOG_ACCOUNT=\"ugis.springis@gmail.com\" GOG_KEYRING_BACKEND=\"file\" && gog calendar events family10512579686066508808@group.calendar.google.com --from <monday> --to <saturday> --plain --max 50 2>&1 | grep -i dzirnas\n\nSTEP 6: Log \"STEP 6: Comparing and syncing\". Compare and sync:\n   - Create missing events\n   - Delete events with wrong times using: gog calendar delete family10512579686066508808@group.calendar.google.com <eventId> --force\n   - Delete events for days that no longer have classes\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events (see STANDING RULES above).\n   Log each create/delete action.\n\nSTEP 7: For creating EACH individual class event:\n   gog calendar create family10512579686066508808@group.calendar.google.com --summary \"Lizetei Dzirnas: <class name> (<teacher>)\" --from \"YYYY-MM-DDTHH:MM:SS+03:00\" --to \"YYYY-MM-DDTHH:MM:SS+03:00\"\n\nSTEP 8: Log \"STEP 8: Done\". Report what changed. List each individual event created/deleted/unchanged.",
+        "timeoutSeconds": 600,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1772820000000,
+        "lastRunAtMs": 1772733600007,
+        "lastStatus": "ok",
+        "lastDurationMs": 74783,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "lastDelivered": true
       }
     }
   ],
