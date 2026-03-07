@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1772676016134,
+      "updatedAtMs": 1772762414334,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1772762400000,
-        "lastRunAtMs": 1772676000007,
+        "nextRunAtMs": 1772848800000,
+        "lastRunAtMs": 1772762400006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 16127,
+        "lastDurationMs": 14328,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1772762400006
+        "runningAtMs": 1772848800006
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1772678144940,
+      "updatedAtMs": 1772764361864,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,14 +63,15 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772764200000,
-        "lastRunAtMs": 1772677800006,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 344934,
+        "nextRunAtMs": 1772850600000,
+        "lastRunAtMs": 1772764200005,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 161859,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 1,
+        "lastError": "⚠️ ✉️ Message failed"
       }
     },
     {
@@ -79,7 +80,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1772686896172,
+      "updatedAtMs": 1772773267955,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -94,11 +95,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1772686800007,
+        "lastRunAtMs": 1772773200005,
         "lastStatus": "ok",
-        "lastDurationMs": 96165,
+        "lastDurationMs": 67950,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1772773200000,
+        "nextRunAtMs": 1772859600000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -116,7 +117,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1772694104314,
+      "updatedAtMs": 1772780520013,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -131,14 +132,14 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1772780400000,
-        "lastRunAtMs": 1772694000006,
-        "lastStatus": "ok",
-        "lastDurationMs": 104308,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "not-delivered",
-        "lastDelivered": false
+        "nextRunAtMs": 1772866800000,
+        "lastRunAtMs": 1772780400006,
+        "lastStatus": "error",
+        "lastDurationMs": 120007,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "not-requested",
+        "lastError": "cron: job execution timed out"
       },
       "delivery": {
         "mode": "none",
@@ -152,7 +153,7 @@
       "name": "MikroTik ATL 5G R16 stock check (10:00)",
       "enabled": true,
       "createdAtMs": 1770567044958,
-      "updatedAtMs": 1772697677257,
+      "updatedAtMs": 1772784054194,
       "schedule": {
         "kind": "cron",
         "expr": "0 10 * * *",
@@ -170,11 +171,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772784000000,
-        "lastRunAtMs": 1772697600006,
+        "nextRunAtMs": 1772870400000,
+        "lastRunAtMs": 1772784000006,
         "lastStatus": "error",
-        "lastDurationMs": 77251,
-        "consecutiveErrors": 3,
+        "lastDurationMs": 54188,
+        "consecutiveErrors": 4,
         "lastRunStatus": "error",
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
@@ -183,49 +184,12 @@
       }
     },
     {
-      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
-      "agentId": "main",
-      "name": "Waste Schedule Check",
-      "enabled": true,
-      "createdAtMs": 1770563229509,
-      "updatedAtMs": 1772640766905,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 12 * * 5",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "next-heartbeat",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Check waste collection schedule from Eco Baltia Vide:\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gog gmail messages search \"from:babite@ecobaltiavide.lv\" --max 5\n\n2. If found a new email with PDF attachment:\n   - Download the PDF attachment using gog gmail attachment <messageId> <attachmentId> --out /tmp/waste-grafiks.pdf\n   - Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   - Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   - Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n3. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gog calendar events 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --from <first_date> --to <last_date_plus_1> --plain --max 100 | grep -i miskaste\n\n4. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gog calendar delete 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com <eventId> --force\n\n5. Create new whole-day events for each date with reminder popup:180 (3h before = 21:00 previous day):\n   gog calendar create 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --summary \"<event name>\" --from \"YYYY-MM-DDT00:00:00+03:00\" --to \"YYYY-MM-DD+1T00:00:00+03:00\" --reminder popup:180\n\n6. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n7. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"\n\nUse gog CLI for Gmail and Calendar operations.",
-        "timeoutSeconds": 300,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "state": {
-        "nextRunAtMs": 1772791200000,
-        "lastRunAtMs": 1772186400007,
-        "lastStatus": "ok",
-        "lastDurationMs": 140908,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      }
-    },
-    {
       "id": "72085852-050e-4ecd-a88b-290e80082b38",
       "agentId": "main",
       "name": "MikroTik ATL 5G R16 stock check (15:00)",
       "enabled": true,
       "createdAtMs": 1770567044973,
-      "updatedAtMs": 1772715663385,
+      "updatedAtMs": 1772802057880,
       "schedule": {
         "kind": "cron",
         "expr": "0 15 * * *",
@@ -243,11 +207,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772802000000,
-        "lastRunAtMs": 1772715600006,
+        "nextRunAtMs": 1772888400000,
+        "lastRunAtMs": 1772802000006,
         "lastStatus": "error",
-        "lastDurationMs": 63379,
-        "consecutiveErrors": 3,
+        "lastDurationMs": 57874,
+        "consecutiveErrors": 4,
         "lastRunStatus": "error",
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
@@ -261,7 +225,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1772733674790,
+      "updatedAtMs": 1772820147291,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -271,7 +235,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\nLog progress to /tmp/lizete-cron.log at each step. Use: echo \"[$(date +%H:%M:%S)] STEP N: description\" >> /tmp/lizete-cron.log\nClear the log at the start: echo \"\" > /tmp/lizete-cron.log\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n\nSTEP 1: Log \"STEP 1: Fetching spreadsheet tabs\". Fetch the htmlview page ONCE and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Log \"STEP 2: Finding matching tab for current/next week\". Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. Fall back to gid=0 (Pamatgrafiks) if no weekly tab found. Log which tab and gid was selected.\n\nSTEP 3: Log \"STEP 3: Fetching CSV for tab <name> gid=<gid>\". Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Log \"STEP 4: Parsing classes\". Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   Log the total number of classes parsed.\n\nSTEP 5: Log \"STEP 5: Listing existing calendar events\". List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar:\n   export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\" GOG_ACCOUNT=\"ugis.springis@gmail.com\" GOG_KEYRING_BACKEND=\"file\" && gog calendar events family10512579686066508808@group.calendar.google.com --from <monday> --to <saturday> --plain --max 50 2>&1 | grep -i dzirnas\n\nSTEP 6: Log \"STEP 6: Comparing and syncing\". Compare and sync:\n   - Create missing events\n   - Delete events with wrong times using: gog calendar delete family10512579686066508808@group.calendar.google.com <eventId> --force\n   - Delete events for days that no longer have classes\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events (see STANDING RULES above).\n   Log each create/delete action.\n\nSTEP 7: For creating EACH individual class event:\n   gog calendar create family10512579686066508808@group.calendar.google.com --summary \"Lizetei Dzirnas: <class name> (<teacher>)\" --from \"YYYY-MM-DDTHH:MM:SS+03:00\" --to \"YYYY-MM-DDTHH:MM:SS+03:00\"\n\nSTEP 8: Log \"STEP 8: Done\". Report what changed. List each individual event created/deleted/unchanged.",
+        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\nLog progress to /tmp/lizete-cron.log at each step. Use: echo \"[$(date +%H:%M:%S)] STEP N: description\" >> /tmp/lizete-cron.log\nClear the log at the start: echo \"\" > /tmp/lizete-cron.log\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n\nSTEP 1: Log \"STEP 1: Fetching spreadsheet tabs\". Fetch the htmlview page ONCE and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Log \"STEP 2: Finding matching tab for current/next week\". Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, log \"No matching tab found, skipping sync\" and STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks. Log which tab and gid was selected.\n\nSTEP 3: Log \"STEP 3: Fetching CSV for tab <name> gid=<gid>\". Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Log \"STEP 4: Parsing classes\". Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   Log the total number of classes parsed.\n\nSTEP 5: Log \"STEP 5: Listing existing calendar events\". List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar:\n   export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\" GOG_ACCOUNT=\"ugis.springis@gmail.com\" GOG_KEYRING_BACKEND=\"file\" && gog calendar events family10512579686066508808@group.calendar.google.com --from <monday> --to <saturday> --plain --max 50 2>&1 | grep -i dzirnas\n\nSTEP 6: Log \"STEP 6: Comparing and syncing\". Compare and sync:\n   - Create missing events\n   - Delete events with wrong times using: gog calendar delete family10512579686066508808@group.calendar.google.com <eventId> --force\n   - Delete events for days that no longer have classes\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events (see STANDING RULES above).\n   Log each create/delete action.\n\nSTEP 7: For creating EACH individual class event:\n   gog calendar create family10512579686066508808@group.calendar.google.com --summary \"Lizetei Dzirnas: <class name> (<teacher>)\" --from \"YYYY-MM-DDTHH:MM:SS+03:00\" --to \"YYYY-MM-DDTHH:MM:SS+03:00\"\n\nSTEP 8: Log \"STEP 8: Done\". Report what changed. List each individual event created/deleted/unchanged.",
         "timeoutSeconds": 600,
         "model": "anthropic/claude-opus-4-6"
       },
@@ -282,14 +246,51 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1772820000000,
-        "lastRunAtMs": 1772733600007,
+        "nextRunAtMs": 1772906400000,
+        "lastRunAtMs": 1772820000006,
         "lastStatus": "ok",
-        "lastDurationMs": 74783,
+        "lastDurationMs": 147285,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "lastDelivered": true
+      }
+    },
+    {
+      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
+      "agentId": "main",
+      "name": "Waste Schedule Check",
+      "enabled": true,
+      "createdAtMs": 1770563229509,
+      "updatedAtMs": 1772791220732,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * 5",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check waste collection schedule from Eco Baltia Vide:\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gog gmail messages search \"from:babite@ecobaltiavide.lv\" --max 5\n\n2. If found a new email with PDF attachment:\n   - Download the PDF attachment using gog gmail attachment <messageId> <attachmentId> --out /tmp/waste-grafiks.pdf\n   - Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   - Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   - Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n3. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gog calendar events 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --from <first_date> --to <last_date_plus_1> --plain --max 100 | grep -i miskaste\n\n4. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gog calendar delete 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com <eventId> --force\n\n5. Create new whole-day events for each date with reminder popup:180 (3h before = 21:00 previous day):\n   gog calendar create 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --summary \"<event name>\" --from \"YYYY-MM-DDT00:00:00+03:00\" --to \"YYYY-MM-DD+1T00:00:00+03:00\" --reminder popup:180\n\n6. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n7. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"\n\nUse gog CLI for Gmail and Calendar operations.",
+        "timeoutSeconds": 300,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "state": {
+        "nextRunAtMs": 1773396000000,
+        "lastRunAtMs": 1772791200008,
+        "lastStatus": "ok",
+        "lastDurationMs": 20724,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
       }
     }
   ],
