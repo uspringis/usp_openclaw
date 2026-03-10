@@ -4,6 +4,11 @@
 
 set -euo pipefail
 
+# Source bashrc for GOG keyring credentials (needed in cron/isolated sessions)
+if [ -z "$GOG_KEYRING_PASSWORD" ]; then
+    source /home/uspringis/.bashrc 2>/dev/null || true
+fi
+
 ACCOUNT="ugis.springis@gmail.com"
 RECIPIENT="ugis.springis@proofit.lv"
 PROCESSED_FILE="/home/uspringis/clawd/scripts/.bolt-processed-ids"
