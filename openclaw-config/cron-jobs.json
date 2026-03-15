@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1773367214539,
+      "updatedAtMs": 1773453613379,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1773453600000,
-        "lastRunAtMs": 1773367200003,
+        "nextRunAtMs": 1773540000000,
+        "lastRunAtMs": 1773453600006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 14536,
+        "lastDurationMs": 13373,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1773453600006
+        "runningAtMs": 1773540000004
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1773369224564,
+      "updatedAtMs": 1773455622536,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,14 +63,14 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1773455400000,
-        "lastRunAtMs": 1773369000005,
+        "nextRunAtMs": 1773541800000,
+        "lastRunAtMs": 1773455400005,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 224559,
+        "lastDurationMs": 222531,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 8,
+        "consecutiveErrors": 9,
         "lastError": "⚠️ ✉️ Message failed"
       }
     },
@@ -80,7 +80,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1773378073729,
+      "updatedAtMs": 1773464470137,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -95,11 +95,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1773378000005,
+        "lastRunAtMs": 1773464400005,
         "lastStatus": "ok",
-        "lastDurationMs": 73724,
+        "lastDurationMs": 70132,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1773464400000,
+        "nextRunAtMs": 1773550800000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -117,7 +117,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1773385234560,
+      "updatedAtMs": 1773471640747,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -132,10 +132,10 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1773471600000,
-        "lastRunAtMs": 1773385200004,
+        "nextRunAtMs": 1773558000000,
+        "lastRunAtMs": 1773471600006,
         "lastStatus": "ok",
-        "lastDurationMs": 34556,
+        "lastDurationMs": 40741,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
@@ -153,7 +153,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1773424921536,
+      "updatedAtMs": 1773511259886,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -174,14 +174,14 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1773511200000,
-        "lastRunAtMs": 1773424800005,
+        "nextRunAtMs": 1773597600000,
+        "lastRunAtMs": 1773511200004,
         "lastStatus": "ok",
-        "lastDurationMs": 121531,
+        "lastDurationMs": 59882,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
-        "lastDeliveryStatus": "delivered",
-        "lastDelivered": true
+        "lastDeliveryStatus": "not-delivered",
+        "lastDelivered": false
       }
     },
     {
