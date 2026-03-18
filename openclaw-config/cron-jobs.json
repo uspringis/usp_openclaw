@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1773626421133,
+      "updatedAtMs": 1773712823201,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1773712800000,
-        "lastRunAtMs": 1773626400005,
+        "nextRunAtMs": 1773799200000,
+        "lastRunAtMs": 1773712800006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 21128,
+        "lastDurationMs": 23195,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1773712800006
+        "runningAtMs": 1773799200005
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1773628361780,
+      "updatedAtMs": 1773714807474,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,14 +63,14 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1773714600000,
-        "lastRunAtMs": 1773628200006,
+        "nextRunAtMs": 1773801000000,
+        "lastRunAtMs": 1773714600005,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 161774,
+        "lastDurationMs": 207469,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 11,
+        "consecutiveErrors": 12,
         "lastError": "⚠️ ✉️ Message failed"
       }
     },
@@ -80,7 +80,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1773637264571,
+      "updatedAtMs": 1773723671180,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -95,11 +95,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1773637200006,
+        "lastRunAtMs": 1773723600006,
         "lastStatus": "ok",
-        "lastDurationMs": 64565,
+        "lastDurationMs": 71174,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1773723600000,
+        "nextRunAtMs": 1773810000000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -117,7 +117,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1773644460641,
+      "updatedAtMs": 1773730920021,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -132,14 +132,15 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1773730800000,
-        "lastRunAtMs": 1773644400003,
-        "lastStatus": "ok",
-        "lastDurationMs": 60638,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "not-delivered",
-        "lastDelivered": false
+        "nextRunAtMs": 1773817200000,
+        "lastRunAtMs": 1773730800006,
+        "lastStatus": "error",
+        "lastDurationMs": 120015,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "not-requested",
+        "lastError": "cron: job execution timed out",
+        "lastErrorReason": "timeout"
       },
       "delivery": {
         "mode": "none",
@@ -153,7 +154,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1773684120845,
+      "updatedAtMs": 1773770496640,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -174,10 +175,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1773770400000,
-        "lastRunAtMs": 1773684000005,
+        "nextRunAtMs": 1773856800000,
+        "lastRunAtMs": 1773770400006,
         "lastStatus": "ok",
-        "lastDurationMs": 120840,
+        "lastDurationMs": 96634,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
