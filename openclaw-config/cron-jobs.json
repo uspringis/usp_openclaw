@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1773885616178,
+      "updatedAtMs": 1773972019460,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1773972000000,
-        "lastRunAtMs": 1773885600005,
+        "nextRunAtMs": 1774058400000,
+        "lastRunAtMs": 1773972000010,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 16173,
+        "lastDurationMs": 19450,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1773972000010
+        "runningAtMs": 1774058400010
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1773887572798,
+      "updatedAtMs": 1773973988904,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,14 +63,14 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1773973800000,
-        "lastRunAtMs": 1773887400006,
+        "nextRunAtMs": 1774060200000,
+        "lastRunAtMs": 1773973800008,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 172792,
+        "lastDurationMs": 188896,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 14,
+        "consecutiveErrors": 15,
         "lastError": "⚠️ ✉️ Message failed"
       }
     },
@@ -80,7 +80,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1773896475238,
+      "updatedAtMs": 1773982871010,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -95,11 +95,11 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "lastRunAtMs": 1773896400007,
+        "lastRunAtMs": 1773982800007,
         "lastStatus": "ok",
-        "lastDurationMs": 75231,
+        "lastDurationMs": 71003,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1773982800000,
+        "nextRunAtMs": 1774069200000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -117,7 +117,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1773903647334,
+      "updatedAtMs": 1773990049146,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -132,10 +132,10 @@
         "model": "anthropic/claude-opus-4-6"
       },
       "state": {
-        "nextRunAtMs": 1773990000000,
-        "lastRunAtMs": 1773903600005,
+        "nextRunAtMs": 1774076400000,
+        "lastRunAtMs": 1773990000004,
         "lastStatus": "ok",
-        "lastDurationMs": 47329,
+        "lastDurationMs": 49142,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
@@ -148,49 +148,12 @@
       }
     },
     {
-      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
-      "agentId": "main",
-      "name": "Waste Schedule Check",
-      "enabled": true,
-      "createdAtMs": 1770563229509,
-      "updatedAtMs": 1773396025163,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 12 * * 5",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "next-heartbeat",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Check waste collection schedule from Eco Baltia Vide:\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gog gmail messages search \"from:babite@ecobaltiavide.lv\" --max 5\n\n2. If found a new email with PDF attachment:\n   - Download the PDF attachment using gog gmail attachment <messageId> <attachmentId> --out /tmp/waste-grafiks.pdf\n   - Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   - Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   - Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n3. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gog calendar events 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --from <first_date> --to <last_date_plus_1> --plain --max 100 | grep -i miskaste\n\n4. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gog calendar delete 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com <eventId> --force\n\n5. Create new whole-day events for each date with reminder popup:180 (3h before = 21:00 previous day):\n   gog calendar create 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --summary \"<event name>\" --from \"YYYY-MM-DDT00:00:00+03:00\" --to \"YYYY-MM-DD+1T00:00:00+03:00\" --reminder popup:180\n\n6. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n7. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"\n\nUse gog CLI for Gmail and Calendar operations.",
-        "timeoutSeconds": 300,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "state": {
-        "nextRunAtMs": 1774000800000,
-        "lastRunAtMs": 1773396000005,
-        "lastStatus": "ok",
-        "lastDurationMs": 25158,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      }
-    },
-    {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
       "agentId": "main",
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1773943293836,
+      "updatedAtMs": 1774029692102,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -211,14 +174,51 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1774029600000,
-        "lastRunAtMs": 1773943200010,
+        "nextRunAtMs": 1774116000000,
+        "lastRunAtMs": 1774029600005,
         "lastStatus": "ok",
-        "lastDurationMs": 93826,
+        "lastDurationMs": 92097,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "lastDelivered": true
+      }
+    },
+    {
+      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
+      "agentId": "main",
+      "name": "Waste Schedule Check",
+      "enabled": true,
+      "createdAtMs": 1770563229509,
+      "updatedAtMs": 1774000823911,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * 5",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check waste collection schedule from Eco Baltia Vide:\n\nIMPORTANT: Before running ANY gog command, always set these environment variables first:\n  export GOG_KEYRING_PASSWORD=\"secure-pass-secure-2123\"\n  export GOG_ACCOUNT=\"ugis.springis@gmail.com\"\n  export GOG_KEYRING_BACKEND=\"file\"\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gog gmail messages search \"from:babite@ecobaltiavide.lv\" --max 5\n\n2. If found a new email with PDF attachment:\n   - Download the PDF attachment using gog gmail attachment <messageId> <attachmentId> --out /tmp/waste-grafiks.pdf\n   - Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   - Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   - Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n3. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gog calendar events 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --from <first_date> --to <last_date_plus_1> --plain --max 100 | grep -i miskaste\n\n4. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gog calendar delete 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com <eventId> --force\n\n5. Create new whole-day events for each date with reminder popup:180 (3h before = 21:00 previous day):\n   gog calendar create 0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com --summary \"<event name>\" --from \"YYYY-MM-DDT00:00:00+03:00\" --to \"YYYY-MM-DD+1T00:00:00+03:00\" --reminder popup:180\n\n6. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n7. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"\n\nUse gog CLI for Gmail and Calendar operations.",
+        "timeoutSeconds": 300,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "state": {
+        "nextRunAtMs": 1774605600000,
+        "lastRunAtMs": 1774000800006,
+        "lastStatus": "ok",
+        "lastDurationMs": 23905,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
       }
     }
   ],
