@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 # bolt-invoices.sh - Process Bolt Work Profile reports and forward invoices
+# Uses gws (Google Workspace CLI) for Gmail operations
 # Searches for new Bolt Business emails, downloads invoice PDFs, sends to accounting
 
 set -euo pipefail
-
-# Source bashrc for GOG keyring credentials (needed in cron/isolated sessions)
-if [ -z "$GOG_KEYRING_PASSWORD" ]; then
-    source /home/uspringis/.bashrc 2>/dev/null || true
-fi
 
 ACCOUNT="ugis.springis@gmail.com"
 RECIPIENT="ugis.springis@proofit.lv"
@@ -25,15 +21,15 @@ trap cleanup EXIT
 
 # Search for Bolt Business Work Profile reports
 echo "Searching for Bolt Work Profile reports..."
-SEARCH_OUTPUT=$(gog gmail messages search "from:global@bolt.eu subject:\"Work Profile report\"" --max 10 --account "$ACCOUNT" --plain 2>/dev/null || true)
+SEARCH_OUTPUT=$(gws gmail users messages list --params "{\"userId\": \"me\", \"q\": \"from:global@bolt.eu subject:\\\"Work Profile report\\\"\", \"maxResults\": 10}" 2>/dev/null || true)
 
-if [ -z "$SEARCH_OUTPUT" ]; then
+if [ -z "$SEARCH_OUTPUT" ] || ! echo "$SEARCH_OUTPUT" | python3 -c "import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get('messages') else 1)" 2>/dev/null; then
     echo "No Bolt Work Profile reports found"
     exit 0
 fi
 
-# Parse message IDs from search output (skip header line)
-MSG_IDS=$(echo "$SEARCH_OUTPUT" | tail -n +2 | awk '{print $1}' | grep -v '^$' || true)
+# Parse message IDs
+MSG_IDS=$(echo "$SEARCH_OUTPUT" | python3 -c "import json,sys; d=json.load(sys.stdin); [print(m['id']) for m in d.get('messages',[])]" 2>/dev/null || true)
 
 if [ -z "$MSG_IDS" ]; then
     echo "No message IDs found"
@@ -53,44 +49,70 @@ for MSG_ID in $MSG_IDS; do
     rm -rf "$WORK_DIR" 2>/dev/null || true
     mkdir -p "$WORK_DIR/pdfs"
     
-    # Get email in plain format to extract attachment info
-    EMAIL_PLAIN=$(gog gmail get "$MSG_ID" --account "$ACCOUNT" 2>/dev/null || true)
+    # Get email metadata and attachment info
+    EMAIL_JSON=$(gws gmail users messages get --params "{\"userId\": \"me\", \"id\": \"$MSG_ID\", \"format\": \"full\"}" 2>/dev/null || true)
     
-    # Extract subject
-    SUBJECT=$(echo "$EMAIL_PLAIN" | grep '^subject' | head -1 | cut -f2-)
-    [ -z "$SUBJECT" ] && SUBJECT="Bolt Work Profile Report"
-    
-    # Extract attachment line (format: attachment<tab>filename<tab>size<tab>mime<tab>attachmentId)
-    ATTACHMENT_LINE=$(echo "$EMAIL_PLAIN" | grep '^attachment' | head -1)
-    
-    if [ -z "$ATTACHMENT_LINE" ]; then
-        echo "No attachment found in email $MSG_ID"
-        echo "$MSG_ID" >> "$PROCESSED_FILE"
+    if [ -z "$EMAIL_JSON" ]; then
+        echo "Failed to fetch email $MSG_ID"
         continue
     fi
     
-    # Extract attachment ID (last field)
-    ATTACHMENT_ID=$(echo "$ATTACHMENT_LINE" | awk -F'\t' '{print $NF}')
+    # Extract subject and attachment info using Python
+    eval "$(echo "$EMAIL_JSON" | python3 -c "
+import json, sys, shlex
+msg = json.load(sys.stdin)
+# Extract subject
+headers = msg.get('payload',{}).get('headers',[])
+subject = next((h['value'] for h in headers if h['name'].lower()=='subject'), 'Bolt Work Profile Report')
+print(f'SUBJECT={shlex.quote(subject)}')
+# Find CSV attachment
+def find_attachments(payload):
+    results = []
+    if 'parts' in payload:
+        for p in payload['parts']:
+            results.extend(find_attachments(p))
+    fn = payload.get('filename','')
+    body = payload.get('body',{})
+    aid = body.get('attachmentId','')
+    if fn and aid:
+        results.append((fn, aid))
+    return results
+attachments = find_attachments(msg.get('payload',{}))
+if attachments:
+    print(f'ATTACHMENT_ID={shlex.quote(attachments[0][1])}')
+    print(f'ATTACHMENT_NAME={shlex.quote(attachments[0][0])}')
+else:
+    print('ATTACHMENT_ID=')
+" 2>/dev/null)"
     
-    if [ -z "$ATTACHMENT_ID" ]; then
-        echo "Could not extract attachment ID"
+    if [ -z "${ATTACHMENT_ID:-}" ]; then
+        echo "No attachment found in email $MSG_ID"
         echo "$MSG_ID" >> "$PROCESSED_FILE"
         continue
     fi
     
     # Download CSV attachment
     CSV_FILE="$WORK_DIR/report.csv"
-    gog gmail attachment "$MSG_ID" "$ATTACHMENT_ID" --out "$CSV_FILE" --account "$ACCOUNT" >/dev/null 2>&1 || {
+    gws gmail users messages attachments get --params "{\"userId\": \"me\", \"messageId\": \"$MSG_ID\", \"id\": \"$ATTACHMENT_ID\"}" 2>/dev/null | python3 -c "
+import json, sys, base64
+data = json.load(sys.stdin)
+# Gmail uses URL-safe base64
+raw = data.get('data','')
+# Fix URL-safe base64
+raw = raw.replace('-','+').replace('_','/')
+decoded = base64.b64decode(raw + '==')
+sys.stdout.buffer.write(decoded)
+" > "$CSV_FILE" 2>/dev/null || {
         echo "Failed to download CSV attachment"
         continue
     }
     
-    if [ ! -f "$CSV_FILE" ]; then
-        echo "CSV file not found after download"
+    if [ ! -s "$CSV_FILE" ]; then
+        echo "CSV file empty after download"
         continue
     fi
     
-    # Extract invoice links using Python (handles quoted CSV fields properly)
+    # Extract invoice links using Python
     python3 -c "
 import csv
 import sys
@@ -123,7 +145,6 @@ except Exception as e:
             PDF_FILE="$WORK_DIR/pdfs/invoice_${COUNTER}.pdf"
             echo "Downloading invoice $COUNTER..."
             if curl -sL "$LINK" -o "$PDF_FILE"; then
-                # Verify it's a PDF
                 if file "$PDF_FILE" | grep -q "PDF"; then
                     echo "  OK: invoice_${COUNTER}.pdf"
                 else
@@ -147,31 +168,55 @@ except Exception as e:
     
     echo "Downloaded $PDF_COUNT invoices"
     
-    # Create email body file
-    cat > "$WORK_DIR/body.txt" << EOF
-Bolt Business invoices from: $SUBJECT
+    # Build MIME email with attachments and send via gws
+    echo "Sending $PDF_COUNT invoices to $RECIPIENT..."
+    python3 -c "
+import email.mime.multipart
+import email.mime.text
+import email.mime.application
+import base64
+import json
+import glob
+import os
+import subprocess
+import sys
+
+msg = email.mime.multipart.MIMEMultipart()
+msg['To'] = '$RECIPIENT'
+msg['Subject'] = 'Bolt Invoices: $SUBJECT'
+
+body = '''Bolt Business invoices from: $SUBJECT
 
 Attached: $PDF_COUNT invoice PDF(s)
 
 This is an automated message forwarded by Axion.
-EOF
-    
-    # Build attachment arguments
-    ATTACH_ARGS=""
-    for PDF in "$WORK_DIR/pdfs"/*.pdf; do
-        if [ -f "$PDF" ]; then
-            ATTACH_ARGS="$ATTACH_ARGS --attach $PDF"
-        fi
-    done
-    
-    # Send email with attachments
-    echo "Sending $PDF_COUNT invoices to $RECIPIENT..."
-    if eval gog gmail send --to "$RECIPIENT" --subject "\"Bolt Invoices: $SUBJECT\"" --body-file "$WORK_DIR/body.txt" $ATTACH_ARGS --account "$ACCOUNT" --force; then
+'''
+msg.attach(email.mime.text.MIMEText(body, 'plain'))
+
+for pdf_path in sorted(glob.glob('$WORK_DIR/pdfs/*.pdf')):
+    with open(pdf_path, 'rb') as f:
+        part = email.mime.application.MIMEApplication(f.read(), _subtype='pdf')
+        part.add_header('Content-Disposition', 'attachment', filename=os.path.basename(pdf_path))
+        msg.attach(part)
+
+raw = base64.urlsafe_b64encode(msg.as_bytes()).decode()
+payload = json.dumps({'raw': raw})
+
+result = subprocess.run(
+    ['gws', 'gmail', 'users', 'messages', 'send', '--params', '{\"userId\": \"me\"}', '--json', payload],
+    capture_output=True, text=True
+)
+if result.returncode == 0:
+    print('SUCCESS')
+else:
+    print(f'FAILED: {result.stderr}', file=sys.stderr)
+    sys.exit(1)
+" 2>/dev/null && {
         echo "Successfully sent invoices to $RECIPIENT"
         echo "$MSG_ID" >> "$PROCESSED_FILE"
-    else
+    } || {
         echo "Failed to send email"
-    fi
+    }
 done
 
 echo "Done processing Bolt invoices"
