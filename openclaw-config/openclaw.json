@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.2.23",
-    "lastTouchedAt": "2026-02-25T06:17:50.667Z"
+    "lastTouchedVersion": "2026.3.31",
+    "lastTouchedAt": "2026-04-01T01:37:39.888Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-25T06:17:50.649Z",
@@ -39,6 +39,11 @@
     }
   },
   "tools": {
+    "exec": {
+      "security": "full",
+      "ask": "off",
+      "strictInlineEval": false
+    },
     "web": {
       "search": {
         "enabled": false
@@ -120,6 +125,9 @@
   "plugins": {
     "entries": {
       "telegram": {
+        "enabled": true
+      },
+      "browser": {
         "enabled": true
       }
     }

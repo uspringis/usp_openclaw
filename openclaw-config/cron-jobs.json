@@ -1,159 +1,12 @@
 {
   "jobs": [
     {
-      "id": "871fa841-5efc-4cf1-b8e8-f440b2970119",
-      "agentId": "main",
-      "name": "Daily GitHub Backup",
-      "enabled": true,
-      "createdAtMs": 1771920646022,
-      "updatedAtMs": 1774918843611,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 0 4 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Run the daily backup to GitHub. Execute: bash /home/uspringis/clawd/scripts/backup-to-github.sh 2>&1\n\nCheck the output. If it says \"BACKUP_ERRORS\" or the exit code is non-zero, send a Telegram message to Ugis with the error details using the message tool (channel=telegram).\n\nIf successful, complete silently. Do NOT send any message on success.",
-        "timeoutSeconds": 120,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "delivery": {
-        "mode": "none",
-        "channel": "last"
-      },
-      "state": {
-        "nextRunAtMs": 1775005200000,
-        "lastRunAtMs": 1774918800009,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 43602,
-        "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
-        "lastDelivered": false,
-        "runningAtMs": 1775005200009
-      }
-    },
-    {
-      "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
-      "agentId": "main",
-      "name": "Daily OpenClaw Maintenance",
-      "enabled": true,
-      "createdAtMs": 1771743698150,
-      "updatedAtMs": 1774920750637,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 30 4 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Run the daily OpenClaw maintenance routine. Do these steps in order, stopping and reporting if any step fails:\n\n1. Run openclaw update --yes --no-restart 2>&1 to update the OpenClaw package WITHOUT restarting the gateway. Capture the full output.\n2. Run clawhub sync --no-input 2>&1 to update all installed skills.\n3. Run openclaw --version 2>&1 and openclaw update status 2>&1 to get current version info.\n4. Send a Telegram message to Ugis summarizing: what was updated (package version changes, skill updates), current version numbers, any errors with fix suggestions.\n5. AFTER sending the report, schedule a delayed gateway restart by running: nohup sh -c \"sleep 15 && openclaw gateway restart\" >/dev/null 2>&1 & — This gives the cron framework time to record the run as complete before the gateway restarts.\n\nIf ANY step before the restart fails, stop there, report exactly what failed and the error output, and suggest a fix. Do not silently continue past errors.",
-        "timeoutSeconds": 600,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1775007000000,
-        "lastRunAtMs": 1774920600007,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 150630,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 1,
-        "lastError": "⚠️ ✉️ Message failed"
-      }
-    },
-    {
-      "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
-      "name": "AI Twitter Digest",
-      "enabled": true,
-      "deleteAfterRun": false,
-      "createdAtMs": 1769423157675,
-      "updatedAtMs": 1774986512605,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 0 7 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Fetch the AI list timeline from Twitter/X using bird CLI (list ID from TOOLS.md). Use -n 150 to ensure coverage of the full last 24 hours. Create a comprehensive English-language digest of all tweets from the last 24 hours. Include ALL tweets from that period — do not truncate or summarize into fewer items. Format as a clean digest with categories, tweet summaries, and links. IMPORTANT: Every notable tweet MUST include its direct URL (https://x.com/username/status/ID). Do not omit links — they are essential for the reader to click through to the original tweets. The digest MUST be in English regardless of tweet language. In the footer, state \"Source: AI List timeline, last 24 hours\" — do not estimate a shorter window.",
-        "timeoutSeconds": 300,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "state": {
-        "lastRunAtMs": 1774929600004,
-        "lastStatus": "ok",
-        "lastDurationMs": 80975,
-        "consecutiveErrors": 0,
-        "nextRunAtMs": 1775016000000,
-        "lastRunStatus": "ok",
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      }
-    },
-    {
-      "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
-      "agentId": "main",
-      "name": "Bolt Invoice Processor",
-      "enabled": true,
-      "createdAtMs": 1769429947976,
-      "updatedAtMs": 1774936824363,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 9 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "next-heartbeat",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Run the Bolt invoice processing script. Execute: bash /home/uspringis/clawd/scripts/bolt-invoices.sh. Check the output.\n\nAfter running the script, also check Gmail for new Bolt monthly invoices using gws:\n  gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:noreply@bolt.eu newer_than:1d\", \"maxResults\": 5}' 2>/dev/null\n\nIf a NEW monthly invoice email is found, send a Telegram message to Ugis about it using the message tool (channel=telegram). Otherwise, complete silently - do NOT send any message.",
-        "timeoutSeconds": 120,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "state": {
-        "nextRunAtMs": 1775023200000,
-        "lastRunAtMs": 1774936800004,
-        "lastStatus": "ok",
-        "lastDurationMs": 24359,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "not-delivered",
-        "lastDelivered": false
-      },
-      "delivery": {
-        "mode": "none",
-        "channel": "telegram",
-        "to": "181860584"
-      }
-    },
-    {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
       "agentId": "main",
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1774976497396,
+      "updatedAtMs": 1775063063356,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -174,14 +27,169 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1775062800000,
-        "lastRunAtMs": 1774976400010,
+        "nextRunAtMs": 1775149200000,
+        "lastRunAtMs": 1775062800003,
         "lastStatus": "ok",
-        "lastDurationMs": 97386,
+        "lastDurationMs": 263353,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "lastDelivered": true
+      }
+    },
+    {
+      "id": "871fa841-5efc-4cf1-b8e8-f440b2970119",
+      "agentId": "main",
+      "name": "Daily GitHub Backup",
+      "enabled": true,
+      "createdAtMs": 1771920646022,
+      "updatedAtMs": 1775091662448,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 4 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the daily backup to GitHub. Execute: bash /home/uspringis/clawd/scripts/backup-to-github.sh 2>&1\n\nCheck the output. If it says \"BACKUP_ERRORS\" or the exit code is non-zero, send a Telegram message to Ugis with the error details using the message tool (channel=telegram).\n\nIf successful, complete silently. Do NOT send any message on success.",
+        "timeoutSeconds": 120,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1775178000000,
+        "lastRunAtMs": 1775091600002,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 62446,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 1,
+        "lastDelivered": false,
+        "lastErrorReason": "timeout",
+        "lastDeliveryError": "Request timed out before a response was generated. Please try again, or increase `agents.defaults.timeoutSeconds` in your config.",
+        "runningAtMs": 1775109815172
+      }
+    },
+    {
+      "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
+      "agentId": "main",
+      "name": "Daily OpenClaw Maintenance",
+      "enabled": true,
+      "createdAtMs": 1771743698150,
+      "updatedAtMs": 1775093461161,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 30 4 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the daily OpenClaw maintenance routine. Do these steps in order, stopping and reporting if any step fails:\n\n1. Run openclaw update --yes --no-restart 2>&1 to update the OpenClaw package WITHOUT restarting the gateway. Capture the full output.\n2. Run clawhub sync --no-input 2>&1 to update all installed skills.\n3. Run openclaw --version 2>&1 and openclaw update status 2>&1 to get current version info.\n4. Send a Telegram message to Ugis summarizing: what was updated (package version changes, skill updates), current version numbers, any errors with fix suggestions.\n5. AFTER sending the report, schedule a delayed gateway restart by running: nohup sh -c \"sleep 15 && openclaw gateway restart\" >/dev/null 2>&1 & — This gives the cron framework time to record the run as complete before the gateway restarts.\n\nIf ANY step before the restart fails, stop there, report exactly what failed and the error output, and suggest a fix. Do not silently continue past errors.",
+        "timeoutSeconds": 600,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1775179800000,
+        "lastRunAtMs": 1775093400003,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 61158,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 1,
+        "lastError": "Request timed out before a response was generated. Please try again, or increase `agents.defaults.timeoutSeconds` in your config.",
+        "lastErrorReason": "timeout"
+      }
+    },
+    {
+      "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
+      "name": "AI Twitter Digest",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1769423157675,
+      "updatedAtMs": 1775102461184,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 7 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Fetch the AI list timeline from Twitter/X using bird CLI (list ID from TOOLS.md). Use -n 150 to ensure coverage of the full last 24 hours. Create a comprehensive English-language digest of all tweets from the last 24 hours. Include ALL tweets from that period — do not truncate or summarize into fewer items. Format as a clean digest with categories, tweet summaries, and links. IMPORTANT: Every notable tweet MUST include its direct URL (https://x.com/username/status/ID). Do not omit links — they are essential for the reader to click through to the original tweets. The digest MUST be in English regardless of tweet language. In the footer, state \"Source: AI List timeline, last 24 hours\" — do not estimate a shorter window.",
+        "timeoutSeconds": 300,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "state": {
+        "lastRunAtMs": 1775102400002,
+        "lastStatus": "error",
+        "lastDurationMs": 61182,
+        "consecutiveErrors": 1,
+        "nextRunAtMs": 1775188800000,
+        "lastRunStatus": "error",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "lastError": "Request timed out before a response was generated. Please try again, or increase `agents.defaults.timeoutSeconds` in your config.",
+        "lastErrorReason": "timeout"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      }
+    },
+    {
+      "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
+      "agentId": "main",
+      "name": "Bolt Invoice Processor",
+      "enabled": true,
+      "createdAtMs": 1769429947976,
+      "updatedAtMs": 1775109660489,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the Bolt invoice processing script. Execute: bash /home/uspringis/clawd/scripts/bolt-invoices.sh. Check the output.\n\nAfter running the script, also check Gmail for new Bolt monthly invoices using gws:\n  gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:noreply@bolt.eu newer_than:1d\", \"maxResults\": 5}' 2>/dev/null\n\nIf a NEW monthly invoice email is found, send a Telegram message to Ugis about it using the message tool (channel=telegram). Otherwise, complete silently - do NOT send any message.",
+        "timeoutSeconds": 120,
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "state": {
+        "nextRunAtMs": 1775196000000,
+        "lastRunAtMs": 1775109600007,
+        "lastStatus": "error",
+        "lastDurationMs": 60482,
+        "consecutiveErrors": 2,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "not-delivered",
+        "lastDelivered": false,
+        "lastErrorReason": "timeout",
+        "lastDeliveryError": "Request timed out before a response was generated. Please try again, or increase `agents.defaults.timeoutSeconds` in your config.",
+        "lastError": "Request timed out before a response was generated. Please try again, or increase `agents.defaults.timeoutSeconds` in your config."
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "telegram",
+        "to": "181860584"
       }
     },
     {
