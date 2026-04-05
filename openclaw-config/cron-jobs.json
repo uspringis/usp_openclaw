@@ -1,12 +1,49 @@
 {
   "jobs": [
     {
+      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
+      "agentId": "main",
+      "name": "Lizete Dzirnas schedule check",
+      "enabled": true,
+      "createdAtMs": 1770570235785,
+      "updatedAtMs": 1775375365293,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\nLog progress to /tmp/lizete-cron.log at each step. Use: echo \"[$(date +%H:%M:%S)] STEP N: description\" >> /tmp/lizete-cron.log\nClear the log at the start: echo \"\" > /tmp/lizete-cron.log\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n\nSTEP 1: Log \"STEP 1: Fetching spreadsheet tabs\". Fetch the htmlview page ONCE and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Log \"STEP 2: Finding matching tab for current/next week\". Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, log \"No matching tab found, skipping sync\" and STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks. Log which tab and gid was selected.\n\nSTEP 3: Log \"STEP 3: Fetching CSV for tab <name> gid=<gid>\". Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Log \"STEP 4: Parsing classes\". Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   Log the total number of classes parsed.\n\nSTEP 5: Log \"STEP 5: Listing existing calendar events\". List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar:\n   gws calendar events list --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"timeMin\": \"<monday>T00:00:00+03:00\", \"timeMax\": \"<saturday>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 50}' 2>/dev/null | python3 -c \"import json,sys; events=json.load(sys.stdin).get('items',[]); [print(f'{e[\\\"id\\\"]} {e.get(\\\"start\\\",{}).get(\\\"dateTime\\\",\\\"\\\")} {e.get(\\\"summary\\\",\\\"\\\")}') for e in events if 'dzirnas' in e.get('summary','').lower()]\"\n\nSTEP 6: Log \"STEP 6: Comparing and syncing\". Compare and sync:\n   - Create missing events\n   - Delete events with wrong times: gws calendar events delete --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n   - Delete events for days that no longer have classes\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events (see STANDING RULES above).\n   Log each create/delete action.\n\nSTEP 7: For creating EACH individual class event:\n   gws calendar events insert --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\"}' --json '{\"summary\": \"Lizetei Dzirnas: <class name> (<teacher>)\", \"start\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}, \"end\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}}' 2>/dev/null\n\nSTEP 8: Log \"STEP 8: Done\". Report what changed. List each individual event created/deleted/unchanged.",
+        "timeoutSeconds": 600,
+        "model": "gpt-5.4"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1775408400000,
+        "lastRunAtMs": 1775375298182,
+        "lastStatus": "ok",
+        "lastDurationMs": 67111,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "lastDelivered": true
+      }
+    },
+    {
       "id": "871fa841-5efc-4cf1-b8e8-f440b2970119",
       "agentId": "main",
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1775109830870,
+      "updatedAtMs": 1775374677022,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -18,22 +55,23 @@
         "kind": "agentTurn",
         "message": "Run the daily backup to GitHub. Execute: bash /home/uspringis/clawd/scripts/backup-to-github.sh 2>&1\n\nCheck the output. If it says \"BACKUP_ERRORS\" or the exit code is non-zero, send a Telegram message to Ugis with the error details using the message tool (channel=telegram).\n\nIf successful, complete silently. Do NOT send any message on success.",
         "timeoutSeconds": 120,
-        "model": "anthropic/claude-opus-4-6"
+        "model": "gpt-5.4"
       },
       "delivery": {
         "mode": "none",
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1775178000000,
-        "lastRunAtMs": 1775109815172,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 15698,
+        "nextRunAtMs": 1775437200000,
+        "lastRunAtMs": 1775350800004,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 5300,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 3,
         "lastDelivered": false,
-        "runningAtMs": 1775178000006
+        "lastDeliveryError": "LLM request rejected: Third-party apps now draw from your extra usage, not your plan limits. We've added a $200 credit to get you started. Claim it at claude.ai/settings/usage and keep going.",
+        "runningAtMs": 1775375365306
       }
     },
     {
@@ -42,7 +80,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1775110143854,
+      "updatedAtMs": 1775374677034,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -54,7 +92,7 @@
         "kind": "agentTurn",
         "message": "Run the daily OpenClaw maintenance routine. Do these steps in order, stopping and reporting if any step fails:\n\n1. Run openclaw update --yes --no-restart 2>&1 to update the OpenClaw package WITHOUT restarting the gateway. Capture the full output.\n2. Run clawhub sync --no-input 2>&1 to update all installed skills.\n3. Run openclaw --version 2>&1 and openclaw update status 2>&1 to get current version info.\n4. Send a Telegram message to Ugis summarizing: what was updated (package version changes, skill updates), current version numbers, any errors with fix suggestions.\n5. AFTER sending the report, schedule a delayed gateway restart by running: nohup sh -c \"sleep 15 && openclaw gateway restart\" >/dev/null 2>&1 & — This gives the cron framework time to record the run as complete before the gateway restarts.\n\nIf ANY step before the restart fails, stop there, report exactly what failed and the error output, and suggest a fix. Do not silently continue past errors.",
         "timeoutSeconds": 600,
-        "model": "anthropic/claude-opus-4-6"
+        "model": "gpt-5.4"
       },
       "delivery": {
         "mode": "announce",
@@ -63,16 +101,15 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1775179800000,
-        "lastRunAtMs": 1775109879343,
+        "nextRunAtMs": 1775439000000,
+        "lastRunAtMs": 1775352600003,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 264511,
-        "lastDelivered": false,
-        "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 2,
-        "lastError": "⚠️ ✉️ Message failed",
-        "lastDeliveryError": "⚠️ ✉️ Message failed"
+        "lastDurationMs": 6191,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 5,
+        "lastError": "LLM request rejected: Third-party apps now draw from your extra usage, not your plan limits. We've added a $200 credit to get you started. Claim it at claude.ai/settings/usage and keep going."
       }
     },
     {
@@ -81,7 +118,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1775111337300,
+      "updatedAtMs": 1775374959429,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -93,14 +130,14 @@
         "kind": "agentTurn",
         "message": "Fetch the AI list timeline from Twitter/X using bird CLI (list ID from TOOLS.md). Use -n 150 to ensure coverage of the full last 24 hours. Create a comprehensive English-language digest of all tweets from the last 24 hours. Include ALL tweets from that period — do not truncate or summarize into fewer items. Format as a clean digest with categories, tweet summaries, and links. IMPORTANT: Every notable tweet MUST include its direct URL (https://x.com/username/status/ID). Do not omit links — they are essential for the reader to click through to the original tweets. The digest MUST be in English regardless of tweet language. In the footer, state \"Source: AI List timeline, last 24 hours\" — do not estimate a shorter window.",
         "timeoutSeconds": 300,
-        "model": "anthropic/claude-opus-4-6"
+        "model": "gpt-5.4"
       },
       "state": {
-        "lastRunAtMs": 1775111195563,
+        "lastRunAtMs": 1775374729396,
         "lastStatus": "ok",
-        "lastDurationMs": 141737,
+        "lastDurationMs": 230033,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1775188800000,
+        "nextRunAtMs": 1775448000000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -118,7 +155,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1775111557866,
+      "updatedAtMs": 1775374677063,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -130,17 +167,19 @@
         "kind": "agentTurn",
         "message": "Run the Bolt invoice processing script. Execute: bash /home/uspringis/clawd/scripts/bolt-invoices.sh. Check the output.\n\nAfter running the script, also check Gmail for new Bolt monthly invoices using gws:\n  gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:noreply@bolt.eu newer_than:1d\", \"maxResults\": 5}' 2>/dev/null\n\nIf a NEW monthly invoice email is found, send a Telegram message to Ugis about it using the message tool (channel=telegram). Otherwise, complete silently - do NOT send any message.",
         "timeoutSeconds": 120,
-        "model": "anthropic/claude-opus-4-6"
+        "model": "gpt-5.4"
       },
       "state": {
-        "nextRunAtMs": 1775196000000,
-        "lastRunAtMs": 1775111545049,
-        "lastStatus": "ok",
-        "lastDurationMs": 12817,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
+        "nextRunAtMs": 1775455200000,
+        "lastRunAtMs": 1775368800002,
+        "lastStatus": "error",
+        "lastDurationMs": 5780,
+        "consecutiveErrors": 3,
+        "lastRunStatus": "error",
         "lastDeliveryStatus": "not-delivered",
-        "lastDelivered": false
+        "lastError": "LLM request rejected: Third-party apps now draw from your extra usage, not your plan limits. We've added a $200 credit to get you started. Claim it at claude.ai/settings/usage and keep going.",
+        "lastDelivered": false,
+        "lastDeliveryError": "LLM request rejected: Third-party apps now draw from your extra usage, not your plan limits. We've added a $200 credit to get you started. Claim it at claude.ai/settings/usage and keep going."
       },
       "delivery": {
         "mode": "none",
@@ -154,7 +193,7 @@
       "name": "Waste Schedule Check",
       "enabled": true,
       "createdAtMs": 1770563229509,
-      "updatedAtMs": 1775111835256,
+      "updatedAtMs": 1775374677075,
       "schedule": {
         "kind": "cron",
         "expr": "0 12 * * 5",
@@ -166,62 +205,25 @@
         "kind": "agentTurn",
         "message": "Check waste collection schedule from Eco Baltia Vide:\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:babite@ecobaltiavide.lv\", \"maxResults\": 5}' 2>/dev/null\n\n2. If found a new email, get its details to find PDF attachment:\n   gws gmail users messages get --params '{\"userId\": \"me\", \"id\": \"<msgId>\", \"format\": \"full\"}' 2>/dev/null\n   Parse the JSON to find attachment parts (look for filename ending in .pdf and attachmentId in body).\n\n3. Download PDF attachment:\n   gws gmail users messages attachments get --params '{\"userId\": \"me\", \"messageId\": \"<msgId>\", \"id\": \"<attachmentId>\"}' 2>/dev/null | python3 -c \"import json,sys,base64; d=json.load(sys.stdin); raw=d['data'].replace('-','+').replace('_','/'); sys.stdout.buffer.write(base64.b64decode(raw+'=='))\" > /tmp/waste-grafiks.pdf\n   Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n4. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gws calendar events list --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"timeMin\": \"<first_date>T00:00:00+03:00\", \"timeMax\": \"<last_date_plus_1>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 100}' 2>/dev/null\n   Filter for events with 'miskaste' in summary.\n\n5. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gws calendar events delete --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n\n6. Create new whole-day events for each date:\n   gws calendar events insert --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\"}' --json '{\"summary\": \"<event name>\", \"start\": {\"date\": \"YYYY-MM-DD\"}, \"end\": {\"date\": \"YYYY-MM-DD+1\"}, \"reminders\": {\"useDefault\": false, \"overrides\": [{\"method\": \"popup\", \"minutes\": 180}]}}' 2>/dev/null\n\n7. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n8. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"",
         "timeoutSeconds": 300,
-        "model": "anthropic/claude-opus-4-6"
+        "model": "gpt-5.4"
       },
       "state": {
-        "nextRunAtMs": 1775206800000,
-        "lastRunAtMs": 1775111795203,
-        "lastStatus": "ok",
-        "lastDurationMs": 40053,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      }
-    },
-    {
-      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
-      "agentId": "main",
-      "name": "Lizete Dzirnas schedule check",
-      "enabled": true,
-      "createdAtMs": 1770570235785,
-      "updatedAtMs": 1775149263622,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 20 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\nLog progress to /tmp/lizete-cron.log at each step. Use: echo \"[$(date +%H:%M:%S)] STEP N: description\" >> /tmp/lizete-cron.log\nClear the log at the start: echo \"\" > /tmp/lizete-cron.log\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n\nSTEP 1: Log \"STEP 1: Fetching spreadsheet tabs\". Fetch the htmlview page ONCE and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Log \"STEP 2: Finding matching tab for current/next week\". Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, log \"No matching tab found, skipping sync\" and STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks. Log which tab and gid was selected.\n\nSTEP 3: Log \"STEP 3: Fetching CSV for tab <name> gid=<gid>\". Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Log \"STEP 4: Parsing classes\". Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   Log the total number of classes parsed.\n\nSTEP 5: Log \"STEP 5: Listing existing calendar events\". List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar:\n   gws calendar events list --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"timeMin\": \"<monday>T00:00:00+03:00\", \"timeMax\": \"<saturday>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 50}' 2>/dev/null | python3 -c \"import json,sys; events=json.load(sys.stdin).get('items',[]); [print(f'{e[\\\"id\\\"]} {e.get(\\\"start\\\",{}).get(\\\"dateTime\\\",\\\"\\\")} {e.get(\\\"summary\\\",\\\"\\\")}') for e in events if 'dzirnas' in e.get('summary','').lower()]\"\n\nSTEP 6: Log \"STEP 6: Comparing and syncing\". Compare and sync:\n   - Create missing events\n   - Delete events with wrong times: gws calendar events delete --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n   - Delete events for days that no longer have classes\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events (see STANDING RULES above).\n   Log each create/delete action.\n\nSTEP 7: For creating EACH individual class event:\n   gws calendar events insert --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\"}' --json '{\"summary\": \"Lizetei Dzirnas: <class name> (<teacher>)\", \"start\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}, \"end\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}}' 2>/dev/null\n\nSTEP 8: Log \"STEP 8: Done\". Report what changed. List each individual event created/deleted/unchanged.",
-        "timeoutSeconds": 600,
-        "model": "anthropic/claude-opus-4-6"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1775235600000,
-        "lastRunAtMs": 1775149200008,
+        "nextRunAtMs": 1775811600000,
+        "lastRunAtMs": 1775206800007,
         "lastStatus": "error",
-        "lastDurationMs": 63614,
+        "lastDurationMs": 61282,
         "consecutiveErrors": 1,
         "lastRunStatus": "error",
-        "lastDeliveryStatus": "delivered",
         "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
         "lastError": "Request timed out before a response was generated. Please try again, or increase `agents.defaults.timeoutSeconds` in your config.",
         "lastErrorReason": "timeout"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
       }
     }
   ],
