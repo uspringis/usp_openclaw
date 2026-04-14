@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1775869290934,
+      "updatedAtMs": 1776042037300,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,16 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1775955600000,
-        "lastRunAtMs": 1775869200004,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 90930,
+        "nextRunAtMs": 1776128400000,
+        "lastRunAtMs": 1776042000009,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 37291,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 1,
         "lastDelivered": false,
-        "runningAtMs": 1775955600008
+        "lastDeliveryError": "⚠️ ✉️ Message failed",
+        "runningAtMs": 1776128400009
       }
     },
     {
@@ -42,7 +43,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1775871322949,
+      "updatedAtMs": 1776044123805,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,11 +64,11 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1775957400000,
-        "lastRunAtMs": 1775871000008,
+        "nextRunAtMs": 1776130200000,
+        "lastRunAtMs": 1776043800008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 322941,
+        "lastDurationMs": 323797,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -79,7 +80,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1775880258481,
+      "updatedAtMs": 1776053007107,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -94,11 +95,11 @@
         "model": "gpt-5.4"
       },
       "state": {
-        "lastRunAtMs": 1775880000009,
+        "lastRunAtMs": 1776052800007,
         "lastStatus": "ok",
-        "lastDurationMs": 258472,
+        "lastDurationMs": 207100,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1775966400000,
+        "nextRunAtMs": 1776139200000,
         "lastRunStatus": "ok",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered"
@@ -116,7 +117,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1775887236338,
+      "updatedAtMs": 1776060073932,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -131,10 +132,10 @@
         "model": "gpt-5.4"
       },
       "state": {
-        "nextRunAtMs": 1775973600000,
-        "lastRunAtMs": 1775887200007,
+        "nextRunAtMs": 1776146400000,
+        "lastRunAtMs": 1776060000007,
         "lastStatus": "ok",
-        "lastDurationMs": 36331,
+        "lastDurationMs": 73925,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
@@ -152,7 +153,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1775927031791,
+      "updatedAtMs": 1776099658157,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -173,10 +174,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1776013200000,
-        "lastRunAtMs": 1775926800007,
+        "nextRunAtMs": 1776186000000,
+        "lastRunAtMs": 1776099600007,
         "lastStatus": "ok",
-        "lastDurationMs": 231784,
+        "lastDurationMs": 58150,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
