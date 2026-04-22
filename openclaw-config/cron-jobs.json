@@ -6,7 +6,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1776646836679,
+      "updatedAtMs": 1776733236460,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 4 * * *",
@@ -25,15 +25,15 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1776733200000,
-        "lastRunAtMs": 1776646800008,
+        "nextRunAtMs": 1776819600000,
+        "lastRunAtMs": 1776733200008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 36671,
+        "lastDurationMs": 36452,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
         "lastDelivered": false,
-        "runningAtMs": 1776733200008
+        "runningAtMs": 1776819600005
       }
     },
     {
@@ -42,7 +42,7 @@
       "name": "Daily OpenClaw Maintenance",
       "enabled": true,
       "createdAtMs": 1771743698150,
-      "updatedAtMs": 1776648981060,
+      "updatedAtMs": 1776735331981,
       "schedule": {
         "kind": "cron",
         "expr": "0 30 4 * * *",
@@ -63,11 +63,11 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1776735000000,
-        "lastRunAtMs": 1776648600008,
+        "nextRunAtMs": 1776821400000,
+        "lastRunAtMs": 1776735000008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 381052,
+        "lastDurationMs": 331973,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -79,7 +79,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1776657708699,
+      "updatedAtMs": 1776744176581,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -94,11 +94,11 @@
         "model": "gpt-5.4"
       },
       "state": {
-        "lastRunAtMs": 1776657600009,
+        "lastRunAtMs": 1776744000009,
         "lastStatus": "ok",
-        "lastDurationMs": 108690,
+        "lastDurationMs": 176572,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1776744000000,
+        "nextRunAtMs": 1776830400000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "lastDelivered": true
@@ -116,7 +116,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1776664833332,
+      "updatedAtMs": 1776751252847,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -131,16 +131,14 @@
         "model": "gpt-5.4"
       },
       "state": {
-        "nextRunAtMs": 1776751200000,
-        "lastRunAtMs": 1776664800009,
-        "lastStatus": "error",
-        "lastDurationMs": 33323,
-        "consecutiveErrors": 1,
-        "lastRunStatus": "error",
+        "nextRunAtMs": 1776837600000,
+        "lastRunAtMs": 1776751200009,
+        "lastStatus": "ok",
+        "lastDurationMs": 52838,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
-        "lastDelivered": false,
-        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
-        "lastDeliveryError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
+        "lastDelivered": false
       },
       "delivery": {
         "mode": "none",
@@ -154,7 +152,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1776704681995,
+      "updatedAtMs": 1776790901790,
       "schedule": {
         "kind": "cron",
         "expr": "0 20 * * *",
@@ -175,10 +173,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1776790800000,
-        "lastRunAtMs": 1776704400008,
+        "nextRunAtMs": 1776877200000,
+        "lastRunAtMs": 1776790800005,
         "lastStatus": "ok",
-        "lastDurationMs": 281987,
+        "lastDurationMs": 101785,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
