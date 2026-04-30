@@ -1,11 +1,11 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.4.5",
-    "lastTouchedAt": "2026-04-07T20:06:36.131Z"
+    "lastTouchedVersion": "2026.4.26",
+    "lastTouchedAt": "2026-04-29T01:32:51.260Z"
   },
   "wizard": {
-    "lastRunAt": "2026-02-25T06:17:50.649Z",
-    "lastRunVersion": "2026.2.23",
+    "lastRunAt": "2026-04-29T01:32:51.192Z",
+    "lastRunVersion": "2026.4.26",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -34,10 +34,7 @@
       "subagents": {
         "maxConcurrent": 8
       },
-      "timeoutSeconds": 300,
-      "llm": {
-        "idleTimeoutSeconds": 300
-      }
+      "timeoutSeconds": 300
     }
   },
   "tools": {
@@ -86,7 +83,9 @@
       "dmPolicy": "pairing",
       "botToken": "[REDACTED]",
       "groupPolicy": "allowlist",
-      "streaming": "partial"
+      "streaming": {
+        "mode": "partial"
+      }
     }
   },
   "gateway": {
