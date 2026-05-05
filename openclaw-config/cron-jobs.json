@@ -24,16 +24,16 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1777856400000,
-        "lastRunAtMs": 1777770000005,
+        "nextRunAtMs": 1777942800000,
+        "lastRunAtMs": 1777856400003,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 73858,
+        "lastDurationMs": 70877,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 10,
-        "runningAtMs": 1777856400003
+        "consecutiveErrors": 11,
+        "runningAtMs": 1777942800004
       },
-      "updatedAtMs": 1777770073863
+      "updatedAtMs": 1777856470880
     },
     {
       "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
@@ -61,16 +61,16 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1777858200000,
-        "lastRunAtMs": 1777771800004,
+        "nextRunAtMs": 1777944600000,
+        "lastRunAtMs": 1777858200003,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 93085,
+        "lastDurationMs": 94068,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
       },
-      "updatedAtMs": 1777771893089
+      "updatedAtMs": 1777858294071
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -98,17 +98,17 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1777780800006,
+        "lastRunAtMs": 1777867200003,
         "lastStatus": "error",
-        "lastDurationMs": 300009,
-        "consecutiveErrors": 9,
-        "nextRunAtMs": 1777867200000,
+        "lastDurationMs": 300014,
+        "consecutiveErrors": 10,
+        "nextRunAtMs": 1777953600000,
         "lastRunStatus": "error",
         "lastDeliveryStatus": "unknown",
         "lastErrorReason": "timeout",
         "lastError": "cron: job execution timed out"
       },
-      "updatedAtMs": 1777781100015
+      "updatedAtMs": 1777867500017
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
@@ -135,15 +135,16 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1777874400000,
-        "lastRunAtMs": 1777788000005,
-        "lastStatus": "ok",
-        "lastDurationMs": 85159,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "not-requested"
+        "nextRunAtMs": 1777960800000,
+        "lastRunAtMs": 1777874400004,
+        "lastStatus": "error",
+        "lastDurationMs": 117720,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "not-requested",
+        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
       },
-      "updatedAtMs": 1777788085164
+      "updatedAtMs": 1777874517724
     },
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
@@ -171,16 +172,16 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1777914000000,
-        "lastRunAtMs": 1777827600004,
+        "nextRunAtMs": 1778000400000,
+        "lastRunAtMs": 1777914000006,
         "lastStatus": "ok",
-        "lastDurationMs": 211350,
+        "lastDurationMs": 271426,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "lastDelivered": true
       },
-      "updatedAtMs": 1777827811354
+      "updatedAtMs": 1777914271432
     },
     {
       "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
