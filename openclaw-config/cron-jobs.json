@@ -17,23 +17,36 @@
         "kind": "agentTurn",
         "message": "Run the daily backup to GitHub. Execute: bash /home/uspringis/clawd/scripts/backup-to-github.sh 2>&1\n\nCheck the output. If it says \"BACKUP_ERRORS\" or the exit code is non-zero, send a Telegram message to Ugis with the error details using the message tool (channel=telegram).\n\nIf successful, complete silently. Do NOT send any message on success.",
         "timeoutSeconds": 120,
-        "model": "gpt-5.4"
+        "model": "gpt-5.5"
       },
       "delivery": {
         "mode": "none",
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1778115600000,
-        "lastRunAtMs": 1778029200004,
+        "nextRunAtMs": 1779152400000,
+        "lastRunAtMs": 1779066000006,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 68807,
+        "lastDurationMs": 13,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 13,
-        "runningAtMs": 1778115600003
+        "consecutiveErrors": 25,
+        "lastDiagnostics": {
+          "summary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+          "entries": [
+            {
+              "ts": 1779066000019,
+              "source": "cron-preflight",
+              "severity": "error",
+              "message": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+        "consecutiveSkipped": 0,
+        "runningAtMs": 1779152400006
       },
-      "updatedAtMs": 1778029268811
+      "updatedAtMs": 1779066000019
     },
     {
       "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
@@ -52,7 +65,7 @@
         "kind": "agentTurn",
         "message": "Run the daily OpenClaw maintenance routine. Do these steps in order, stopping and reporting if any step fails:\n\n1. Run openclaw update --yes --no-restart 2>&1 to update the OpenClaw package WITHOUT restarting the gateway. Capture the full output.\n2. Run clawhub sync --no-input 2>&1 to update all installed skills.\n3. Run openclaw --version 2>&1 and openclaw update status 2>&1 to get current version info.\n4. Send a Telegram message to Ugis summarizing: what was updated (package version changes, skill updates), current version numbers, any errors with fix suggestions.\n5. AFTER sending the report, schedule a delayed gateway restart by running: nohup sh -c \"sleep 15 && openclaw gateway restart\" >/dev/null 2>&1 & — This gives the cron framework time to record the run as complete before the gateway restarts.\n\nIf ANY step before the restart fails, stop there, report exactly what failed and the error output, and suggest a fix. Do not silently continue past errors.",
         "timeoutSeconds": 600,
-        "model": "gpt-5.4"
+        "model": "gpt-5.5"
       },
       "delivery": {
         "mode": "announce",
@@ -61,16 +74,29 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1778117400000,
-        "lastRunAtMs": 1778031000003,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 91639,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "nextRunAtMs": 1779154200000,
+        "lastRunAtMs": 1779067800006,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 10,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 11,
+        "lastDiagnostics": {
+          "summary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+          "entries": [
+            {
+              "ts": 1779067800016,
+              "source": "cron-preflight",
+              "severity": "error",
+              "message": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+        "consecutiveSkipped": 0,
+        "lastError": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
       },
-      "updatedAtMs": 1778031091642
+      "updatedAtMs": 1779067800016
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -87,9 +113,9 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Fetch the AI list timeline from Twitter/X using bird CLI (list ID from TOOLS.md). Use -n 150 to ensure coverage of the full last 24 hours. Create a comprehensive English-language digest of all tweets from the last 24 hours. Include ALL tweets from that period — do not truncate or summarize into fewer items. Format as a clean digest with categories, tweet summaries, and links. IMPORTANT: Every notable tweet MUST include its direct URL (https://x.com/username/status/ID). Do not omit links — they are essential for the reader to click through to the original tweets. The digest MUST be in English regardless of tweet language. In the footer, state \"Source: AI List timeline, last 24 hours\" — do not estimate a shorter window.",
+        "message": "Fetch the AI list timeline from Twitter/X using bird CLI (list ID from TOOLS.md). Use -n 150 to cover the full last 24 hours.\n\nCreate an English-language AI landscape digest for the last 24 hours. This must be a researched, synthesized overview — NOT a list of tweets and NOT tweet-by-tweet headlines.\n\nProcess:\n1. Collect tweets from the AI list timeline.\n2. Identify the most important topics, launches, debates, research results, product releases, market signals, and recurring themes.\n3. Use the tweets as source material, but synthesize what they mean in essence. Group related tweets together into coherent topic sections.\n4. Prioritize high-signal/high-reaction tweets and tweets from credible or influential accounts. Ignore low-value chatter, duplicates, and minor reposts unless they indicate a broader trend.\n5. Where needed, briefly research/verify context from linked sources or public web sources, but do not overdo it.\n\nOutput format:\n- Start with a concise executive overview: 5-8 bullets explaining the main AI developments and why they matter.\n- Then write topic-based sections. Each section should explain the topic in plain English, what is actually happening, why it matters, and any implications for builders/businesses.\n- Include only a small number of links: roughly 5-10 of the most important tweets total, preferably high-reaction/high-signal tweets. Every included tweet link must be a direct URL in the form https://x.com/username/status/ID.\n- Do not include every tweet. Do not create a long raw list. Do not use tweet text as section headers unless it is genuinely the topic.\n- The digest must be readable as a strategic briefing, not a social media recap.\n- The digest MUST be in English regardless of tweet language.\n- In the footer, state: Source: AI List timeline, last 24 hours.",
         "timeoutSeconds": 300,
-        "model": "gpt-5.4"
+        "model": "openai/gpt-5.5"
       },
       "delivery": {
         "mode": "announce",
@@ -98,17 +124,17 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1778040000003,
-        "lastStatus": "error",
-        "lastDurationMs": 300010,
-        "consecutiveErrors": 12,
-        "nextRunAtMs": 1778126400000,
-        "lastRunStatus": "error",
-        "lastDeliveryStatus": "unknown",
-        "lastErrorReason": "timeout",
-        "lastError": "cron: job execution timed out"
+        "lastRunAtMs": 1779076800005,
+        "lastStatus": "ok",
+        "lastDurationMs": 81359,
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1779163200000,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "consecutiveSkipped": 0,
+        "lastDelivered": true
       },
-      "updatedAtMs": 1778040300013
+      "updatedAtMs": 1779076881364
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
@@ -127,7 +153,7 @@
         "kind": "agentTurn",
         "message": "Run the Bolt invoice processing script. Execute: bash /home/uspringis/clawd/scripts/bolt-invoices.sh. Check the output.\n\nAfter running the script, also check Gmail for new Bolt monthly invoices using gws:\n  gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:noreply@bolt.eu newer_than:1d\", \"maxResults\": 5}' 2>/dev/null\n\nIf a NEW monthly invoice email is found, send a Telegram message to Ugis about it using the message tool (channel=telegram). Otherwise, complete silently - do NOT send any message.",
         "timeoutSeconds": 120,
-        "model": "gpt-5.4"
+        "model": "gpt-5.5"
       },
       "delivery": {
         "mode": "none",
@@ -135,16 +161,29 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1778133600000,
-        "lastRunAtMs": 1778047200004,
+        "nextRunAtMs": 1779170400000,
+        "lastRunAtMs": 1779084000007,
         "lastStatus": "error",
-        "lastDurationMs": 105157,
-        "consecutiveErrors": 3,
+        "lastDurationMs": 17,
+        "consecutiveErrors": 15,
         "lastRunStatus": "error",
         "lastDeliveryStatus": "not-requested",
-        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
+        "lastDiagnostics": {
+          "summary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+          "entries": [
+            {
+              "ts": 1779084000023,
+              "source": "cron-preflight",
+              "severity": "error",
+              "message": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+        "consecutiveSkipped": 0,
+        "lastError": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
       },
-      "updatedAtMs": 1778047305161
+      "updatedAtMs": 1779084000024
     },
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
@@ -163,7 +202,7 @@
         "kind": "agentTurn",
         "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Execute each step as a SEPARATE short exec command. NEVER combine all steps into one large inline script — long commands are blocked by obfuscation detection. Run one command at a time and process the output before running the next.\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n\nSTEP 1: Fetch the htmlview page and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks.\n\nSTEP 3: Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   STEP 5: List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar for the target week:\n   gws calendar events list --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"timeMin\": \"<monday>T00:00:00+03:00\", \"timeMax\": \"<saturday>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 50}' 2>/dev/null\n   Then filter the JSON output for events with 'dzirnas' in the summary.\n\nSTEP 6: Compare and sync:\n   - Create missing events\n   - Delete events with wrong times: gws calendar events delete --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n   - Delete events for days that no longer have classes\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events (see STANDING RULES above).\n\n\nSTEP 7: For creating EACH individual class event (run each insert as a separate command):\n   gws calendar events insert --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\"}' --json '{\"summary\": \"Lizetei Dzirnas: <class name> (<teacher>)\", \"start\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}, \"end\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}}' 2>/dev/null\n\nSTEP 8: Report what changed. List each individual event created/deleted/unchanged.",
         "timeoutSeconds": 600,
-        "model": "gpt-5.4"
+        "model": "gpt-5.5"
       },
       "delivery": {
         "mode": "announce",
@@ -172,16 +211,17 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1778173200000,
-        "lastRunAtMs": 1778086800005,
+        "nextRunAtMs": 1779210000000,
+        "lastRunAtMs": 1779123600006,
         "lastStatus": "ok",
-        "lastDurationMs": 258021,
+        "lastDurationMs": 63906,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
+        "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1778087058026
+      "updatedAtMs": 1779123663912
     },
     {
       "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
@@ -200,7 +240,7 @@
         "kind": "agentTurn",
         "message": "Check waste collection schedule from Eco Baltia Vide:\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:babite@ecobaltiavide.lv\", \"maxResults\": 5}' 2>/dev/null\n\n2. If found a new email, get its details to find PDF attachment:\n   gws gmail users messages get --params '{\"userId\": \"me\", \"id\": \"<msgId>\", \"format\": \"full\"}' 2>/dev/null\n   Parse the JSON to find attachment parts (look for filename ending in .pdf and attachmentId in body).\n\n3. Download PDF attachment:\n   gws gmail users messages attachments get --params '{\"userId\": \"me\", \"messageId\": \"<msgId>\", \"id\": \"<attachmentId>\"}' 2>/dev/null | python3 -c \"import json,sys,base64; d=json.load(sys.stdin); raw=d['data'].replace('-','+').replace('_','/'); sys.stdout.buffer.write(base64.b64decode(raw+'=='))\" > /tmp/waste-grafiks.pdf\n   Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n4. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gws calendar events list --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"timeMin\": \"<first_date>T00:00:00+03:00\", \"timeMax\": \"<last_date_plus_1>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 100}' 2>/dev/null\n   Filter for events with 'miskaste' in summary.\n\n5. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gws calendar events delete --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n\n6. Create new whole-day events for each date:\n   gws calendar events insert --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\"}' --json '{\"summary\": \"<event name>\", \"start\": {\"date\": \"YYYY-MM-DD\"}, \"end\": {\"date\": \"YYYY-MM-DD+1\"}, \"reminders\": {\"useDefault\": false, \"overrides\": [{\"method\": \"popup\", \"minutes\": 180}]}}' 2>/dev/null\n\n7. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n8. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"",
         "timeoutSeconds": 300,
-        "model": "gpt-5.4"
+        "model": "gpt-5.5"
       },
       "delivery": {
         "mode": "announce",
@@ -209,16 +249,29 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1778230800000,
-        "lastRunAtMs": 1777626000004,
-        "lastStatus": "ok",
-        "lastDurationMs": 94560,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered"
+        "nextRunAtMs": 1779440400000,
+        "lastRunAtMs": 1778835600007,
+        "lastStatus": "error",
+        "lastDurationMs": 14,
+        "consecutiveErrors": 2,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "unknown",
+        "lastDiagnostics": {
+          "summary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+          "entries": [
+            {
+              "ts": 1778835600021,
+              "source": "cron-preflight",
+              "severity": "error",
+              "message": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+        "consecutiveSkipped": 0,
+        "lastError": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
       },
-      "updatedAtMs": 1777626094564
+      "updatedAtMs": 1778835600021
     }
   ],
   "total": 6,
@@ -228,8 +281,8 @@
   "nextOffset": null,
   "deliveryPreviews": {
     "871fa841-5efc-4cf1-b8e8-f440b2970119": {
-      "label": "none -> telegram:telegram:181860584",
-      "detail": "resolved from last, main session"
+      "label": "not requested",
+      "detail": "not requested"
     },
     "a3824b4d-5a00-4dc7-a58e-ff64717e80df": {
       "label": "announce -> telegram:181860584",
@@ -240,8 +293,8 @@
       "detail": "explicit"
     },
     "203bd55c-2afd-44ca-be99-ab8dd69034cc": {
-      "label": "none -> telegram:181860584",
-      "detail": "explicit"
+      "label": "not requested",
+      "detail": "not requested"
     },
     "f87d0e86-b7df-458c-b6e3-e7c84aac64eb": {
       "label": "announce -> telegram:181860584",
