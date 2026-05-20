@@ -24,29 +24,35 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1779152400000,
-        "lastRunAtMs": 1779066000006,
+        "nextRunAtMs": 1779238800000,
+        "lastRunAtMs": 1779152400006,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 13,
+        "lastDurationMs": 27789,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 25,
+        "consecutiveErrors": 26,
         "lastDiagnostics": {
-          "summary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+          "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
           "entries": [
             {
-              "ts": 1779066000019,
-              "source": "cron-preflight",
+              "ts": 1779152427794,
+              "source": "tool",
               "severity": "error",
-              "message": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
+            },
+            {
+              "ts": 1779152427794,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
             }
           ]
         },
-        "lastDiagnosticSummary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+        "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
         "consecutiveSkipped": 0,
-        "runningAtMs": 1779152400006
+        "runningAtMs": 1779238800006
       },
-      "updatedAtMs": 1779066000019
+      "updatedAtMs": 1779152427795
     },
     {
       "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
@@ -74,29 +80,17 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1779154200000,
-        "lastRunAtMs": 1779067800006,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 10,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 11,
-        "lastDiagnostics": {
-          "summary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
-          "entries": [
-            {
-              "ts": 1779067800016,
-              "source": "cron-preflight",
-              "severity": "error",
-              "message": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+        "nextRunAtMs": 1779240600000,
+        "lastRunAtMs": 1779154200006,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 38431,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "lastError": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+        "lastDelivered": true
       },
-      "updatedAtMs": 1779067800016
+      "updatedAtMs": 1779154238437
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -124,17 +118,17 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1779076800005,
+        "lastRunAtMs": 1779163200006,
         "lastStatus": "ok",
-        "lastDurationMs": 81359,
+        "lastDurationMs": 231244,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1779163200000,
+        "nextRunAtMs": 1779249600000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779076881364
+      "updatedAtMs": 1779163431250
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
@@ -161,29 +155,35 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1779170400000,
-        "lastRunAtMs": 1779084000007,
+        "nextRunAtMs": 1779256800000,
+        "lastRunAtMs": 1779170400010,
         "lastStatus": "error",
-        "lastDurationMs": 17,
-        "consecutiveErrors": 15,
+        "lastDurationMs": 35108,
+        "consecutiveErrors": 16,
         "lastRunStatus": "error",
         "lastDeliveryStatus": "not-requested",
         "lastDiagnostics": {
-          "summary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+          "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
           "entries": [
             {
-              "ts": 1779084000023,
-              "source": "cron-preflight",
+              "ts": 1779170435116,
+              "source": "tool",
               "severity": "error",
-              "message": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
+            },
+            {
+              "ts": 1779170435117,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
             }
           ]
         },
-        "lastDiagnosticSummary": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4",
+        "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
         "consecutiveSkipped": 0,
-        "lastError": "cron payload.model 'gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4"
+        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
       },
-      "updatedAtMs": 1779084000024
+      "updatedAtMs": 1779170435118
     },
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
@@ -211,17 +211,17 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1779210000000,
-        "lastRunAtMs": 1779123600006,
+        "nextRunAtMs": 1779296400000,
+        "lastRunAtMs": 1779210000007,
         "lastStatus": "ok",
-        "lastDurationMs": 63906,
+        "lastDurationMs": 59206,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779123663912
+      "updatedAtMs": 1779210059213
     },
     {
       "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
