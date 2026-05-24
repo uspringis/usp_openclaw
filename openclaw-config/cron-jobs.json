@@ -24,24 +24,24 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1779498000000,
-        "lastRunAtMs": 1779411600006,
+        "nextRunAtMs": 1779584400000,
+        "lastRunAtMs": 1779498000007,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 26538,
+        "lastDurationMs": 28023,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 29,
+        "consecutiveErrors": 30,
         "lastDiagnostics": {
           "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
           "entries": [
             {
-              "ts": 1779411626543,
+              "ts": 1779498028029,
               "source": "tool",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
             },
             {
-              "ts": 1779411626544,
+              "ts": 1779498028029,
               "source": "agent-run",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
@@ -50,9 +50,9 @@
         },
         "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
         "consecutiveSkipped": 0,
-        "runningAtMs": 1779498000007
+        "runningAtMs": 1779584400006
       },
-      "updatedAtMs": 1779411626544
+      "updatedAtMs": 1779498028030
     },
     {
       "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
@@ -80,17 +80,17 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1779499800000,
-        "lastRunAtMs": 1779413400005,
+        "nextRunAtMs": 1779586200000,
+        "lastRunAtMs": 1779499800007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 53532,
+        "lastDurationMs": 31940,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779413453537
+      "updatedAtMs": 1779499831947
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -118,17 +118,17 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1779422400006,
+        "lastRunAtMs": 1779508800007,
         "lastStatus": "ok",
-        "lastDurationMs": 230520,
+        "lastDurationMs": 100281,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1779508800000,
+        "nextRunAtMs": 1779595200000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779422630526
+      "updatedAtMs": 1779508900288
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
@@ -155,24 +155,24 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1779516000000,
-        "lastRunAtMs": 1779429600008,
+        "nextRunAtMs": 1779602400000,
+        "lastRunAtMs": 1779516000006,
         "lastStatus": "error",
-        "lastDurationMs": 31560,
-        "consecutiveErrors": 19,
+        "lastDurationMs": 34956,
+        "consecutiveErrors": 20,
         "lastRunStatus": "error",
         "lastDeliveryStatus": "not-requested",
         "lastDiagnostics": {
           "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
           "entries": [
             {
-              "ts": 1779429631567,
+              "ts": 1779516034961,
               "source": "tool",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
             },
             {
-              "ts": 1779429631568,
+              "ts": 1779516034962,
               "source": "agent-run",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
@@ -183,7 +183,7 @@
         "consecutiveSkipped": 0,
         "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
       },
-      "updatedAtMs": 1779429631568
+      "updatedAtMs": 1779516034962
     },
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
@@ -211,17 +211,17 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1779555600000,
-        "lastRunAtMs": 1779469200006,
+        "nextRunAtMs": 1779642000000,
+        "lastRunAtMs": 1779555600006,
         "lastStatus": "ok",
-        "lastDurationMs": 79940,
+        "lastDurationMs": 57436,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779469279946
+      "updatedAtMs": 1779555657442
     },
     {
       "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
