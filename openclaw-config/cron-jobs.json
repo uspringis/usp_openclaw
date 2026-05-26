@@ -24,24 +24,24 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1779670800000,
-        "lastRunAtMs": 1779584400006,
+        "nextRunAtMs": 1779757200000,
+        "lastRunAtMs": 1779670800008,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 28725,
+        "lastDurationMs": 31426,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 31,
+        "consecutiveErrors": 32,
         "lastDiagnostics": {
           "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
           "entries": [
             {
-              "ts": 1779584428730,
+              "ts": 1779670831433,
               "source": "tool",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
             },
             {
-              "ts": 1779584428730,
+              "ts": 1779670831433,
               "source": "agent-run",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
@@ -50,9 +50,9 @@
         },
         "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
         "consecutiveSkipped": 0,
-        "runningAtMs": 1779670800008
+        "runningAtMs": 1779757200007
       },
-      "updatedAtMs": 1779584428731
+      "updatedAtMs": 1779670831434
     },
     {
       "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
@@ -80,17 +80,30 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1779672600000,
-        "lastRunAtMs": 1779586200006,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 48985,
+        "nextRunAtMs": 1779759000000,
+        "lastRunAtMs": 1779672600007,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 46151,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
-        "lastDelivered": true
+        "lastDelivered": true,
+        "lastError": "cron classifier: denial token \"did not run\" detected in summary",
+        "lastDiagnostics": {
+          "summary": "cron classifier: denial token \"did not run\" detected in summary",
+          "entries": [
+            {
+              "ts": 1779672646158,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "cron classifier: denial token \"did not run\" detected in summary"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron classifier: denial token \"did not run\" detected in summary"
       },
-      "updatedAtMs": 1779586248991
+      "updatedAtMs": 1779672646158
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -118,17 +131,17 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1779595200007,
+        "lastRunAtMs": 1779681600006,
         "lastStatus": "ok",
-        "lastDurationMs": 171498,
+        "lastDurationMs": 98271,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1779681600000,
+        "nextRunAtMs": 1779768000000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779595371505
+      "updatedAtMs": 1779681698277
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
@@ -155,24 +168,24 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1779688800000,
-        "lastRunAtMs": 1779602400006,
+        "nextRunAtMs": 1779775200000,
+        "lastRunAtMs": 1779688800008,
         "lastStatus": "error",
-        "lastDurationMs": 18308,
-        "consecutiveErrors": 21,
+        "lastDurationMs": 32262,
+        "consecutiveErrors": 22,
         "lastRunStatus": "error",
         "lastDeliveryStatus": "not-requested",
         "lastDiagnostics": {
           "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
           "entries": [
             {
-              "ts": 1779602418313,
+              "ts": 1779688832269,
               "source": "tool",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
             },
             {
-              "ts": 1779602418314,
+              "ts": 1779688832269,
               "source": "agent-run",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
@@ -183,7 +196,7 @@
         "consecutiveSkipped": 0,
         "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
       },
-      "updatedAtMs": 1779602418314
+      "updatedAtMs": 1779688832270
     },
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
@@ -211,17 +224,17 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1779728400000,
-        "lastRunAtMs": 1779642000008,
+        "nextRunAtMs": 1779814800000,
+        "lastRunAtMs": 1779728400006,
         "lastStatus": "ok",
-        "lastDurationMs": 139251,
+        "lastDurationMs": 61683,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779642139259
+      "updatedAtMs": 1779728461689
     },
     {
       "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
