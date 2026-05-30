@@ -24,24 +24,24 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1780016400000,
-        "lastRunAtMs": 1779930000006,
+        "nextRunAtMs": 1780102800000,
+        "lastRunAtMs": 1780016400005,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 27155,
+        "lastDurationMs": 21246,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 35,
+        "consecutiveErrors": 36,
         "lastDiagnostics": {
           "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
           "entries": [
             {
-              "ts": 1779930027160,
+              "ts": 1780016421251,
               "source": "tool",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
             },
             {
-              "ts": 1779930027161,
+              "ts": 1780016421251,
               "source": "agent-run",
               "severity": "error",
               "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
@@ -50,9 +50,9 @@
         },
         "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
         "consecutiveSkipped": 0,
-        "runningAtMs": 1780016400005
+        "runningAtMs": 1780102800007
       },
-      "updatedAtMs": 1779930027161
+      "updatedAtMs": 1780016421251
     },
     {
       "id": "a3824b4d-5a00-4dc7-a58e-ff64717e80df",
@@ -80,30 +80,17 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1780018200000,
-        "lastRunAtMs": 1779931800007,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 51114,
+        "nextRunAtMs": 1780104600000,
+        "lastRunAtMs": 1780018200007,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 37270,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 1,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "lastDelivered": true,
-        "lastError": "cron classifier: denial token \"did not run\" detected in summary",
-        "lastDiagnostics": {
-          "summary": "cron classifier: denial token \"did not run\" detected in summary",
-          "entries": [
-            {
-              "ts": 1779931851120,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "cron classifier: denial token \"did not run\" detected in summary"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "cron classifier: denial token \"did not run\" detected in summary"
+        "lastDelivered": true
       },
-      "updatedAtMs": 1779931851121
+      "updatedAtMs": 1780018237277
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -131,17 +118,17 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1779940800007,
+        "lastRunAtMs": 1780027200007,
         "lastStatus": "ok",
-        "lastDurationMs": 127441,
+        "lastDurationMs": 76460,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1780027200000,
+        "nextRunAtMs": 1780113600000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779940927448
+      "updatedAtMs": 1780027276467
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
@@ -168,73 +155,16 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1780034400000,
-        "lastRunAtMs": 1779948000007,
-        "lastStatus": "error",
-        "lastDurationMs": 39191,
-        "consecutiveErrors": 25,
-        "lastRunStatus": "error",
-        "lastDeliveryStatus": "not-requested",
-        "lastDiagnostics": {
-          "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
-          "entries": [
-            {
-              "ts": 1779948039197,
-              "source": "tool",
-              "severity": "error",
-              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
-            },
-            {
-              "ts": 1779948039197,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
-        "consecutiveSkipped": 0,
-        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
-      },
-      "updatedAtMs": 1779948039198
-    },
-    {
-      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
-      "agentId": "main",
-      "name": "Waste Schedule Check",
-      "enabled": true,
-      "createdAtMs": 1770563229509,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 12 * * 5",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "next-heartbeat",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Check waste collection schedule from Eco Baltia Vide:\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:babite@ecobaltiavide.lv\", \"maxResults\": 5}' 2>/dev/null\n\n2. If found a new email, get its details to find PDF attachment:\n   gws gmail users messages get --params '{\"userId\": \"me\", \"id\": \"<msgId>\", \"format\": \"full\"}' 2>/dev/null\n   Parse the JSON to find attachment parts (look for filename ending in .pdf and attachmentId in body).\n\n3. Download PDF attachment:\n   gws gmail users messages attachments get --params '{\"userId\": \"me\", \"messageId\": \"<msgId>\", \"id\": \"<attachmentId>\"}' 2>/dev/null | python3 -c \"import json,sys,base64; d=json.load(sys.stdin); raw=d['data'].replace('-','+').replace('_','/'); sys.stdout.buffer.write(base64.b64decode(raw+'=='))\" > /tmp/waste-grafiks.pdf\n   Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n4. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gws calendar events list --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"timeMin\": \"<first_date>T00:00:00+03:00\", \"timeMax\": \"<last_date_plus_1>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 100}' 2>/dev/null\n   Filter for events with 'miskaste' in summary.\n\n5. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gws calendar events delete --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n\n6. Create new whole-day events for each date:\n   gws calendar events insert --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\"}' --json '{\"summary\": \"<event name>\", \"start\": {\"date\": \"YYYY-MM-DD\"}, \"end\": {\"date\": \"YYYY-MM-DD+1\"}, \"reminders\": {\"useDefault\": false, \"overrides\": [{\"method\": \"popup\", \"minutes\": 180}]}}' 2>/dev/null\n\n7. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n8. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"",
-        "timeoutSeconds": 300,
-        "model": "gpt-5.5"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1780045200000,
-        "lastRunAtMs": 1779440400006,
+        "nextRunAtMs": 1780120800000,
+        "lastRunAtMs": 1780034400007,
         "lastStatus": "ok",
-        "lastDurationMs": 138370,
+        "lastDurationMs": 77113,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
-        "lastDeliveryStatus": "delivered",
-        "consecutiveSkipped": 0,
-        "lastDelivered": true
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveSkipped": 0
       },
-      "updatedAtMs": 1779440538376
+      "updatedAtMs": 1780034477120
     },
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
@@ -262,17 +192,55 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1780074000000,
-        "lastRunAtMs": 1779987600007,
+        "nextRunAtMs": 1780160400000,
+        "lastRunAtMs": 1780074000007,
         "lastStatus": "ok",
-        "lastDurationMs": 87879,
+        "lastDurationMs": 73367,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true
       },
-      "updatedAtMs": 1779987687886
+      "updatedAtMs": 1780074073374
+    },
+    {
+      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
+      "agentId": "main",
+      "name": "Waste Schedule Check",
+      "enabled": true,
+      "createdAtMs": 1770563229509,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * 5",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check waste collection schedule from Eco Baltia Vide:\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\n1. Search Gmail for emails from babite@ecobaltiavide.lv in the last 30 days:\n   gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:babite@ecobaltiavide.lv\", \"maxResults\": 5}' 2>/dev/null\n\n2. If found a new email, get its details to find PDF attachment:\n   gws gmail users messages get --params '{\"userId\": \"me\", \"id\": \"<msgId>\", \"format\": \"full\"}' 2>/dev/null\n   Parse the JSON to find attachment parts (look for filename ending in .pdf and attachmentId in body).\n\n3. Download PDF attachment:\n   gws gmail users messages attachments get --params '{\"userId\": \"me\", \"messageId\": \"<msgId>\", \"id\": \"<attachmentId>\"}' 2>/dev/null | python3 -c \"import json,sys,base64; d=json.load(sys.stdin); raw=d['data'].replace('-','+').replace('_','/'); sys.stdout.buffer.write(base64.b64decode(raw+'=='))\" > /tmp/waste-grafiks.pdf\n   Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n   Use the pdf tool to analyze /home/uspringis/clawd/grafiks.pdf and extract ALL dates for:\n     a) Sadzīves atkritumi (general waste) -> calendar event name: \"Parastā miskaste\"\n     b) Šķirotie atkritumi (sorted/cardboard) -> calendar event name: \"Kartona miskaste\"\n     c) Stikla iepakojums (glass) -> calendar event name: \"Stikla miskaste\"\n   Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n4. Check BUS calendar for existing miskaste events in the date range from the PDF:\n   gws calendar events list --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"timeMin\": \"<first_date>T00:00:00+03:00\", \"timeMax\": \"<last_date_plus_1>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 100}' 2>/dev/null\n   Filter for events with 'miskaste' in summary.\n\n5. Delete ALL existing miskaste events that fall within the new schedule date range:\n   gws calendar events delete --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n\n6. Create new whole-day events for each date:\n   gws calendar events insert --params '{\"calendarId\": \"0sujs5vl4o2c5tsatu54ei6v50@group.calendar.google.com\"}' --json '{\"summary\": \"<event name>\", \"start\": {\"date\": \"YYYY-MM-DD\"}, \"end\": {\"date\": \"YYYY-MM-DD+1\"}, \"reminders\": {\"useDefault\": false, \"overrides\": [{\"method\": \"popup\", \"minutes\": 180}]}}' 2>/dev/null\n\n7. Track processed email IDs in /home/uspringis/clawd/memory/waste-processed-ids.json to avoid reprocessing.\n   Format: {\"processedIds\": [\"msgId1\", \"msgId2\"]}\n   Skip emails whose ID is already in the list.\n\n8. Report what was created/deleted/unchanged.\n\nIf no new unprocessed emails found, just confirm \"No waste schedule updates needed.\"",
+        "timeoutSeconds": 300,
+        "model": "gpt-5.5"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1780650000000,
+        "lastRunAtMs": 1780045200006,
+        "lastStatus": "ok",
+        "lastDurationMs": 49067,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "consecutiveSkipped": 0,
+        "lastDelivered": true
+      },
+      "updatedAtMs": 1780045249073
     }
   ],
   "total": 6,
@@ -297,11 +265,11 @@
       "label": "not requested",
       "detail": "not requested"
     },
-    "027e94e3-a260-40e3-b8ed-0283b11a2ca8": {
+    "f87d0e86-b7df-458c-b6e3-e7c84aac64eb": {
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     },
-    "f87d0e86-b7df-458c-b6e3-e7c84aac64eb": {
+    "027e94e3-a260-40e3-b8ed-0283b11a2ca8": {
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     }
