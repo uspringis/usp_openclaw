@@ -31,6 +31,7 @@
 - **Daily Maintenance** — Daily 4:00 AM. Runs `openclaw update --no-restart`, `clawhub sync`, then gateway restart LAST (after reporting results to Telegram).
 
 ## Lessons Learned
+- For Lizete Dzirnas calendar sync: never delete one-time/manual exceptions without Ugis confirmation; keep them and report that confirmation is needed. Current protected exception: 2026-06-01 Mon 10:00-12:00 “Lizete Dzirnas”.
 - `openclaw update` restarts gateway by default — use `--no-restart` in cron jobs, restart manually as the last step after reporting
 - Cron sessions get killed by gateway restart — always send report before restarting
 - Bird CLI uses cookie auth (auth_token + ct0) that expires — check `.bird-credentials` if fetches fail
