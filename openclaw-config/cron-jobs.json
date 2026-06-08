@@ -44,7 +44,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1780880426685,
+      "updatedAtMs": 1780915976989,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -55,7 +55,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run the daily backup to GitHub. Execute: bash /home/uspringis/clawd/scripts/backup-to-github.sh 2>&1\n\nCheck the output. If it says \"BACKUP_ERRORS\" or the exit code is non-zero, send a Telegram message to Ugis with the error details using the message tool (channel=telegram).\n\nIf successful, complete silently. Do NOT send any message on success.",
+        "message": "Run the daily backup to GitHub. Execute: bash /home/uspringis/clawd/scripts/backup-to-github.sh 2>&1\n\nCheck the output. If it says \"BACKUP_ERRORS\" or the exit code is non-zero, send a Telegram message to Ugis with the error details using the message tool (channel=telegram).\n\nOn success, do NOT send any Telegram message. IMPORTANT: Always end your turn with a single short status line (for example \"Backup OK\" or \"No new invoices\"). Never end with an empty response — the scheduler treats an empty turn as a failure. Still do NOT use the message/Telegram tool on the success path.",
         "model": "gpt-5.5",
         "timeoutSeconds": 120
       },
@@ -90,9 +90,9 @@
         },
         "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
         "consecutiveSkipped": 0,
-        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
+        "runningAtMs": 1780915996553
       },
-      "status": "error"
+      "status": "running"
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -138,7 +138,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1780898455303,
+      "updatedAtMs": 1780915978566,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -149,7 +149,7 @@
       "wakeMode": "next-heartbeat",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run the Bolt invoice processing script. Execute: bash /home/uspringis/clawd/scripts/bolt-invoices.sh. Check the output.\n\nAfter running the script, also check Gmail for new Bolt monthly invoices using gws:\n  gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:noreply@bolt.eu newer_than:1d\", \"maxResults\": 5}' 2>/dev/null\n\nIf a NEW monthly invoice email is found, send a Telegram message to Ugis about it using the message tool (channel=telegram). Otherwise, complete silently - do NOT send any message.",
+        "message": "Run the Bolt invoice processing script. Execute: bash /home/uspringis/clawd/scripts/bolt-invoices.sh. Check the output.\n\nAfter running the script, also check Gmail for new Bolt monthly invoices using gws:\n  gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"from:noreply@bolt.eu newer_than:1d\", \"maxResults\": 5}' 2>/dev/null\n\nIf a NEW monthly invoice email is found, send a Telegram message to Ugis about it using the message tool (channel=telegram). Otherwise, do NOT send any Telegram message. IMPORTANT: Always end your turn with a single short status line (for example \"Backup OK\" or \"No new invoices\"). Never end with an empty response — the scheduler treats an empty turn as a failure. Still do NOT use the message/Telegram tool on the success path.",
         "model": "gpt-5.5",
         "timeoutSeconds": 120
       },
