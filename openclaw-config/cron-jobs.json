@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1780916013213,
+      "updatedAtMs": 1780966819067,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,16 +25,16 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1780966800000,
-        "lastRunAtMs": 1780915996553,
+        "nextRunAtMs": 1781053200000,
+        "lastRunAtMs": 1780966800007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 16660,
+        "lastDurationMs": 19060,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1780966800007
+        "runningAtMs": 1781053200006
       },
       "status": "running"
     },
@@ -44,7 +44,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1780916304975,
+      "updatedAtMs": 1780977702200,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -65,11 +65,11 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1780916250612,
+        "lastRunAtMs": 1780977600005,
         "lastStatus": "ok",
-        "lastDurationMs": 54363,
+        "lastDurationMs": 102195,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1780977600000,
+        "nextRunAtMs": 1781064000000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
@@ -83,7 +83,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1780915978566,
+      "updatedAtMs": 1780984836397,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -104,42 +104,24 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1780984800000,
-        "lastRunAtMs": 1780898400006,
-        "lastStatus": "error",
-        "lastDurationMs": 55297,
-        "consecutiveErrors": 1,
-        "lastRunStatus": "error",
+        "nextRunAtMs": 1781071200000,
+        "lastRunAtMs": 1780984800007,
+        "lastStatus": "ok",
+        "lastDurationMs": 36390,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
-        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
-        "lastDiagnostics": {
-          "summary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying.",
-          "entries": [
-            {
-              "ts": 1780898455302,
-              "source": "tool",
-              "severity": "error",
-              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
-            },
-            {
-              "ts": 1780898455303,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
+        "lastFailureNotificationDeliveryStatus": "not-requested"
       },
-      "status": "error"
+      "status": "ok"
     },
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1780938056982,
+      "updatedAtMs": 1781024452932,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -161,10 +143,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1781024400000,
-        "lastRunAtMs": 1780938000008,
+        "nextRunAtMs": 1781110800000,
+        "lastRunAtMs": 1781024400005,
         "lastStatus": "ok",
-        "lastDurationMs": 56974,
+        "lastDurationMs": 52927,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
