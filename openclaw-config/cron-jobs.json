@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1781053217484,
+      "updatedAtMs": 1781139616658,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,16 +25,16 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1781139600000,
-        "lastRunAtMs": 1781053200006,
+        "nextRunAtMs": 1781226000000,
+        "lastRunAtMs": 1781139600006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17478,
+        "lastDurationMs": 16652,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1781139600006
+        "runningAtMs": 1781226000007
       },
       "status": "running"
     },
@@ -44,7 +44,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1781064077354,
+      "updatedAtMs": 1781150464333,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -65,11 +65,11 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1781064000007,
+        "lastRunAtMs": 1781150400007,
         "lastStatus": "ok",
-        "lastDurationMs": 77347,
+        "lastDurationMs": 64326,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1781150400000,
+        "nextRunAtMs": 1781236800000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
@@ -83,7 +83,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1781071223696,
+      "updatedAtMs": 1781157624528,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -104,54 +104,14 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1781157600000,
-        "lastRunAtMs": 1781071200007,
+        "nextRunAtMs": 1781244000000,
+        "lastRunAtMs": 1781157600006,
         "lastStatus": "ok",
-        "lastDurationMs": 23689,
+        "lastDurationMs": 24522,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested"
-      },
-      "status": "ok"
-    },
-    {
-      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
-      "name": "Lizete Dzirnas schedule check",
-      "enabled": true,
-      "createdAtMs": 1770570235785,
-      "updatedAtMs": 1781110854334,
-      "agentId": "main",
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 20 * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Execute each step as a SEPARATE short exec command. NEVER combine all steps into one large inline script — long commands are blocked by obfuscation detection. Run one command at a time and process the output before running the next.\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n- One-time protected exception: Monday 2026-06-01 10:00-12:00 — keep the \"Lizete Dzirnas\" event on the Family calendar even if it is not in the spreadsheet. Never delete it without Ugis confirmation.\n- Deletion safety: before deleting any one-time/manual Dzirnas event or broad block that is not an exact current spreadsheet/standing-rule event, DO NOT delete it. Leave it in the calendar and report that Ugis confirmation is needed. This is especially important for standalone events without a recurringEventId or events created/edited outside the sync. If unsure, keep it.\n\nSTEP 1: Fetch the htmlview page and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks.\n\nSTEP 3: Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   STEP 5: List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar for the target week:\n   gws calendar events list --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"timeMin\": \"<monday>T00:00:00+03:00\", \"timeMax\": \"<saturday>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 50}' 2>/dev/null\n   Then filter the JSON output for events with 'dzirnas' in the summary.\n\nSTEP 6: Compare and sync:\n   - Create missing events\n   - Delete only events that are safe to delete. Safe delete means clear duplicate/old cron-generated class event, not a one-time/manual exception.\n   - For one-time/manual Dzirnas events, broad blocks, or anything not clearly generated by this sync: DO NOT DELETE. Keep it and report that Ugis confirmation is needed before deletion.\n   - Delete events with wrong times only when they are safe per the rule above: gws calendar events delete --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n   - Delete events for days that no longer have classes only when they are safe per the rule above.\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events or protected exceptions (see STANDING RULES above).\n\n\nSTEP 7: For creating EACH individual class event (run each insert as a separate command):\n   gws calendar events insert --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\"}' --json '{\"summary\": \"Lizetei Dzirnas: <class name> (<teacher>)\", \"start\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}, \"end\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}}' 2>/dev/null\n\nSTEP 8: Report what changed. List each individual event created/deleted/unchanged.",
-        "model": "gpt-5.5",
-        "timeoutSeconds": 600
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1781197200000,
-        "lastRunAtMs": 1781110800007,
-        "lastStatus": "ok",
-        "lastDurationMs": 54327,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "delivered",
-        "consecutiveSkipped": 0,
-        "lastDelivered": true,
         "lastFailureNotificationDeliveryStatus": "not-requested"
       },
       "status": "ok"
@@ -194,6 +154,46 @@
         "lastDelivered": true
       },
       "status": "ok"
+    },
+    {
+      "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
+      "name": "Lizete Dzirnas schedule check",
+      "enabled": true,
+      "createdAtMs": 1770570235785,
+      "updatedAtMs": 1781197261470,
+      "agentId": "main",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Execute each step as a SEPARATE short exec command. NEVER combine all steps into one large inline script — long commands are blocked by obfuscation detection. Run one command at a time and process the output before running the next.\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n- One-time protected exception: Monday 2026-06-01 10:00-12:00 — keep the \"Lizete Dzirnas\" event on the Family calendar even if it is not in the spreadsheet. Never delete it without Ugis confirmation.\n- Deletion safety: before deleting any one-time/manual Dzirnas event or broad block that is not an exact current spreadsheet/standing-rule event, DO NOT delete it. Leave it in the calendar and report that Ugis confirmation is needed. This is especially important for standalone events without a recurringEventId or events created/edited outside the sync. If unsure, keep it.\n\nSTEP 1: Fetch the htmlview page and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks.\n\nSTEP 3: Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/export?format=csv&gid=<GID>\"\n\nFind the \"4B SAGATAVOŠANA\" row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n   STEP 5: List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the Family calendar for the target week:\n   gws calendar events list --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"timeMin\": \"<monday>T00:00:00+03:00\", \"timeMax\": \"<saturday>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 50}' 2>/dev/null\n   Then filter the JSON output for events with 'dzirnas' in the summary.\n\nSTEP 6: Compare and sync:\n   - Create missing events\n   - Delete only events that are safe to delete. Safe delete means clear duplicate/old cron-generated class event, not a one-time/manual exception.\n   - For one-time/manual Dzirnas events, broad blocks, or anything not clearly generated by this sync: DO NOT DELETE. Keep it and report that Ugis confirmation is needed before deletion.\n   - Delete events with wrong times only when they are safe per the rule above: gws calendar events delete --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n   - Delete events for days that no longer have classes only when they are safe per the rule above.\n   - Do not create duplicates\n   - Match by date and time.\n   - NEVER delete standing rule events or protected exceptions (see STANDING RULES above).\n\n\nSTEP 7: For creating EACH individual class event (run each insert as a separate command):\n   gws calendar events insert --params '{\"calendarId\": \"family10512579686066508808@group.calendar.google.com\"}' --json '{\"summary\": \"Lizetei Dzirnas: <class name> (<teacher>)\", \"start\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}, \"end\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}}' 2>/dev/null\n\nSTEP 8: Report what changed. List each individual event created/deleted/unchanged.",
+        "model": "gpt-5.5",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1781283600000,
+        "lastRunAtMs": 1781197200008,
+        "lastStatus": "ok",
+        "lastDurationMs": 61462,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "consecutiveSkipped": 0,
+        "lastDelivered": true,
+        "lastFailureNotificationDeliveryStatus": "not-requested"
+      },
+      "status": "ok"
     }
   ],
   "total": 5,
@@ -214,11 +214,11 @@
       "label": "none -> telegram:181860584",
       "detail": "explicit"
     },
-    "f87d0e86-b7df-458c-b6e3-e7c84aac64eb": {
+    "027e94e3-a260-40e3-b8ed-0283b11a2ca8": {
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     },
-    "027e94e3-a260-40e3-b8ed-0283b11a2ca8": {
+    "f87d0e86-b7df-458c-b6e3-e7c84aac64eb": {
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     }
