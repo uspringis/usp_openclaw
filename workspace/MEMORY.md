@@ -29,8 +29,10 @@
 - **Bolt Invoice Processor** — Daily 9:00 AM. Scans Gmail for Bolt Work Profile reports, extracts invoice PDFs, forwards to ugis.springis@proofit.lv. Tracks processed IDs to avoid duplicates.
 - **Lizete Dzirnas Schedule** — Daily 20:00. Syncs dance schedule from Google Sheets to Family calendar. Each class as separate event.
 - **Daily Maintenance** — Daily 4:00 AM. Runs `openclaw update --no-restart`, `clawhub sync`, then gateway restart LAST (after reporting results to Telegram).
+- **MyFitness Calendar Sync** — Hourly at minute 7 via OpenClaw cron job `bf111852-60da-438a-af4b-68ae9f760aa7`. Runs `/home/uspringis/myfitness-assistant/run_calendar_sync.sh`, syncs MyFitness bookings to primary Google calendar with `MyFitness:` prefix only.
 
 ## Lessons Learned
+- Waste schedule sync: only process emails that clearly notify about a new/future pickup schedule. Never process invoices/bills/receipts or historical-only PDFs, and never delete existing waste calendar events if the parsed document has no future dates.
 - For Lizete Dzirnas calendar sync: never delete one-time/manual exceptions without Ugis confirmation; keep them and report that confirmation is needed. Current protected exception: 2026-06-01 Mon 10:00-12:00 “Lizete Dzirnas”.
 - `openclaw update` restarts gateway by default — use `--no-restart` in cron jobs, restart manually as the last step after reporting
 - Cron sessions get killed by gateway restart — always send report before restarting
