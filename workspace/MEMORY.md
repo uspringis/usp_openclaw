@@ -9,7 +9,7 @@
 
 ## Family
 - **Emilija** — Ugis's daughter
-- **Lizete Dzirnas** — attends dance classes (Riga). Schedule synced weekly to Family calendar via cron (daily 20:00). Source: Google Sheets spreadsheet with weekly tabs.
+- **Lizete Dzirnas** — attends dance classes (Riga). Schedule synced daily at 20:00 to the `Emīlija / Lizete` Google calendar via OpenClaw cron. Source: Google Sheets spreadsheet with weekly tabs.
 
 ## Key Projects & Interests
 - **Proof IT** — ~100 people, insurance platform (multi-tenant), custom dev for government/enterprises, AI Solutions division (started 2025)
@@ -27,12 +27,14 @@
 ## Active Cron Jobs
 - **AI Twitter Digest** — Daily 8:00 AM. Uses `bird` CLI (cookie auth, may need refresh). Delivers to Telegram. Known issue: bird query ID cache breaks when X reorganizes JS bundles — may need manual fix.
 - **Bolt Invoice Processor** — Daily 9:00 AM. Scans Gmail for Bolt Work Profile reports, extracts invoice PDFs, forwards to ugis.springis@proofit.lv. Tracks processed IDs to avoid duplicates.
-- **Lizete Dzirnas Schedule** — Daily 20:00. Syncs dance schedule from Google Sheets to Family calendar. Each class as separate event.
+- **Lizete Dzirnas Schedule** — Daily 20:00 via OpenClaw cron job `f87d0e86-b7df-458c-b6e3-e7c84aac64eb`. Syncs dance schedule from Google Sheets to `Emīlija / Lizete` calendar (`a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com`). Each class as separate event.
 - **Daily Maintenance** — Daily 4:00 AM. Runs `openclaw update --no-restart`, `clawhub sync`, then gateway restart LAST (after reporting results to Telegram).
 - **MyFitness Calendar Sync** — Hourly at minute 7 via OpenClaw cron job `bf111852-60da-438a-af4b-68ae9f760aa7`. Runs `/home/uspringis/myfitness-assistant/run_calendar_sync.sh`, syncs MyFitness bookings to primary Google calendar with `MyFitness:` prefix only.
+- **Waste Schedule Check** — Fridays 12:00 via OpenClaw cron job `027e94e3-a260-40e3-b8ed-0283b11a2ca8`. Reads Eco Baltia Vide schedule emails and syncs future `miskaste` events to Ugis's primary Google calendar, not BUS.
 
 ## Lessons Learned
 - Waste schedule sync: only process emails that clearly notify about a new/future pickup schedule. Never process invoices/bills/receipts or historical-only PDFs, and never delete existing waste calendar events if the parsed document has no future dates.
+- Waste schedule events belong in Ugis's primary Google calendar from 2026-06-13 forward; historical BUS entries before that date should remain untouched.
 - For Lizete Dzirnas calendar sync: never delete one-time/manual exceptions without Ugis confirmation; keep them and report that confirmation is needed. Current protected exception: 2026-06-01 Mon 10:00-12:00 “Lizete Dzirnas”.
 - `openclaw update` restarts gateway by default — use `--no-restart` in cron jobs, restart manually as the last step after reporting
 - Cron sessions get killed by gateway restart — always send report before restarting
