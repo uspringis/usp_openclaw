@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1781312416526,
+      "updatedAtMs": 1781398815613,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,16 +25,16 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1781398800000,
-        "lastRunAtMs": 1781312400006,
+        "nextRunAtMs": 1781485200000,
+        "lastRunAtMs": 1781398800007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 16520,
+        "lastDurationMs": 15606,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1781398800007
+        "runningAtMs": 1781485200007
       },
       "status": "running"
     },
@@ -43,7 +43,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1781395664116,
+      "updatedAtMs": 1781482061171,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -54,7 +54,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run the MyFitness to Google Calendar sync script. Execute exactly:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nCheck the output. The script must only create/update/delete Google Calendar events whose summary starts with `MyFitness:`. If the command exits non-zero or outputs an error JSON, send a Telegram message to Ugis with the error details using the message tool (channel=telegram, to=181860584). On success, do NOT send any Telegram message. IMPORTANT: Always end your turn with a single short status line such as `MyFitness sync OK`. Never end with an empty response; the scheduler treats empty turns as a failure.",
+        "message": "Run the MyFitness to Google Calendar sync script. Execute exactly:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nCheck the output. The script must only create/update/delete Google Calendar events whose summary starts with `MyFitness:`. It must retain past attended `MyFitness:` events; stale deletion is only for future events, which indicates canceled bookings. If the command exits non-zero or outputs an error JSON, send a Telegram message to Ugis with the error details using the message tool (channel=telegram, to=181860584). On success, do NOT send any Telegram message. IMPORTANT: Always end your turn with a single short status line such as `MyFitness sync OK`. Never end with an empty response; the scheduler treats empty turns as a failure.",
         "model": "gpt-5.5",
         "timeoutSeconds": 180
       },
@@ -64,11 +64,11 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1781399220000,
-        "lastRunAtMs": 1781395620006,
+        "nextRunAtMs": 1781485620000,
+        "lastRunAtMs": 1781482020007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 44110,
+        "lastDurationMs": 41164,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -82,7 +82,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1781323269841,
+      "updatedAtMs": 1781409655962,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -103,11 +103,11 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1781323200007,
+        "lastRunAtMs": 1781409600006,
         "lastStatus": "ok",
-        "lastDurationMs": 69834,
+        "lastDurationMs": 55956,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1781409600000,
+        "nextRunAtMs": 1781496000000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
@@ -121,7 +121,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1781330423957,
+      "updatedAtMs": 1781416822735,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -142,10 +142,10 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1781416800000,
-        "lastRunAtMs": 1781330400007,
+        "nextRunAtMs": 1781503200000,
+        "lastRunAtMs": 1781416800005,
         "lastStatus": "ok",
-        "lastDurationMs": 23950,
+        "lastDurationMs": 22730,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
@@ -159,7 +159,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1781370175529,
+      "updatedAtMs": 1781456450986,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -181,10 +181,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1781456400000,
-        "lastRunAtMs": 1781370000007,
+        "nextRunAtMs": 1781542800000,
+        "lastRunAtMs": 1781456400006,
         "lastStatus": "ok",
-        "lastDurationMs": 175522,
+        "lastDurationMs": 50980,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",

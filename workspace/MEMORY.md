@@ -29,7 +29,7 @@
 - **Bolt Invoice Processor** — Daily 9:00 AM. Scans Gmail for Bolt Work Profile reports, extracts invoice PDFs, forwards to ugis.springis@proofit.lv. Tracks processed IDs to avoid duplicates.
 - **Lizete Dzirnas Schedule** — Daily 20:00 via OpenClaw cron job `f87d0e86-b7df-458c-b6e3-e7c84aac64eb`. Syncs dance schedule from Google Sheets to `Emīlija / Lizete` calendar (`a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com`). Each class as separate event.
 - **Daily Maintenance** — Daily 4:00 AM. Runs `openclaw update --no-restart`, `clawhub sync`, then gateway restart LAST (after reporting results to Telegram).
-- **MyFitness Calendar Sync** — Hourly at minute 7 via OpenClaw cron job `bf111852-60da-438a-af4b-68ae9f760aa7`. Runs `/home/uspringis/myfitness-assistant/run_calendar_sync.sh`, syncs MyFitness bookings to primary Google calendar with `MyFitness:` prefix only.
+- **MyFitness Calendar Sync** — Hourly at minute 7 via OpenClaw cron job `bf111852-60da-438a-af4b-68ae9f760aa7`. Runs `/home/uspringis/myfitness-assistant/run_calendar_sync.sh`, syncs MyFitness bookings to primary Google calendar with `MyFitness:` prefix only. Deletes stale future events when bookings are canceled, but keeps past attended events.
 - **Waste Schedule Check** — Fridays 12:00 via OpenClaw cron job `027e94e3-a260-40e3-b8ed-0283b11a2ca8`. Reads Eco Baltia Vide schedule emails and syncs future `miskaste` events to Ugis's primary Google calendar, not BUS.
 
 ## Lessons Learned
