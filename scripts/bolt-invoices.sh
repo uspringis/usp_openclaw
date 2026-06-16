@@ -7,8 +7,19 @@ set -euo pipefail
 
 ACCOUNT="ugis.springis@gmail.com"
 RECIPIENT="ugis.springis@proofit.lv"
+BASE_DIR="/home/uspringis/clawd"
 PROCESSED_FILE="/home/uspringis/clawd/scripts/.bolt-processed-ids"
-WORK_DIR="/tmp/bolt-invoices-$$"
+WORK_DIR="$BASE_DIR/tmp/bolt-invoices-$$"
+
+# Cron runs in a minimal environment; load gws keyring settings when needed.
+if { [ -z "${GOG_KEYRING_BACKEND:-}" ] || [ -z "${GOG_KEYRING_PASSWORD:-}" ]; } && [ -f "$HOME/.bashrc" ]; then
+    set +u
+    # shellcheck disable=SC1090
+    . "$HOME/.bashrc"
+    set -u
+fi
+
+cd "$BASE_DIR"
 
 # Create processed file if it doesn't exist
 touch "$PROCESSED_FILE"
@@ -174,7 +185,6 @@ except Exception as e:
 import email.mime.multipart
 import email.mime.text
 import email.mime.application
-import base64
 import json
 import glob
 import os
@@ -199,11 +209,18 @@ for pdf_path in sorted(glob.glob('$WORK_DIR/pdfs/*.pdf')):
         part.add_header('Content-Disposition', 'attachment', filename=os.path.basename(pdf_path))
         msg.attach(part)
 
-raw = base64.urlsafe_b64encode(msg.as_bytes()).decode()
-payload = json.dumps({'raw': raw})
+email_path = os.path.join('$WORK_DIR', 'bolt-invoices.eml')
+with open(email_path, 'wb') as f:
+    f.write(msg.as_bytes())
 
 result = subprocess.run(
-    ['gws', 'gmail', 'users', 'messages', 'send', '--params', '{\"userId\": \"me\"}', '--json', payload],
+    [
+        'gws', 'gmail', 'users', 'messages', 'send',
+        '--params', '{\"userId\": \"me\"}',
+        '--json', '{}',
+        '--upload', email_path,
+        '--upload-content-type', 'message/rfc822',
+    ],
     capture_output=True, text=True
 )
 if result.returncode == 0:
@@ -211,7 +228,7 @@ if result.returncode == 0:
 else:
     print(f'FAILED: {result.stderr}', file=sys.stderr)
     sys.exit(1)
-" 2>/dev/null && {
+    " && {
         echo "Successfully sent invoices to $RECIPIENT"
         echo "$MSG_ID" >> "$PROCESSED_FILE"
     } || {

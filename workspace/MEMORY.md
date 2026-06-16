@@ -31,6 +31,7 @@
 - **Daily Maintenance** — Daily 4:00 AM. Runs `openclaw update --no-restart`, `clawhub sync`, then gateway restart LAST (after reporting results to Telegram).
 - **MyFitness Calendar Sync** — Hourly at minute 7 via OpenClaw cron job `bf111852-60da-438a-af4b-68ae9f760aa7`. Runs `/home/uspringis/myfitness-assistant/run_calendar_sync.sh`, syncs MyFitness bookings to primary Google calendar with `MyFitness:` prefix only. Deletes stale future events when bookings are canceled, but keeps past attended events.
 - **Waste Schedule Check** — Fridays 12:00 via OpenClaw cron job `027e94e3-a260-40e3-b8ed-0283b11a2ca8`. Reads Eco Baltia Vide schedule emails and syncs future `miskaste` events to Ugis's primary Google calendar, not BUS.
+- **JRT Ticket Sale Check** — Daily OpenClaw isolated job checks Gmail for recent `@jrt.lv` / JRT ticket-sale announcements. If an email clearly states when ticket sales start, it creates a private 1-hour event in Ugis's primary Google Calendar at the sale start time with reminders 1 day, 1 hour, and 10 minutes before. State: `memory/jrt-ticket-sale-processed.json`.
 
 ## Lessons Learned
 - Waste schedule sync: only process emails that clearly notify about a new/future pickup schedule. Never process invoices/bills/receipts or historical-only PDFs, and never delete existing waste calendar events if the parsed document has no future dates.
