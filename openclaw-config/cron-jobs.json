@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1781830815019,
+      "updatedAtMs": 1781917215878,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,16 +25,16 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1781917200000,
-        "lastRunAtMs": 1781830800237,
+        "nextRunAtMs": 1782003600000,
+        "lastRunAtMs": 1781917200007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 14782,
+        "lastDurationMs": 15871,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1781917200007
+        "runningAtMs": 1782003600006
       },
       "status": "running"
     },
@@ -43,7 +43,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1781914058124,
+      "updatedAtMs": 1782000457252,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -64,11 +64,11 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1781917620000,
-        "lastRunAtMs": 1781914020007,
+        "nextRunAtMs": 1782004020000,
+        "lastRunAtMs": 1782000420005,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 38117,
+        "lastDurationMs": 37247,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -82,7 +82,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1781841662268,
+      "updatedAtMs": 1781928066237,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -103,11 +103,11 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1781841600005,
+        "lastRunAtMs": 1781928000006,
         "lastStatus": "ok",
-        "lastDurationMs": 62263,
+        "lastDurationMs": 66231,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1781928000000,
+        "nextRunAtMs": 1782014400000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
@@ -121,7 +121,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1781848824873,
+      "updatedAtMs": 1781935223054,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -142,10 +142,10 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1781935200000,
-        "lastRunAtMs": 1781848800006,
+        "nextRunAtMs": 1782021600000,
+        "lastRunAtMs": 1781935200008,
         "lastStatus": "ok",
-        "lastDurationMs": 24867,
+        "lastDurationMs": 23046,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
@@ -159,7 +159,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1781853317046,
+      "updatedAtMs": 1781939723117,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -181,11 +181,11 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1781939700000,
-        "lastRunAtMs": 1781853300004,
+        "nextRunAtMs": 1782026100000,
+        "lastRunAtMs": 1781939700004,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17042,
+        "lastDurationMs": 23113,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -198,7 +198,7 @@
       "name": "Lizete Dzirnas schedule check",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1781888504254,
+      "updatedAtMs": 1781974928058,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -220,10 +220,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1781974800000,
-        "lastRunAtMs": 1781888400006,
+        "nextRunAtMs": 1782061200000,
+        "lastRunAtMs": 1781974800007,
         "lastStatus": "ok",
-        "lastDurationMs": 104248,
+        "lastDurationMs": 128051,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
@@ -231,17 +231,17 @@
         "lastDelivered": true,
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ `fetch https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/pubhtml -> search \"name: \"[^\"]+\", pageUrl: \"[^\"]+\", gid: \"[^\"]+\"\" (in ~/clawd)` failed",
+          "summary": "⚠️ 🛠️ `fetch https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview?not_in_iframe=true -> search \"name: \"[^\"]+\", pageUrl: \"[^\"]+\", gid: \"[^\"]+\"\" (in ~/clawd)` failed",
           "entries": [
             {
-              "ts": 1781888503688,
+              "ts": 1781974927509,
               "source": "tool",
               "severity": "warn",
-              "message": "⚠️ 🛠️ `fetch https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/pubhtml -> search \"name: \"[^\"]+\", pageUrl: \"[^\"]+\", gid: \"[^\"]+\"\" (in ~/clawd)` failed"
+              "message": "⚠️ 🛠️ `fetch https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview?not_in_iframe=true -> search \"name: \"[^\"]+\", pageUrl: \"[^\"]+\", gid: \"[^\"]+\"\" (in ~/clawd)` failed"
             }
           ]
         },
-        "lastDiagnosticSummary": "⚠️ 🛠️ `fetch https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/pubhtml -> search \"name: \"[^\"]+\", pageUrl: \"[^\"]+\", gid: \"[^\"]+\"\" (in ~/clawd)` failed"
+        "lastDiagnosticSummary": "⚠️ 🛠️ `fetch https://docs.google.com/spreadsheets/d/1HVHc5LoLYlRB9HdI3wwh6rUVsbuhYQ47BOBHQN_3nI4/htmlview?not_in_iframe=true -> search \"name: \"[^\"]+\", pageUrl: \"[^\"]+\", gid: \"[^\"]+\"\" (in ~/clawd)` failed"
       },
       "status": "ok"
     },
