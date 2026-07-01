@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1782694817023,
+      "updatedAtMs": 1782781219780,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,16 +25,16 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1782781200000,
-        "lastRunAtMs": 1782694800006,
+        "nextRunAtMs": 1782867600000,
+        "lastRunAtMs": 1782781200007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17017,
+        "lastDurationMs": 19773,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1782781200007
+        "runningAtMs": 1782867600006
       },
       "status": "running"
     },
@@ -43,7 +43,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1782778045388,
+      "updatedAtMs": 1782864445233,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -64,11 +64,11 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1782781620000,
-        "lastRunAtMs": 1782778020006,
+        "nextRunAtMs": 1782868020000,
+        "lastRunAtMs": 1782864420006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 25382,
+        "lastDurationMs": 25227,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -82,7 +82,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1782705709363,
+      "updatedAtMs": 1782792073436,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -103,11 +103,11 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1782705600006,
+        "lastRunAtMs": 1782792000007,
         "lastStatus": "ok",
-        "lastDurationMs": 109357,
+        "lastDurationMs": 73429,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1782792000000,
+        "nextRunAtMs": 1782878400000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
@@ -121,7 +121,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1782712823493,
+      "updatedAtMs": 1782799220945,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -142,10 +142,10 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1782799200000,
-        "lastRunAtMs": 1782712800007,
+        "nextRunAtMs": 1782885600000,
+        "lastRunAtMs": 1782799200007,
         "lastStatus": "ok",
-        "lastDurationMs": 23486,
+        "lastDurationMs": 20938,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
@@ -159,7 +159,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1782717315384,
+      "updatedAtMs": 1782803719570,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -181,11 +181,11 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1782803700000,
-        "lastRunAtMs": 1782717300007,
+        "nextRunAtMs": 1782890100000,
+        "lastRunAtMs": 1782803700006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 15377,
+        "lastDurationMs": 19564,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
