@@ -63,7 +63,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1783973931203,
+      "updatedAtMs": 1783973973269,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -84,32 +84,19 @@
       },
       "state": {
         "nextRunAtMs": 1783990800000,
-        "lastRunAtMs": 1783904400007,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 283,
+        "lastRunAtMs": 1783973952935,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 20334,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 3,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastDiagnostics": {
-          "summary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-          "entries": [
-            {
-              "ts": 1783904400236,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-        "lastErrorReason": "model_not_found",
-        "runningAtMs": 1783973952935
+        "runningAtMs": 1783973981249
       },
       "nextRunAtMs": 1783990800000,
-      "lastRunAtMs": 1783904400007,
-      "lastRunStatus": "error",
+      "lastRunAtMs": 1783973952935,
+      "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
       "status": "running"
