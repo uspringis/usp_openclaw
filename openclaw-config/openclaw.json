@@ -1,11 +1,11 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.6.1",
-    "lastTouchedAt": "2026-06-08T10:31:48.721Z"
+    "lastTouchedVersion": "2026.7.1",
+    "lastTouchedAt": "2026-07-13T20:17:30.299Z"
   },
   "wizard": {
-    "lastRunAt": "2026-05-07T15:49:17.680Z",
-    "lastRunVersion": "2026.5.6",
+    "lastRunAt": "2026-07-10T18:11:45.424Z",
+    "lastRunVersion": "2026.6.11",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -20,7 +20,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "openai/gpt-5.5"
+        "primary": "openai/gpt-5.6-sol"
       },
       "workspace": "/home/uspringis/clawd",
       "compaction": {
@@ -32,9 +32,10 @@
       },
       "timeoutSeconds": 300,
       "models": {
-        "openai/gpt-5.5": {
-          "alias": "GPT5.5"
-        }
+        "openai/gpt-5.6-sol": {
+          "alias": "GPT5.6"
+        },
+        "openai/gpt-5.6-terra": {}
       }
     }
   },
@@ -260,6 +261,9 @@
       },
       "anthropic": {
         "enabled": true
+      },
+      "codex": {
+        "enabled": true
       }
     }
   },
@@ -268,5 +272,8 @@
     "headless": true,
     "noSandbox": true,
     "executablePath": "/home/uspringis/.cache/ms-playwright/chromium-1208/chrome-linux64/chrome"
+  },
+  "update": {
+    "channel": "stable"
   }
 }
