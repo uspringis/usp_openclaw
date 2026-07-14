@@ -27,8 +27,10 @@
         "mode": "safeguard"
       },
       "maxConcurrent": 4,
+      "thinkingDefault": "medium",
       "subagents": {
-        "maxConcurrent": 8
+        "maxConcurrent": 8,
+        "thinking": "medium"
       },
       "timeoutSeconds": 300,
       "models": {

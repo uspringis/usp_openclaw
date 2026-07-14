@@ -1,69 +1,11 @@
 {
   "jobs": [
     {
-      "id": "bf111852-60da-438a-af4b-68ae9f760aa7",
-      "name": "MyFitness Calendar Sync",
-      "enabled": true,
-      "createdAtMs": 1781279214036,
-      "updatedAtMs": 1783973929557,
-      "agentId": "main",
-      "schedule": {
-        "kind": "cron",
-        "expr": "7 * * * *",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Run the MyFitness to Google Calendar sync script. Execute exactly:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nCheck the output. The script must only create/update/delete Google Calendar events whose summary starts with `MyFitness:`. It must retain past attended `MyFitness:` events; stale deletion is only for future events, which indicates canceled bookings.\n\nIf the sync command exits non-zero or outputs an error JSON that looks authentication/session/token related, run exactly:\n  cd /home/uspringis/myfitness-assistant && /home/uspringis/.local/bin/uv run myfitness_bookings.py auth login --json 2>&1\nThen retry exactly once:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nIf the retry succeeds, do NOT send any Telegram message. If the original failure was not auth-related, the login command fails, or the retry still fails, send a Telegram message to Ugis with the error details using the message tool (channel=telegram, to=181860584). On success, do NOT send any Telegram message. IMPORTANT: Always end your turn with a single short status line such as `MyFitness sync OK`. Never end with an empty response; the scheduler treats empty turns as a failure.",
-        "model": "openai/gpt-5.6-sol",
-        "timeoutSeconds": 180
-      },
-      "delivery": {
-        "mode": "none",
-        "channel": "telegram",
-        "to": "181860584"
-      },
-      "state": {
-        "nextRunAtMs": 1783976845374,
-        "lastRunAtMs": 1783973241939,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 3435,
-        "lastDeliveryStatus": "not-requested",
-        "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 74,
-        "consecutiveSkipped": 0,
-        "lastError": "FailoverError: Unknown model: openai/gpt-5.6. Found agents.defaults.models[\"openai/gpt-5.6\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6\", \"name\": \"gpt-5.6\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-        "lastDiagnostics": {
-          "summary": "Unknown model: openai/gpt-5.6. Found agents.defaults.models[\"openai/gpt-5.6\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6\", \"name\": \"gpt-5.6\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-          "entries": [
-            {
-              "ts": 1783973245219,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "Unknown model: openai/gpt-5.6. Found agents.defaults.models[\"openai/gpt-5.6\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6\", \"name\": \"gpt-5.6\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "Unknown model: openai/gpt-5.6. Found agents.defaults.models[\"openai/gpt-5.6\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6\", \"name\": \"gpt-5.6\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-        "lastErrorReason": "model_not_found"
-      },
-      "nextRunAtMs": 1783976845374,
-      "lastRunAtMs": 1783973241939,
-      "lastRunStatus": "error",
-      "lastRunError": "FailoverError: Unknown model: openai/gpt-5.6. Found agents.defaults.models[\"openai/gpt-5.6\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6\", \"name\": \"gpt-5.6\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-      "lastDeliveryStatus": "not-requested",
-      "lastFailureNotificationDeliveryStatus": "not-requested",
-      "status": "error"
-    },
-    {
       "id": "871fa841-5efc-4cf1-b8e8-f440b2970119",
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1783973973269,
+      "updatedAtMs": 1783973997002,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -84,22 +26,65 @@
       },
       "state": {
         "nextRunAtMs": 1783990800000,
-        "lastRunAtMs": 1783973952935,
+        "lastRunAtMs": 1783973981249,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 20334,
+        "lastDurationMs": 15753,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1783973981249
+        "runningAtMs": 1783990800008
       },
       "nextRunAtMs": 1783990800000,
-      "lastRunAtMs": 1783973952935,
+      "lastRunAtMs": 1783973981249,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
       "status": "running"
+    },
+    {
+      "id": "bf111852-60da-438a-af4b-68ae9f760aa7",
+      "name": "MyFitness Calendar Sync",
+      "enabled": true,
+      "createdAtMs": 1781279214036,
+      "updatedAtMs": 1783987651837,
+      "agentId": "main",
+      "schedule": {
+        "kind": "cron",
+        "expr": "7 * * * *",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the MyFitness to Google Calendar sync script. Execute exactly:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nCheck the output. The script must only create/update/delete Google Calendar events whose summary starts with `MyFitness:`. It must retain past attended `MyFitness:` events; stale deletion is only for future events, which indicates canceled bookings.\n\nIf the sync command exits non-zero or outputs an error JSON that looks authentication/session/token related, run exactly:\n  cd /home/uspringis/myfitness-assistant && /home/uspringis/.local/bin/uv run myfitness_bookings.py auth login --json 2>&1\nThen retry exactly once:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nIf the retry succeeds, do NOT send any Telegram message. If the original failure was not auth-related, the login command fails, or the retry still fails, send a Telegram message to Ugis with the error details using the message tool (channel=telegram, to=181860584). On success, do NOT send any Telegram message. IMPORTANT: Always end your turn with a single short status line such as `MyFitness sync OK`. Never end with an empty response; the scheduler treats empty turns as a failure.",
+        "model": "openai/gpt-5.6-sol",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "telegram",
+        "to": "181860584"
+      },
+      "state": {
+        "nextRunAtMs": 1783991220000,
+        "lastRunAtMs": 1783987620009,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 31828,
+        "lastDeliveryStatus": "not-requested",
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
+      },
+      "nextRunAtMs": 1783991220000,
+      "lastRunAtMs": 1783987620009,
+      "lastRunStatus": "ok",
+      "lastDeliveryStatus": "not-requested",
+      "lastFailureNotificationDeliveryStatus": "not-requested",
+      "status": "ok"
     },
     {
       "id": "ee844ef9-bb41-477e-9a93-e3ffcbd94a32",
@@ -107,7 +92,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1783973932837,
+      "updatedAtMs": 1783975403221,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -128,44 +113,43 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1783915200009,
-        "lastStatus": "error",
-        "lastDurationMs": 279,
-        "consecutiveErrors": 3,
+        "lastRunAtMs": 1783975331632,
+        "lastStatus": "ok",
+        "lastDurationMs": 71589,
+        "consecutiveErrors": 0,
         "nextRunAtMs": 1784001600000,
-        "lastRunStatus": "error",
-        "lastDeliveryStatus": "unknown",
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "unknown",
-        "lastError": "FailoverError: Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
+        "lastFailureNotificationDeliveryStatus": "not-requested",
         "lastDiagnostics": {
-          "summary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
+          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…Count,.retweetCount,.text,(.quotedTweet.text // \"\")] | @tsv' (in ~/clawd)`",
           "entries": [
             {
-              "ts": 1783915200236,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers."
+              "ts": 1783975402689,
+              "source": "tool",
+              "severity": "warn",
+              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…Count,.retweetCount,.text,(.quotedTweet.text // \"\")] | @tsv' (in ~/clawd)`"
             }
           ]
         },
-        "lastDiagnosticSummary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-        "lastErrorReason": "model_not_found"
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…Count,.retweetCount,.text,(.quotedTweet.text // \"\")] | @tsv' (in ~/clawd)`",
+        "lastDelivered": true
       },
       "nextRunAtMs": 1784001600000,
-      "lastRunAtMs": 1783915200009,
-      "lastRunStatus": "error",
-      "lastRunError": "FailoverError: Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-      "lastDeliveryStatus": "unknown",
-      "lastFailureNotificationDeliveryStatus": "unknown",
-      "status": "error"
+      "lastRunAtMs": 1783975331632,
+      "lastRunStatus": "ok",
+      "lastDelivered": true,
+      "lastDeliveryStatus": "delivered",
+      "lastFailureNotificationDeliveryStatus": "not-requested",
+      "status": "ok"
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1783973934446,
+      "updatedAtMs": 1783975353233,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -187,43 +171,28 @@
       },
       "state": {
         "nextRunAtMs": 1784008800000,
-        "lastRunAtMs": 1783922400008,
-        "lastStatus": "error",
-        "lastDurationMs": 294,
-        "consecutiveErrors": 3,
-        "lastRunStatus": "error",
+        "lastRunAtMs": 1783975333259,
+        "lastStatus": "ok",
+        "lastDurationMs": 19974,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastError": "FailoverError: Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-        "lastDiagnostics": {
-          "summary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-          "entries": [
-            {
-              "ts": 1783922400248,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-        "lastErrorReason": "model_not_found"
+        "lastFailureNotificationDeliveryStatus": "not-requested"
       },
       "nextRunAtMs": 1784008800000,
-      "lastRunAtMs": 1783922400008,
-      "lastRunStatus": "error",
-      "lastRunError": "FailoverError: Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
+      "lastRunAtMs": 1783975333259,
+      "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
-      "status": "error"
+      "status": "ok"
     },
     {
       "id": "1effb0e6-d219-4078-8f18-2a019c5eeb6a",
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1783973936066,
+      "updatedAtMs": 1783975371930,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -246,43 +215,40 @@
       },
       "state": {
         "nextRunAtMs": 1784013300000,
-        "lastRunAtMs": 1783926900005,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 277,
+        "lastRunAtMs": 1783975334877,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 37053,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 3,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "lastError": "FailoverError: Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
         "lastDiagnostics": {
-          "summary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
+          "summary": "⚠️ 🛠️ Bash failed: `if [ -f ~/clawd/memory/jrt-ticket-sale-proces…lse echo '{\"processedMessageIds\":[],\"createdEvents\":[]}'; fi (in ~/clawd)`",
           "entries": [
             {
-              "ts": 1783926900229,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers."
+              "ts": 1783975371872,
+              "source": "tool",
+              "severity": "warn",
+              "message": "⚠️ 🛠️ Bash failed: `if [ -f ~/clawd/memory/jrt-ticket-sale-proces…lse echo '{\"processedMessageIds\":[],\"createdEvents\":[]}'; fi (in ~/clawd)`"
             }
           ]
         },
-        "lastDiagnosticSummary": "Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
-        "lastErrorReason": "model_not_found"
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `if [ -f ~/clawd/memory/jrt-ticket-sale-proces…lse echo '{\"processedMessageIds\":[],\"createdEvents\":[]}'; fi (in ~/clawd)`"
       },
       "nextRunAtMs": 1784013300000,
-      "lastRunAtMs": 1783926900005,
-      "lastRunStatus": "error",
-      "lastRunError": "FailoverError: Unknown model: openai/gpt-5.6-sol. Found agents.defaults.models[\"openai/gpt-5.6-sol\"], but no matching models.providers[\"openai\"].models[] entry. Add { \"id\": \"gpt-5.6-sol\", \"name\": \"gpt-5.6-sol\" } to models.providers[\"openai\"].models[] to register this provider model. For custom or proxy providers, also set api and baseUrl so requests route to the intended endpoint. See https://docs.openclaw.ai/concepts/model-providers.",
+      "lastRunAtMs": 1783975334877,
+      "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
-      "status": "error"
+      "status": "ok"
     },
     {
       "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
       "name": "Waste Schedule Check",
       "enabled": true,
       "createdAtMs": 1770563229509,
-      "updatedAtMs": 1783973937686,
+      "updatedAtMs": 1783975390621,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -305,18 +271,30 @@
       },
       "state": {
         "nextRunAtMs": 1784278800000,
-        "lastRunAtMs": 1783674000005,
+        "lastRunAtMs": 1783975336494,
         "lastStatus": "ok",
-        "lastDurationMs": 42963,
+        "lastDurationMs": 54127,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastDelivered": true,
-        "lastFailureNotificationDeliveryStatus": "not-requested"
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastDiagnostics": {
+          "summary": "⚠️ 🛠️ Bash failed: `for id in 19f437686bee8ec1 19efdaaa5c52c16a 19ea81910e76268…\" \"+.filename+\"\\t\"+(.body.attachmentId // \"\")), \"---\" ' done (in ~/clawd)`",
+          "entries": [
+            {
+              "ts": 1783975390021,
+              "source": "tool",
+              "severity": "warn",
+              "message": "⚠️ 🛠️ Bash failed: `for id in 19f437686bee8ec1 19efdaaa5c52c16a 19ea81910e76268…\" \"+.filename+\"\\t\"+(.body.attachmentId // \"\")), \"---\" ' done (in ~/clawd)`"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `for id in 19f437686bee8ec1 19efdaaa5c52c16a 19ea81910e76268…\" \"+.filename+\"\\t\"+(.body.attachmentId // \"\")), \"---\" ' done (in ~/clawd)`"
       },
       "nextRunAtMs": 1784278800000,
-      "lastRunAtMs": 1783674000005,
+      "lastRunAtMs": 1783975336494,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -355,13 +333,13 @@
   "hasMore": false,
   "nextOffset": null,
   "deliveryPreviews": {
-    "bf111852-60da-438a-af4b-68ae9f760aa7": {
-      "label": "none -> telegram:181860584",
-      "detail": "explicit"
-    },
     "871fa841-5efc-4cf1-b8e8-f440b2970119": {
       "label": "not requested",
       "detail": "not requested"
+    },
+    "bf111852-60da-438a-af4b-68ae9f760aa7": {
+      "label": "none -> telegram:181860584",
+      "detail": "explicit"
     },
     "ee844ef9-bb41-477e-9a93-e3ffcbd94a32": {
       "label": "announce -> telegram:181860584",
