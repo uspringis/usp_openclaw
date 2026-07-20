@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1784336417710,
+      "updatedAtMs": 1784422816555,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,19 +25,19 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1784422800000,
-        "lastRunAtMs": 1784336400008,
+        "nextRunAtMs": 1784509200000,
+        "lastRunAtMs": 1784422800008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17702,
+        "lastDurationMs": 16547,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1784422800008
+        "runningAtMs": 1784509200010
       },
-      "nextRunAtMs": 1784422800000,
-      "lastRunAtMs": 1784336400008,
+      "nextRunAtMs": 1784509200000,
+      "lastRunAtMs": 1784422800008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -48,7 +48,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1784419655492,
+      "updatedAtMs": 1784506053871,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -61,7 +61,7 @@
         "kind": "agentTurn",
         "message": "Run the MyFitness to Google Calendar sync script. Execute exactly:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nCheck the output. The script must only create/update/delete Google Calendar events whose summary starts with `MyFitness:`. It must retain past attended `MyFitness:` events; stale deletion is only for future events, which indicates canceled bookings.\n\nIf the sync command exits non-zero or outputs an error JSON that looks authentication/session/token related, run exactly:\n  cd /home/uspringis/myfitness-assistant && /home/uspringis/.local/bin/uv run myfitness_bookings.py auth login --json 2>&1\nThen retry exactly once:\n  /home/uspringis/myfitness-assistant/run_calendar_sync.sh 2>&1\n\nIf the retry succeeds, do NOT send any Telegram message. If the original failure was not auth-related, the login command fails, or the retry still fails, send a Telegram message to Ugis with the error details using the message tool (channel=telegram, to=181860584). On success, do NOT send any Telegram message. IMPORTANT: Always end your turn with a single short status line such as `MyFitness sync OK`. Never end with an empty response; the scheduler treats empty turns as a failure.",
         "model": "openai/gpt-5.6-sol",
-        "timeoutSeconds": 180
+        "timeoutSeconds": 300
       },
       "delivery": {
         "mode": "none",
@@ -69,18 +69,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1784423220000,
-        "lastRunAtMs": 1784419620008,
+        "nextRunAtMs": 1784509620000,
+        "lastRunAtMs": 1784506020007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 35484,
+        "lastDurationMs": 33864,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1784423220000,
-      "lastRunAtMs": 1784419620008,
+      "nextRunAtMs": 1784509620000,
+      "lastRunAtMs": 1784506020007,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -92,7 +92,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1784347305809,
+      "updatedAtMs": 1784433698735,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -113,31 +113,19 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1784347200009,
+        "lastRunAtMs": 1784433600009,
         "lastStatus": "ok",
-        "lastDurationMs": 105800,
+        "lastDurationMs": 98726,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1784433600000,
+        "nextRunAtMs": 1784520000000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastDelivered": true,
-        "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…\";\" \")),((.quotedTweet.text // \"\")|gsub(\"\\\\n\";\" \"))] | @tsv' (in ~/clawd)`",
-          "entries": [
-            {
-              "ts": 1784347305067,
-              "source": "tool",
-              "severity": "warn",
-              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…\";\" \")),((.quotedTweet.text // \"\")|gsub(\"\\\\n\";\" \"))] | @tsv' (in ~/clawd)`"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…\";\" \")),((.quotedTweet.text // \"\")|gsub(\"\\\\n\";\" \"))] | @tsv' (in ~/clawd)`"
+        "lastDelivered": true
       },
-      "nextRunAtMs": 1784433600000,
-      "lastRunAtMs": 1784347200009,
+      "nextRunAtMs": 1784520000000,
+      "lastRunAtMs": 1784433600009,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -149,7 +137,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1784354423035,
+      "updatedAtMs": 1784440830179,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -170,18 +158,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1784440800000,
-        "lastRunAtMs": 1784354400007,
+        "nextRunAtMs": 1784527200000,
+        "lastRunAtMs": 1784440800008,
         "lastStatus": "ok",
-        "lastDurationMs": 23028,
+        "lastDurationMs": 30171,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested"
       },
-      "nextRunAtMs": 1784440800000,
-      "lastRunAtMs": 1784354400007,
+      "nextRunAtMs": 1784527200000,
+      "lastRunAtMs": 1784440800008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -192,7 +180,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1784358916284,
+      "updatedAtMs": 1784445324621,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -214,18 +202,18 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1784445300000,
-        "lastRunAtMs": 1784358900005,
+        "nextRunAtMs": 1784531700000,
+        "lastRunAtMs": 1784445300006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 16279,
+        "lastDurationMs": 24615,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1784445300000,
-      "lastRunAtMs": 1784358900005,
+      "nextRunAtMs": 1784531700000,
+      "lastRunAtMs": 1784445300006,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
