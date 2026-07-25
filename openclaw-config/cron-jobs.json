@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1784768417302,
+      "updatedAtMs": 1784854817708,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,19 +25,19 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1784854800000,
-        "lastRunAtMs": 1784768400009,
+        "nextRunAtMs": 1784941200000,
+        "lastRunAtMs": 1784854800009,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17293,
+        "lastDurationMs": 17699,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1784854800009
+        "runningAtMs": 1784941200006
       },
-      "nextRunAtMs": 1784854800000,
-      "lastRunAtMs": 1784768400009,
+      "nextRunAtMs": 1784941200000,
+      "lastRunAtMs": 1784854800009,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -48,7 +48,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1784851659091,
+      "updatedAtMs": 1784938057812,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -69,18 +69,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1784855220000,
-        "lastRunAtMs": 1784851620009,
+        "nextRunAtMs": 1784941620000,
+        "lastRunAtMs": 1784938020008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 39082,
+        "lastDurationMs": 37804,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1784855220000,
-      "lastRunAtMs": 1784851620009,
+      "nextRunAtMs": 1784941620000,
+      "lastRunAtMs": 1784938020008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -92,7 +92,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1784779351496,
+      "updatedAtMs": 1784865661217,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -113,31 +113,31 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1784779200009,
+        "lastRunAtMs": 1784865600010,
         "lastStatus": "ok",
-        "lastDurationMs": 151487,
+        "lastDurationMs": 61207,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1784865600000,
+        "nextRunAtMs": 1784952000000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "lastDelivered": true,
         "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…uthor.username, .id, (.text | gsub(\"[\\r\\n]+\"; \" \"))] | @tsv' (in ~/clawd)`",
+          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…ps://x.com/\" + .author.username + \"/status/\" + .id)] | @tsv' (in ~/clawd)`",
           "entries": [
             {
-              "ts": 1784779350833,
+              "ts": 1784865660185,
               "source": "tool",
               "severity": "warn",
-              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…uthor.username, .id, (.text | gsub(\"[\\r\\n]+\"; \" \"))] | @tsv' (in ~/clawd)`"
+              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…ps://x.com/\" + .author.username + \"/status/\" + .id)] | @tsv' (in ~/clawd)`"
             }
           ]
         },
-        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…uthor.username, .id, (.text | gsub(\"[\\r\\n]+\"; \" \"))] | @tsv' (in ~/clawd)`"
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…ps://x.com/\" + .author.username + \"/status/\" + .id)] | @tsv' (in ~/clawd)`"
       },
-      "nextRunAtMs": 1784865600000,
-      "lastRunAtMs": 1784779200009,
+      "nextRunAtMs": 1784952000000,
+      "lastRunAtMs": 1784865600010,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -149,7 +149,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1784786423501,
+      "updatedAtMs": 1784872822668,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -170,18 +170,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1784872800000,
-        "lastRunAtMs": 1784786400007,
+        "nextRunAtMs": 1784959200000,
+        "lastRunAtMs": 1784872800008,
         "lastStatus": "ok",
-        "lastDurationMs": 23494,
+        "lastDurationMs": 22660,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested"
       },
-      "nextRunAtMs": 1784872800000,
-      "lastRunAtMs": 1784786400007,
+      "nextRunAtMs": 1784959200000,
+      "lastRunAtMs": 1784872800008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -192,7 +192,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1784790922266,
+      "updatedAtMs": 1784877320718,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -214,18 +214,18 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1784877300000,
-        "lastRunAtMs": 1784790900006,
+        "nextRunAtMs": 1784963700000,
+        "lastRunAtMs": 1784877300006,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 22260,
+        "lastDurationMs": 20712,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1784877300000,
-      "lastRunAtMs": 1784790900006,
+      "nextRunAtMs": 1784963700000,
+      "lastRunAtMs": 1784877300006,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -236,7 +236,7 @@
       "name": "Waste Schedule Check",
       "enabled": true,
       "createdAtMs": 1770563229509,
-      "updatedAtMs": 1784278881157,
+      "updatedAtMs": 1784883672903,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -258,10 +258,10 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1784883600000,
-        "lastRunAtMs": 1784278800007,
+        "nextRunAtMs": 1785488400000,
+        "lastRunAtMs": 1784883600006,
         "lastStatus": "ok",
-        "lastDurationMs": 81150,
+        "lastDurationMs": 72897,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
@@ -269,20 +269,20 @@
         "lastDelivered": true,
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ Bash failed: `for id in 19f437686bee8ec1 19efdaaa5c52c16a 19efd938edff656…))) print(\"TEXT=\"+\" \".join(texts)[:1500]) print(\"---\")' done (in ~/clawd)`",
+          "summary": "⚠️ 🛠️ Bash failed: `gws gmail users messages get --params '{\"userId\":\"me\",\"id\":…t('snippet'),'attachments':a},ensure_ascii=False,indent=2))\" (in ~/clawd)`",
           "entries": [
             {
-              "ts": 1784278880521,
+              "ts": 1784883671968,
               "source": "tool",
               "severity": "warn",
-              "message": "⚠️ 🛠️ Bash failed: `for id in 19f437686bee8ec1 19efdaaa5c52c16a 19efd938edff656…))) print(\"TEXT=\"+\" \".join(texts)[:1500]) print(\"---\")' done (in ~/clawd)`"
+              "message": "⚠️ 🛠️ Bash failed: `gws gmail users messages get --params '{\"userId\":\"me\",\"id\":…t('snippet'),'attachments':a},ensure_ascii=False,indent=2))\" (in ~/clawd)`"
             }
           ]
         },
-        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `for id in 19f437686bee8ec1 19efdaaa5c52c16a 19efd938edff656…))) print(\"TEXT=\"+\" \".join(texts)[:1500]) print(\"---\")' done (in ~/clawd)`"
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `gws gmail users messages get --params '{\"userId\":\"me\",\"id\":…t('snippet'),'attachments':a},ensure_ascii=False,indent=2))\" (in ~/clawd)`"
       },
-      "nextRunAtMs": 1784883600000,
-      "lastRunAtMs": 1784278800007,
+      "nextRunAtMs": 1785488400000,
+      "lastRunAtMs": 1784883600006,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
