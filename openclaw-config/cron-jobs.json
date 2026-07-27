@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1784941217931,
+      "updatedAtMs": 1785027619799,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,19 +25,19 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1785027600000,
-        "lastRunAtMs": 1784941200006,
+        "nextRunAtMs": 1785114000000,
+        "lastRunAtMs": 1785027600012,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17925,
+        "lastDurationMs": 19787,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1785027600012
+        "runningAtMs": 1785114000007
       },
-      "nextRunAtMs": 1785027600000,
-      "lastRunAtMs": 1784941200006,
+      "nextRunAtMs": 1785114000000,
+      "lastRunAtMs": 1785027600012,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -48,7 +48,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1785024457982,
+      "updatedAtMs": 1785110853534,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -69,18 +69,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1785028020000,
-        "lastRunAtMs": 1785024420009,
+        "nextRunAtMs": 1785114420000,
+        "lastRunAtMs": 1785110820007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 37973,
+        "lastDurationMs": 33527,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1785028020000,
-      "lastRunAtMs": 1785024420009,
+      "nextRunAtMs": 1785114420000,
+      "lastRunAtMs": 1785110820007,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -92,7 +92,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1784952064701,
+      "updatedAtMs": 1785038500126,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -113,31 +113,31 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1784952000008,
+        "lastRunAtMs": 1785038400007,
         "lastStatus": "ok",
-        "lastDurationMs": 64693,
+        "lastDurationMs": 100119,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1785038400000,
+        "nextRunAtMs": 1785124800000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "lastDelivered": true,
         "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…e, .id, (.text | gsub(\"[\\\\r\\\\n]+\"; \" \") | .[0:500])] | @tsv' (in ~/clawd)`",
+          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…-auth-token \"$BIRD_AUTH_TOKEN\" --ct0 \"$BIRD_CT0\" | jq '.[0]' (in ~/clawd)`",
           "entries": [
             {
-              "ts": 1784952063382,
+              "ts": 1785038499134,
               "source": "tool",
               "severity": "warn",
-              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…e, .id, (.text | gsub(\"[\\\\r\\\\n]+\"; \" \") | .[0:500])] | @tsv' (in ~/clawd)`"
+              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…-auth-token \"$BIRD_AUTH_TOKEN\" --ct0 \"$BIRD_CT0\" | jq '.[0]' (in ~/clawd)`"
             }
           ]
         },
-        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…e, .id, (.text | gsub(\"[\\\\r\\\\n]+\"; \" \") | .[0:500])] | @tsv' (in ~/clawd)`"
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…-auth-token \"$BIRD_AUTH_TOKEN\" --ct0 \"$BIRD_CT0\" | jq '.[0]' (in ~/clawd)`"
       },
-      "nextRunAtMs": 1785038400000,
-      "lastRunAtMs": 1784952000008,
+      "nextRunAtMs": 1785124800000,
+      "lastRunAtMs": 1785038400007,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -149,7 +149,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1784959225081,
+      "updatedAtMs": 1785045623038,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -170,18 +170,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1785045600000,
-        "lastRunAtMs": 1784959200008,
+        "nextRunAtMs": 1785132000000,
+        "lastRunAtMs": 1785045600010,
         "lastStatus": "ok",
-        "lastDurationMs": 25073,
+        "lastDurationMs": 23028,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested"
       },
-      "nextRunAtMs": 1785045600000,
-      "lastRunAtMs": 1784959200008,
+      "nextRunAtMs": 1785132000000,
+      "lastRunAtMs": 1785045600010,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -192,7 +192,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1784963715084,
+      "updatedAtMs": 1785050116523,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -214,18 +214,18 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1785050100000,
-        "lastRunAtMs": 1784963700008,
+        "nextRunAtMs": 1785136500000,
+        "lastRunAtMs": 1785050100005,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 15076,
+        "lastDurationMs": 16518,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1785050100000,
-      "lastRunAtMs": 1784963700008,
+      "nextRunAtMs": 1785136500000,
+      "lastRunAtMs": 1785050100005,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
