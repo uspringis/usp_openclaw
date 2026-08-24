@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1787274017579,
+      "updatedAtMs": 1787502319504,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,20 +25,33 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1787360400000,
-        "lastRunAtMs": 1787274000009,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 17570,
+        "nextRunAtMs": 1787533200000,
+        "lastRunAtMs": 1787502199126,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 120378,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 4,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1787360400008
+        "lastDiagnostics": {
+          "summary": "cron: job execution timed out (last phase: turn-accepted)",
+          "entries": [
+            {
+              "ts": 1787502319504,
+              "source": "cron-setup",
+              "severity": "error",
+              "message": "cron: job execution timed out (last phase: turn-accepted)"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron: job execution timed out (last phase: turn-accepted)",
+        "lastErrorReason": "timeout",
+        "runningAtMs": 1787533200008
       },
-      "nextRunAtMs": 1787360400000,
-      "lastRunAtMs": 1787274000009,
-      "lastRunStatus": "ok",
+      "nextRunAtMs": 1787533200000,
+      "lastRunAtMs": 1787502199126,
+      "lastRunStatus": "error",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
       "status": "running"
@@ -48,7 +61,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1787357243052,
+      "updatedAtMs": 1787530045490,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -69,18 +82,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1787360820000,
-        "lastRunAtMs": 1787357220009,
+        "nextRunAtMs": 1787533620000,
+        "lastRunAtMs": 1787530020009,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 23043,
+        "lastDurationMs": 25481,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1787360820000,
-      "lastRunAtMs": 1787357220009,
+      "nextRunAtMs": 1787533620000,
+      "lastRunAtMs": 1787530020009,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -92,7 +105,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1787284891176,
+      "updatedAtMs": 1787501474159,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -113,43 +126,43 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1787284800007,
-        "lastStatus": "ok",
-        "lastDurationMs": 91169,
-        "consecutiveErrors": 0,
-        "nextRunAtMs": 1787371200000,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "delivered",
+        "lastRunAtMs": 1787501233923,
+        "lastStatus": "error",
+        "lastDurationMs": 240236,
+        "consecutiveErrors": 1,
+        "nextRunAtMs": 1787544000000,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "unknown",
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastDelivered": true,
+        "lastFailureNotificationDeliveryStatus": "unknown",
+        "lastError": "Error: stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
         "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…or.username, .id, (.text|gsub(\"\\\\s+\";\" \")|.[0:500])] | @tsv' (in ~/clawd)`",
+          "summary": "stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
           "entries": [
             {
-              "ts": 1787284890428,
-              "source": "tool",
-              "severity": "warn",
-              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…or.username, .id, (.text|gsub(\"\\\\s+\";\" \")|.[0:500])] | @tsv' (in ~/clawd)`"
+              "ts": 1787501474097,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)"
             }
           ]
         },
-        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…or.username, .id, (.text|gsub(\"\\\\s+\";\" \")|.[0:500])] | @tsv' (in ~/clawd)`"
+        "lastDiagnosticSummary": "stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)"
       },
-      "nextRunAtMs": 1787371200000,
-      "lastRunAtMs": 1787284800007,
-      "lastRunStatus": "ok",
-      "lastDelivered": true,
-      "lastDeliveryStatus": "delivered",
-      "lastFailureNotificationDeliveryStatus": "not-requested",
-      "status": "ok"
+      "nextRunAtMs": 1787544000000,
+      "lastRunAtMs": 1787501233923,
+      "lastRunStatus": "error",
+      "lastRunError": "Error: stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
+      "lastDeliveryStatus": "unknown",
+      "lastFailureNotificationDeliveryStatus": "unknown",
+      "status": "error"
     },
     {
       "id": "203bd55c-2afd-44ca-be99-ab8dd69034cc",
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1787292021496,
+      "updatedAtMs": 1787502197106,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -170,29 +183,44 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1787378400000,
-        "lastRunAtMs": 1787292000008,
-        "lastStatus": "ok",
-        "lastDurationMs": 21488,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
+        "nextRunAtMs": 1787551200000,
+        "lastRunAtMs": 1787502076739,
+        "lastStatus": "error",
+        "lastDurationMs": 120367,
+        "consecutiveErrors": 4,
+        "lastRunStatus": "error",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested"
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastError": "cron: job execution timed out (last phase: turn-accepted)",
+        "lastDiagnostics": {
+          "summary": "cron: job execution timed out (last phase: turn-accepted)",
+          "entries": [
+            {
+              "ts": 1787502197106,
+              "source": "cron-setup",
+              "severity": "error",
+              "message": "cron: job execution timed out (last phase: turn-accepted)"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron: job execution timed out (last phase: turn-accepted)",
+        "lastErrorReason": "timeout"
       },
-      "nextRunAtMs": 1787378400000,
-      "lastRunAtMs": 1787292000008,
-      "lastRunStatus": "ok",
+      "nextRunAtMs": 1787551200000,
+      "lastRunAtMs": 1787502076739,
+      "lastRunStatus": "error",
+      "lastRunError": "cron: job execution timed out (last phase: turn-accepted)",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
-      "status": "ok"
+      "status": "error"
     },
     {
       "id": "1effb0e6-d219-4078-8f18-2a019c5eeb6a",
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1787324423297,
+      "updatedAtMs": 1787501472898,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -215,22 +243,36 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1787389200000,
-        "lastRunAtMs": 1787324400007,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 23290,
+        "nextRunAtMs": 1787562000000,
+        "lastRunAtMs": 1787501233930,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 238968,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
-        "consecutiveSkipped": 0
+        "consecutiveErrors": 1,
+        "consecutiveSkipped": 0,
+        "lastError": "Error: stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
+        "lastDiagnostics": {
+          "summary": "stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
+          "entries": [
+            {
+              "ts": 1787501472835,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)"
       },
-      "nextRunAtMs": 1787389200000,
-      "lastRunAtMs": 1787324400007,
-      "lastRunStatus": "ok",
+      "nextRunAtMs": 1787562000000,
+      "lastRunAtMs": 1787501233930,
+      "lastRunStatus": "error",
+      "lastRunError": "Error: stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
-      "status": "ok"
+      "status": "error"
     },
     {
       "id": "015168ea-18b9-4f69-9a84-3afef92040dc",
