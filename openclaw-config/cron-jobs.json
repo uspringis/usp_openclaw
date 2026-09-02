@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1788138022688,
+      "updatedAtMs": 1788224418195,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,19 +25,19 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1788224400000,
-        "lastRunAtMs": 1788138000007,
+        "nextRunAtMs": 1788310800000,
+        "lastRunAtMs": 1788224400008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 22681,
+        "lastDurationMs": 18187,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1788224400008
+        "runningAtMs": 1788310800008
       },
-      "nextRunAtMs": 1788224400000,
-      "lastRunAtMs": 1788138000007,
+      "nextRunAtMs": 1788310800000,
+      "lastRunAtMs": 1788224400008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -48,7 +48,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1788221252351,
+      "updatedAtMs": 1788307650776,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -69,18 +69,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1788224820000,
-        "lastRunAtMs": 1788221220007,
+        "nextRunAtMs": 1788311220000,
+        "lastRunAtMs": 1788307620008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 32344,
+        "lastDurationMs": 30768,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1788224820000,
-      "lastRunAtMs": 1788221220007,
+      "nextRunAtMs": 1788311220000,
+      "lastRunAtMs": 1788307620008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -92,7 +92,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1788148911706,
+      "updatedAtMs": 1788235307642,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -113,31 +113,31 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1788148800008,
+        "lastRunAtMs": 1788235200008,
         "lastStatus": "ok",
-        "lastDurationMs": 111698,
+        "lastDurationMs": 107634,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1788235200000,
+        "nextRunAtMs": 1788321600000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "lastDelivered": true,
         "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_… (\"https://x.com/\"+.author.username+\"/status/\"+.id)] | @tsv' (in ~/clawd)`",
+          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…xt|gsub(\"\\n\";\" \"))\\nQUOTE: \\(.q|gsub(\"\\n\";\" \")|.[0:500])\\n\"' (in ~/clawd)`",
           "entries": [
             {
-              "ts": 1788148910999,
+              "ts": 1788235306799,
               "source": "tool",
               "severity": "warn",
-              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_… (\"https://x.com/\"+.author.username+\"/status/\"+.id)] | @tsv' (in ~/clawd)`"
+              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…xt|gsub(\"\\n\";\" \"))\\nQUOTE: \\(.q|gsub(\"\\n\";\" \")|.[0:500])\\n\"' (in ~/clawd)`"
             }
           ]
         },
-        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_… (\"https://x.com/\"+.author.username+\"/status/\"+.id)] | @tsv' (in ~/clawd)`"
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…xt|gsub(\"\\n\";\" \"))\\nQUOTE: \\(.q|gsub(\"\\n\";\" \")|.[0:500])\\n\"' (in ~/clawd)`"
       },
-      "nextRunAtMs": 1788235200000,
-      "lastRunAtMs": 1788148800008,
+      "nextRunAtMs": 1788321600000,
+      "lastRunAtMs": 1788235200008,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -149,7 +149,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1788156039231,
+      "updatedAtMs": 1788242425926,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -170,18 +170,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1788242400000,
-        "lastRunAtMs": 1788156000009,
+        "nextRunAtMs": 1788328800000,
+        "lastRunAtMs": 1788242400007,
         "lastStatus": "ok",
-        "lastDurationMs": 39222,
+        "lastDurationMs": 25919,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested"
       },
-      "nextRunAtMs": 1788242400000,
-      "lastRunAtMs": 1788156000009,
+      "nextRunAtMs": 1788328800000,
+      "lastRunAtMs": 1788242400007,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -192,7 +192,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1788188441639,
+      "updatedAtMs": 1788274830121,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -215,18 +215,18 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1788253200000,
-        "lastRunAtMs": 1788188400006,
+        "nextRunAtMs": 1788339600000,
+        "lastRunAtMs": 1788274800649,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 41633,
+        "lastDurationMs": 29472,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1788253200000,
-      "lastRunAtMs": 1788188400006,
+      "nextRunAtMs": 1788339600000,
+      "lastRunAtMs": 1788274800649,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -235,10 +235,10 @@
     {
       "id": "f87d0e86-b7df-458c-b6e3-e7c84aac64eb",
       "name": "Lizete Dzirnas schedule check",
-      "description": "Suspended by Ugis on 2026-06-21 until 2026-08-26.",
+      "description": "Daily sync for Lizete Dzirnas 1B KLASE schedule with per-day broad-slot de-duplication.",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1788195630344,
+      "updatedAtMs": 1788282583669,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -249,7 +249,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Execute each step as a SEPARATE short exec command. NEVER combine all steps into one large inline script — long commands are blocked by obfuscation detection. Run one command at a time and process the output before running the next.\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\nTARGET CALENDAR:\n- Sync all Lizete Dzirnas events to Google calendar `Emīlija / Lizete`.\n- Calendar ID: `a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com`.\n- Do not create, update, or delete Dzirnas events in the Family calendar.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING RULES (always apply, regardless of spreadsheet content):\n- Wednesday 15:00-16:00 akrobātika — ALWAYS include this event. If not in the spreadsheet, add it anyway. Never delete it.\n- One-time protected exception: Monday 2026-06-01 10:00-12:00 — keep the \"Lizete Dzirnas\" event on the `Emīlija / Lizete` calendar even if it is not in the spreadsheet. Never delete it without Ugis confirmation.\n- Deletion safety: before deleting any one-time/manual Dzirnas event or broad block that is not an exact current spreadsheet/standing-rule event, DO NOT delete it. Leave it in the calendar and report that Ugis confirmation is needed. This is especially important for standalone events without a recurringEventId or events created/edited outside the sync. If unsure, keep it.\n\nSTEP 1: Fetch the htmlview page and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/u/0/d/14swSGWuwMYboKZgVfGnlEJl3b9ZISrhsgOAK8D1_ZyE/htmlview#gid=0\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks.\n\nSTEP 3: Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/14swSGWuwMYboKZgVfGnlEJl3b9ZISrhsgOAK8D1_ZyE/export?format=csv&gid=<GID>\"\n\nFind the \"1B KLASE\" row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - AFTER parsing the spreadsheet, merge in any STANDING RULES events (see above). If a standing rule event is not already in the parsed schedule for that day/time, add it.\n\nSTEP 5: List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the `Emīlija / Lizete` calendar for the target week:\n   gws calendar events list --params '{\"calendarId\": \"a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com\", \"timeMin\": \"<monday>T00:00:00+03:00\", \"timeMax\": \"<saturday>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 50}' 2>/dev/null\n   Then filter the JSON output for events with 'dzirnas' in the summary.\n\nSTEP 6: Compare and sync:\n   - Create missing events in the `Emīlija / Lizete` calendar.\n   - Delete only events that are safe to delete. Safe delete means clear duplicate/old cron-generated class event, not a one-time/manual exception.\n   - For one-time/manual Dzirnas events, broad blocks, or anything not clearly generated by this sync: DO NOT DELETE. Keep it and report that Ugis confirmation is needed before deletion.\n   - Delete events with wrong times only when they are safe per the rule above: gws calendar events delete --params '{\"calendarId\": \"a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n   - Delete events for days that no longer have classes only when they are safe per the rule above.\n   - Do not create duplicates.\n   - Match by date and time.\n   - NEVER delete standing rule events or protected exceptions (see STANDING RULES above).\n\nSTEP 7: For creating EACH individual class event (run each insert as a separate command):\n   gws calendar events insert --params '{\"calendarId\": \"a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com\"}' --json '{\"summary\": \"Lizetei Dzirnas: <class name> (<teacher>)\", \"start\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}, \"end\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}}' 2>/dev/null\n\nSTEP 8: Report what changed. List each individual event created/deleted/unchanged.",
+        "message": "Daily check of Lizete's dance school (Dzirnas) weekly schedule.\n\nIMPORTANT: Execute each step as a SEPARATE short exec command. NEVER combine all steps into one large inline script — long commands are blocked by obfuscation detection. Run one command at a time and process the output before running the next.\n\nUse `gws` CLI for all Google operations. Redirect stderr with 2>/dev/null to suppress keyring messages.\n\nTARGET CALENDAR:\n- Sync all Lizete Dzirnas events to Google calendar `Emīlija / Lizete`.\n- Calendar ID: `a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com`.\n- Do not create, update, or delete Dzirnas events in the Family calendar.\n\nThe spreadsheet has multiple sheet tabs — one per week, plus a general/default schedule (gid=0).\n\nSTANDING AND DE-DUPLICATION RULES:\n- The former Wednesday 15:00-16:00 akrobātika standing rule ended after 2026-09-01. Do NOT create this extra event on or after 2026-09-02. If a legacy sync-created standalone Wednesday 15:00-16:00 \"Lizetei Dzirnas: akrobātika\" event exists on or after 2026-09-02, delete it.\n- One-time protected exception: Monday 2026-06-01 10:00-12:00 — keep the \"Lizete Dzirnas\" event on the `Emīlija / Lizete` calendar even if it is not in the spreadsheet. Never delete it without Ugis confirmation.\n- Broad-slot de-duplication: for a specific date, if detailed per-class Dzirnas events fully cover the same time range as a broad event named \"Lizetei Dzirnas\" or \"Lizete Dzirnas\", the broad event is a duplicate and is safe to delete for THAT DATE ONLY. If it is an occurrence of a recurring series, delete only the occurrence ID, never the recurring series. Do not delete broad occurrences on other dates. If the detailed events do not fully cover the broad range, keep the broad event.\n- General deletion safety: before deleting any other one-time/manual Dzirnas event that is not an exact current spreadsheet event, DO NOT delete it. Leave it in the calendar and report that Ugis confirmation is needed. If unsure, keep it.\n\nSTEP 1: Fetch the htmlview page and extract tab names + gids from the items.push() calls at the bottom of the HTML:\n  curl -sL \"https://docs.google.com/spreadsheets/u/0/d/14swSGWuwMYboKZgVfGnlEJl3b9ZISrhsgOAK8D1_ZyE/htmlview#gid=0\" | grep -oP \"name: \\\"[^\\\"]+\\\", pageUrl: \\\"[^\\\"]+\\\", gid: \\\"[^\\\"]+\\\"\"\n\nThis gives you ALL tab names (like \"2.-6.03.\", \"23.-27.02\", \"Pamatgrafiks\") with their gids in one request. No need to fetch CSV for every tab.\n\nSTEP 2: Parse the tab names to find the one matching the CURRENT or NEXT week. Tab names use format like \"2.-6.03.\" meaning day_start-day_end.month. Match by checking which date range covers the target week. If today is within the current week and next week's tab does not exist, use the current week. If no matching weekly tab is found for the target dates, STOP — do not modify any calendar events. Do NOT fall back to Pamatgrafiks.\n\nSTEP 3: Fetch ONLY the matching tab's CSV:\n  curl -sL \"https://docs.google.com/spreadsheets/d/14swSGWuwMYboKZgVfGnlEJl3b9ZISrhsgOAK8D1_ZyE/export?format=csv&gid=<GID>\"\n\nFind the \"1B KLASE\" row.\n\nSTEP 4: Parse all classes. Columns: Group, Old name, Teacher, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY.\n   - Each day's cell may contain MULTIPLE time slots, e.g. \"16.30-17.00 muzikālā nodarbība (Igeta) 17.00-18.00 Afro deja (sk.Anete) 18.00-19.00 klasika (sk.Vera)\".\n   - Create a SEPARATE calendar event for EACH individual class/time slot.\n   - Parse each time slot individually: extract start time, end time, class name, and teacher.\n   - Empty/null cell = no class that day.\n   - Do not add extra standing-rule classes. The schedule comes from the matching weekly tab, subject only to the protected-exception and de-duplication rules above.\n\nSTEP 5: List existing \"Lizete Dzirnas\" or \"Lizetei Dzirnas\" events on the `Emīlija / Lizete` calendar for the target week:\n   gws calendar events list --params '{\"calendarId\": \"a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com\", \"timeMin\": \"<monday>T00:00:00+03:00\", \"timeMax\": \"<saturday>T00:00:00+03:00\", \"singleEvents\": true, \"maxResults\": 50}' 2>/dev/null\n   Then filter the JSON output for events with 'dzirnas' in the summary.\n\nSTEP 6: Compare and sync:\n   - Create missing events in the `Emīlija / Lizete` calendar.\n   - Delete only events that are safe to delete. Safe delete means clear duplicate/old cron-generated class event, not a one-time/manual exception.\n   - Apply the broad-slot de-duplication rule above: when detailed events fully cover a broad block on the same date, delete only that day's broad occurrence. Otherwise, for one-time/manual Dzirnas events or anything not clearly generated by this sync: DO NOT DELETE. Keep it and report that Ugis confirmation is needed before deletion.\n   - Delete events with wrong times only when they are safe per the rule above: gws calendar events delete --params '{\"calendarId\": \"a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com\", \"eventId\": \"<id>\"}' 2>/dev/null\n   - Delete events for days that no longer have classes only when they are safe per the rule above.\n   - Do not create duplicates.\n   - Match by date and time.\n   - NEVER delete protected exceptions. Delete legacy post-2026-09-01 standalone Wednesday 15:00-16:00 akrobātika entries and fully covered broad-slot duplicates as specified above.\n\nSTEP 7: For creating EACH individual class event (run each insert as a separate command):\n   gws calendar events insert --params '{\"calendarId\": \"a5020cdb416310aa6ff656d0abf774249267f51b592d1b5550d9bf3c2dc713f5@group.calendar.google.com\"}' --json '{\"summary\": \"Lizetei Dzirnas: <class name> (<teacher>)\", \"start\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}, \"end\": {\"dateTime\": \"YYYY-MM-DDTHH:MM:SS+03:00\"}}' 2>/dev/null\n\nSTEP 8: Report what changed. List each individual event created/deleted/unchanged.",
         "model": "openai/gpt-5.6-sol",
         "timeoutSeconds": 600
       },
@@ -260,19 +260,19 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1788195600006,
+        "lastRunAtMs": 1788282000007,
         "lastStatus": "ok",
-        "lastDurationMs": 30338,
+        "lastDurationMs": 135050,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "nextRunAtMs": 1788282000000,
+        "nextRunAtMs": 1788368400000,
         "lastDelivered": true
       },
-      "nextRunAtMs": 1788282000000,
-      "lastRunAtMs": 1788195600006,
+      "nextRunAtMs": 1788368400000,
+      "lastRunAtMs": 1788282000007,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
