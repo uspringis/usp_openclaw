@@ -60,3 +60,4 @@
 - Technical language OK
 - Latvian for personal/family context, English for work/tech
 - Prefers plain text over markdown tables in Telegram
+- For Jaunais Rīgas teātris calendar entries, use the `JRT:` prefix and default to a 4-hour duration unless an explicit end time is available.
