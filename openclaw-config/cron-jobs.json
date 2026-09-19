@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1789606818863,
+      "updatedAtMs": 1789693224216,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,19 +25,19 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1789693200000,
-        "lastRunAtMs": 1789606800009,
+        "nextRunAtMs": 1789779600000,
+        "lastRunAtMs": 1789693200008,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 18854,
+        "lastDurationMs": 24208,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1789693200008
+        "runningAtMs": 1789779600008
       },
-      "nextRunAtMs": 1789693200000,
-      "lastRunAtMs": 1789606800009,
+      "nextRunAtMs": 1789779600000,
+      "lastRunAtMs": 1789693200008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -48,7 +48,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1789690052829,
+      "updatedAtMs": 1789776466329,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -69,18 +69,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1789693620000,
-        "lastRunAtMs": 1789690020008,
+        "nextRunAtMs": 1789780020000,
+        "lastRunAtMs": 1789776420007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 32821,
+        "lastDurationMs": 46322,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1789693620000,
-      "lastRunAtMs": 1789690020008,
+      "nextRunAtMs": 1789780020000,
+      "lastRunAtMs": 1789776420007,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -92,7 +92,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1789617665623,
+      "updatedAtMs": 1789704071105,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -113,19 +113,19 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1789617600008,
+        "lastRunAtMs": 1789704000008,
         "lastStatus": "ok",
-        "lastDurationMs": 65615,
+        "lastDurationMs": 71097,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1789704000000,
+        "nextRunAtMs": 1789790400000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "lastDelivered": true
       },
-      "nextRunAtMs": 1789704000000,
-      "lastRunAtMs": 1789617600008,
+      "nextRunAtMs": 1789790400000,
+      "lastRunAtMs": 1789704000008,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -137,7 +137,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1789624826114,
+      "updatedAtMs": 1789711240827,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -158,66 +158,20 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1789711200000,
-        "lastRunAtMs": 1789624800009,
+        "nextRunAtMs": 1789797600000,
+        "lastRunAtMs": 1789711200008,
         "lastStatus": "ok",
-        "lastDurationMs": 26105,
+        "lastDurationMs": 40819,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested"
       },
-      "nextRunAtMs": 1789711200000,
-      "lastRunAtMs": 1789624800009,
+      "nextRunAtMs": 1789797600000,
+      "lastRunAtMs": 1789711200008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
-      "lastFailureNotificationDeliveryStatus": "not-requested",
-      "status": "ok"
-    },
-    {
-      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
-      "name": "Waste Schedule Check",
-      "enabled": true,
-      "createdAtMs": 1770563229509,
-      "updatedAtMs": 1789117251726,
-      "agentId": "main",
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 12 * * 5",
-        "tz": "Europe/Riga"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "next-heartbeat",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Check waste collection schedule from Eco Baltia Vide.\n\nUse `gws` CLI for all Google operations. Redirect stderr with `2>/dev/null` to suppress keyring messages.\n\nTARGET CALENDAR:\n- All waste schedule events must be synced to Ugis's primary Google calendar: calendarId `primary` / `ugis.springis@gmail.com`.\n- Do not create new waste events in the BUS calendar.\n- Do not touch historical events before today.\n\nCRITICAL SAFETY RULES:\n- Process ONLY emails that notify about a new/future waste collection schedule.\n- NEVER process invoices, bills, receipts, payment notices, or historical service documents as schedules.\n- Reject an email if its subject/body/attachment filename contains invoice-like terms such as: invoice, rēķins, reķins, apmaksa, maksa, samaksa, payment, receipt, kvīts.\n- Reject a PDF if it looks like an invoice/bill or if the extracted dates are all before today.\n- If rejected, do not update `memory/waste-processed-ids.json`, do not delete calendar events, and report that it was skipped.\n- Before deleting anything, the accepted PDF must contain at least one future pickup date and at least two waste categories, unless the email text explicitly says it is a partial/category-specific future schedule update.\n\n1. Search Gmail for likely schedule notification emails from Eco Baltia Vide in the last 60 days:\n   gws gmail users messages list --params '{\"userId\":\"me\",\"q\":\"from:babite@ecobaltiavide.lv newer_than:60d (grafiks OR schedule OR izvešana OR izvesana OR atkritumu)\",\"maxResults\":10}' 2>/dev/null\n\n2. For each newest unprocessed candidate, get details:\n   gws gmail users messages get --params '{\"userId\":\"me\",\"id\":\"<msgId>\",\"format\":\"full\"}' 2>/dev/null\n   Check subject, snippet, body text, and PDF attachment filename. Skip processed IDs from `/home/uspringis/clawd/memory/waste-processed-ids.json`.\n\n3. Only if the email passes the safety rules, download the PDF attachment:\n   gws gmail users messages attachments get --params '{\"userId\":\"me\",\"messageId\":\"<msgId>\",\"id\":\"<attachmentId>\"}' 2>/dev/null | python3 -c \"import json,sys,base64; d=json.load(sys.stdin); raw=d['data'].replace('-','+').replace('_','/'); sys.stdout.buffer.write(base64.b64decode(raw+'=='))\" > /tmp/waste-grafiks.pdf\n   Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n\n4. Analyze `/home/uspringis/clawd/grafiks.pdf` and extract ALL dates for:\n   a) Sadzīves atkritumi/general waste -> `Parastā miskaste`\n   b) Šķirotie atkritumi/sorted/cardboard -> `Kartona miskaste`\n   c) Stikla iepakojums/glass -> `Stikla miskaste`\n   Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n5. Validate extracted schedule before calendar changes:\n   - At least one extracted date must be today or later.\n   - Ignore historical dates when syncing; never use a historical-only PDF to define a calendar date range.\n   - If the extracted result has no future dates, STOP with no calendar changes.\n   - If only one category is present, STOP unless the email explicitly says it is a partial/category-specific future schedule update.\n\n6. Check Ugis primary Google calendar for existing future miskaste events only within the accepted future schedule date range:\n   gws calendar events list --params '{\"calendarId\":\"primary\",\"timeMin\":\"<first_future_date>T00:00:00+03:00\",\"timeMax\":\"<last_future_date_plus_1>T00:00:00+03:00\",\"singleEvents\":true,\"maxResults\":100}' 2>/dev/null\n   Filter for events with `miskaste` in summary.\n\n7. Sync conservatively to the primary calendar:\n   - Create missing future events in calendarId `primary`.\n   - Delete or replace existing future miskaste events only inside the accepted future schedule range in calendarId `primary`.\n   - Do not touch past events.\n   - Do not create duplicates.\n   - Do not modify the BUS calendar.\n   - Use whole-day events with a 3h popup reminder:\n     gws calendar events insert --params '{\"calendarId\":\"primary\"}' --json '{\"summary\":\"<event name>\",\"start\":{\"date\":\"YYYY-MM-DD\"},\"end\":{\"date\":\"YYYY-MM-DD+1\"},\"reminders\":{\"useDefault\":false,\"overrides\":[{\"method\":\"popup\",\"minutes\":180}]}}' 2>/dev/null\n\n8. Only after successful accepted schedule sync, append the email ID to `/home/uspringis/clawd/memory/waste-processed-ids.json`.\n\n9. Report created/deleted/unchanged/skipped. If no acceptable unprocessed schedule notification is found, say `No waste schedule updates needed.`",
-        "model": "openai/gpt-5.6-sol",
-        "timeoutSeconds": 300
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1789722000000,
-        "lastRunAtMs": 1789117200008,
-        "lastStatus": "ok",
-        "lastDurationMs": 51718,
-        "consecutiveErrors": 0,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "delivered",
-        "consecutiveSkipped": 0,
-        "lastDelivered": true,
-        "lastFailureNotificationDeliveryStatus": "not-requested"
-      },
-      "nextRunAtMs": 1789722000000,
-      "lastRunAtMs": 1789117200008,
-      "lastRunStatus": "ok",
-      "lastDelivered": true,
-      "lastDeliveryStatus": "delivered",
       "lastFailureNotificationDeliveryStatus": "not-requested",
       "status": "ok"
     },
@@ -226,7 +180,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1789657224189,
+      "updatedAtMs": 1789743627789,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -249,18 +203,18 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1789722000000,
-        "lastRunAtMs": 1789657200008,
+        "nextRunAtMs": 1789808400000,
+        "lastRunAtMs": 1789743600007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 24181,
+        "lastDurationMs": 27782,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1789722000000,
-      "lastRunAtMs": 1789657200008,
+      "nextRunAtMs": 1789808400000,
+      "lastRunAtMs": 1789743600007,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -272,7 +226,7 @@
       "description": "Daily sync for Lizete Dzirnas 1B KLASE schedule with per-day broad-slot de-duplication.",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1789664454908,
+      "updatedAtMs": 1789750850241,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -294,19 +248,77 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1789664400008,
+        "lastRunAtMs": 1789750800007,
         "lastStatus": "ok",
-        "lastDurationMs": 54900,
+        "lastDurationMs": 50234,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "nextRunAtMs": 1789750800000,
+        "nextRunAtMs": 1789837200000,
         "lastDelivered": true
       },
-      "nextRunAtMs": 1789750800000,
-      "lastRunAtMs": 1789664400008,
+      "nextRunAtMs": 1789837200000,
+      "lastRunAtMs": 1789750800007,
+      "lastRunStatus": "ok",
+      "lastDelivered": true,
+      "lastDeliveryStatus": "delivered",
+      "lastFailureNotificationDeliveryStatus": "not-requested",
+      "status": "ok"
+    },
+    {
+      "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
+      "name": "Waste Schedule Check",
+      "enabled": true,
+      "createdAtMs": 1770563229509,
+      "updatedAtMs": 1789722087258,
+      "agentId": "main",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * 5",
+        "tz": "Europe/Riga"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check waste collection schedule from Eco Baltia Vide.\n\nUse `gws` CLI for all Google operations. Redirect stderr with `2>/dev/null` to suppress keyring messages.\n\nTARGET CALENDAR:\n- All waste schedule events must be synced to Ugis's primary Google calendar: calendarId `primary` / `ugis.springis@gmail.com`.\n- Do not create new waste events in the BUS calendar.\n- Do not touch historical events before today.\n\nCRITICAL SAFETY RULES:\n- Process ONLY emails that notify about a new/future waste collection schedule.\n- NEVER process invoices, bills, receipts, payment notices, or historical service documents as schedules.\n- Reject an email if its subject/body/attachment filename contains invoice-like terms such as: invoice, rēķins, reķins, apmaksa, maksa, samaksa, payment, receipt, kvīts.\n- Reject a PDF if it looks like an invoice/bill or if the extracted dates are all before today.\n- If rejected, do not update `memory/waste-processed-ids.json`, do not delete calendar events, and report that it was skipped.\n- Before deleting anything, the accepted PDF must contain at least one future pickup date and at least two waste categories, unless the email text explicitly says it is a partial/category-specific future schedule update.\n\n1. Search Gmail for likely schedule notification emails from Eco Baltia Vide in the last 60 days:\n   gws gmail users messages list --params '{\"userId\":\"me\",\"q\":\"from:babite@ecobaltiavide.lv newer_than:60d (grafiks OR schedule OR izvešana OR izvesana OR atkritumu)\",\"maxResults\":10}' 2>/dev/null\n\n2. For each newest unprocessed candidate, get details:\n   gws gmail users messages get --params '{\"userId\":\"me\",\"id\":\"<msgId>\",\"format\":\"full\"}' 2>/dev/null\n   Check subject, snippet, body text, and PDF attachment filename. Skip processed IDs from `/home/uspringis/clawd/memory/waste-processed-ids.json`.\n\n3. Only if the email passes the safety rules, download the PDF attachment:\n   gws gmail users messages attachments get --params '{\"userId\":\"me\",\"messageId\":\"<msgId>\",\"id\":\"<attachmentId>\"}' 2>/dev/null | python3 -c \"import json,sys,base64; d=json.load(sys.stdin); raw=d['data'].replace('-','+').replace('_','/'); sys.stdout.buffer.write(base64.b64decode(raw+'=='))\" > /tmp/waste-grafiks.pdf\n   Copy to workspace: cp /tmp/waste-grafiks.pdf /home/uspringis/clawd/grafiks.pdf\n\n4. Analyze `/home/uspringis/clawd/grafiks.pdf` and extract ALL dates for:\n   a) Sadzīves atkritumi/general waste -> `Parastā miskaste`\n   b) Šķirotie atkritumi/sorted/cardboard -> `Kartona miskaste`\n   c) Stikla iepakojums/glass -> `Stikla miskaste`\n   Clean up: rm /home/uspringis/clawd/grafiks.pdf\n\n5. Validate extracted schedule before calendar changes:\n   - At least one extracted date must be today or later.\n   - Ignore historical dates when syncing; never use a historical-only PDF to define a calendar date range.\n   - If the extracted result has no future dates, STOP with no calendar changes.\n   - If only one category is present, STOP unless the email explicitly says it is a partial/category-specific future schedule update.\n\n6. Check Ugis primary Google calendar for existing future miskaste events only within the accepted future schedule date range:\n   gws calendar events list --params '{\"calendarId\":\"primary\",\"timeMin\":\"<first_future_date>T00:00:00+03:00\",\"timeMax\":\"<last_future_date_plus_1>T00:00:00+03:00\",\"singleEvents\":true,\"maxResults\":100}' 2>/dev/null\n   Filter for events with `miskaste` in summary.\n\n7. Sync conservatively to the primary calendar:\n   - Create missing future events in calendarId `primary`.\n   - Delete or replace existing future miskaste events only inside the accepted future schedule range in calendarId `primary`.\n   - Do not touch past events.\n   - Do not create duplicates.\n   - Do not modify the BUS calendar.\n   - Use whole-day events with a 3h popup reminder:\n     gws calendar events insert --params '{\"calendarId\":\"primary\"}' --json '{\"summary\":\"<event name>\",\"start\":{\"date\":\"YYYY-MM-DD\"},\"end\":{\"date\":\"YYYY-MM-DD+1\"},\"reminders\":{\"useDefault\":false,\"overrides\":[{\"method\":\"popup\",\"minutes\":180}]}}' 2>/dev/null\n\n8. Only after successful accepted schedule sync, append the email ID to `/home/uspringis/clawd/memory/waste-processed-ids.json`.\n\n9. Report created/deleted/unchanged/skipped. If no acceptable unprocessed schedule notification is found, say `No waste schedule updates needed.`",
+        "model": "openai/gpt-5.6-sol",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1790326800000,
+        "lastRunAtMs": 1789722000007,
+        "lastStatus": "ok",
+        "lastDurationMs": 87251,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "delivered",
+        "consecutiveSkipped": 0,
+        "lastDelivered": true,
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastDiagnostics": {
+          "summary": "⚠️ 🛠️ Bash failed: `gws gmail users messages get --params '{\"userId\":\"me\",\"id\":…ilename,mimeType,attachmentId:(.body.attachmentId//null)}]}' (in ~/clawd)`",
+          "entries": [
+            {
+              "ts": 1789722086656,
+              "source": "tool",
+              "severity": "warn",
+              "message": "⚠️ 🛠️ Bash failed: `gws gmail users messages get --params '{\"userId\":\"me\",\"id\":…ilename,mimeType,attachmentId:(.body.attachmentId//null)}]}' (in ~/clawd)`"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `gws gmail users messages get --params '{\"userId\":\"me\",\"id\":…ilename,mimeType,attachmentId:(.body.attachmentId//null)}]}' (in ~/clawd)`"
+      },
+      "nextRunAtMs": 1790326800000,
+      "lastRunAtMs": 1789722000007,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -336,15 +348,15 @@
       "label": "none -> telegram:181860584",
       "detail": "explicit"
     },
-    "027e94e3-a260-40e3-b8ed-0283b11a2ca8": {
-      "label": "announce -> telegram:181860584",
-      "detail": "explicit"
-    },
     "1effb0e6-d219-4078-8f18-2a019c5eeb6a": {
       "label": "none -> telegram:181860584",
       "detail": "explicit"
     },
     "f87d0e86-b7df-458c-b6e3-e7c84aac64eb": {
+      "label": "announce -> telegram:181860584",
+      "detail": "explicit"
+    },
+    "027e94e3-a260-40e3-b8ed-0283b11a2ca8": {
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     }
