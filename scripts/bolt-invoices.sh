@@ -30,9 +30,10 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Search for Bolt Business Work Profile reports
+# Search for Bolt Business Work Profile reports. Bolt changed the sender address
+# in August 2026, so keep the legacy address for older reports as well.
 echo "Searching for Bolt Work Profile reports..."
-SEARCH_OUTPUT=$(gws gmail users messages list --params "{\"userId\": \"me\", \"q\": \"from:global@bolt.eu subject:\\\"Work Profile report\\\"\", \"maxResults\": 10}" 2>/dev/null || true)
+SEARCH_OUTPUT=$(gws gmail users messages list --params "{\"userId\": \"me\", \"q\": \"{from:global@bolt.eu from:info@bolt-business.com} subject:\\\"Work Profile report\\\"\", \"maxResults\": 50}" 2>/dev/null || true)
 
 if [ -z "$SEARCH_OUTPUT" ] || ! echo "$SEARCH_OUTPUT" | python3 -c "import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get('messages') else 1)" 2>/dev/null; then
     echo "No Bolt Work Profile reports found"
@@ -48,6 +49,11 @@ if [ -z "$MSG_IDS" ]; then
 fi
 
 for MSG_ID in $MSG_IDS; do
+    # Optional one-off selector for safely replaying a specific report.
+    if [ -n "${BOLT_MESSAGE_ID:-}" ] && [ "$MSG_ID" != "$BOLT_MESSAGE_ID" ]; then
+        continue
+    fi
+
     # Skip if already processed
     if grep -q "^${MSG_ID}$" "$PROCESSED_FILE" 2>/dev/null; then
         echo "Skipping already processed: $MSG_ID"
