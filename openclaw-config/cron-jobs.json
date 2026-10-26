@@ -5,7 +5,7 @@
       "name": "Daily GitHub Backup",
       "enabled": true,
       "createdAtMs": 1771920646022,
-      "updatedAtMs": 1792803617361,
+      "updatedAtMs": 1792893615659,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -25,19 +25,19 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1792893600000,
-        "lastRunAtMs": 1792803600009,
+        "nextRunAtMs": 1792980000000,
+        "lastRunAtMs": 1792893600009,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17352,
+        "lastDurationMs": 15650,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1792893600009
+        "runningAtMs": 1792980000008
       },
-      "nextRunAtMs": 1792893600000,
-      "lastRunAtMs": 1792803600009,
+      "nextRunAtMs": 1792980000000,
+      "lastRunAtMs": 1792893600009,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -48,7 +48,7 @@
       "name": "MyFitness Calendar Sync",
       "enabled": true,
       "createdAtMs": 1781279214036,
-      "updatedAtMs": 1792886853231,
+      "updatedAtMs": 1792976842250,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -69,18 +69,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1792894020000,
-        "lastRunAtMs": 1792886820008,
+        "nextRunAtMs": 1792980420000,
+        "lastRunAtMs": 1792976820007,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 33223,
+        "lastDurationMs": 22243,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1792894020000,
-      "lastRunAtMs": 1792886820008,
+      "nextRunAtMs": 1792980420000,
+      "lastRunAtMs": 1792976820007,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -92,7 +92,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1769423157675,
-      "updatedAtMs": 1792814481366,
+      "updatedAtMs": 1792904439170,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 7 * * *",
@@ -113,31 +113,19 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1792814400009,
+        "lastRunAtMs": 1792904400008,
         "lastStatus": "ok",
-        "lastDurationMs": 81357,
+        "lastDurationMs": 39162,
         "consecutiveErrors": 0,
-        "nextRunAtMs": 1792904400000,
+        "nextRunAtMs": 1792990800000,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastDelivered": true,
-        "lastDiagnostics": {
-          "summary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…-auth-token \"$BIRD_AUTH_TOKEN\" --ct0 \"$BIRD_CT0\" | jq '.[0]' (in ~/clawd)`",
-          "entries": [
-            {
-              "ts": 1792814480651,
-              "source": "tool",
-              "severity": "warn",
-              "message": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…-auth-token \"$BIRD_AUTH_TOKEN\" --ct0 \"$BIRD_CT0\" | jq '.[0]' (in ~/clawd)`"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ 🛠️ Bash failed: `source .bird-credentials && bird list-timeline \"$BIRD_LIST_…-auth-token \"$BIRD_AUTH_TOKEN\" --ct0 \"$BIRD_CT0\" | jq '.[0]' (in ~/clawd)`"
+        "lastDelivered": true
       },
-      "nextRunAtMs": 1792904400000,
-      "lastRunAtMs": 1792814400009,
+      "nextRunAtMs": 1792990800000,
+      "lastRunAtMs": 1792904400008,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
@@ -149,7 +137,7 @@
       "name": "Bolt Invoice Processor",
       "enabled": true,
       "createdAtMs": 1769429947976,
-      "updatedAtMs": 1792821620976,
+      "updatedAtMs": 1792911623792,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -170,18 +158,18 @@
         "to": "181860584"
       },
       "state": {
-        "nextRunAtMs": 1792911600000,
-        "lastRunAtMs": 1792821600008,
+        "nextRunAtMs": 1792998000000,
+        "lastRunAtMs": 1792911600008,
         "lastStatus": "ok",
-        "lastDurationMs": 20968,
+        "lastDurationMs": 23784,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-requested",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested"
       },
-      "nextRunAtMs": 1792911600000,
-      "lastRunAtMs": 1792821600008,
+      "nextRunAtMs": 1792998000000,
+      "lastRunAtMs": 1792911600008,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -192,7 +180,7 @@
       "name": "JRT Ticket Sale Check",
       "enabled": true,
       "createdAtMs": 1781524897078,
-      "updatedAtMs": 1792854015297,
+      "updatedAtMs": 1792944013721,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -215,18 +203,18 @@
         "bestEffort": true
       },
       "state": {
-        "nextRunAtMs": 1792922400000,
-        "lastRunAtMs": 1792854000009,
+        "nextRunAtMs": 1793008800000,
+        "lastRunAtMs": 1792944000010,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 15288,
+        "lastDurationMs": 13711,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       },
-      "nextRunAtMs": 1792922400000,
-      "lastRunAtMs": 1792854000009,
+      "nextRunAtMs": 1793008800000,
+      "lastRunAtMs": 1792944000010,
       "lastRunStatus": "ok",
       "lastDeliveryStatus": "not-requested",
       "lastFailureNotificationDeliveryStatus": "not-requested",
@@ -238,7 +226,7 @@
       "description": "Daily sync for Lizete Dzirnas 1B KLASE schedule with per-day broad-slot de-duplication.",
       "enabled": true,
       "createdAtMs": 1770570235785,
-      "updatedAtMs": 1792861234442,
+      "updatedAtMs": 1792951240169,
       "agentId": "main",
       "schedule": {
         "kind": "cron",
@@ -260,55 +248,24 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1792861200009,
+        "lastRunAtMs": 1792951200009,
         "lastStatus": "ok",
-        "lastDurationMs": 34433,
+        "lastDurationMs": 40160,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "nextRunAtMs": 1792951200000,
+        "nextRunAtMs": 1793037600000,
         "lastDelivered": true
       },
-      "nextRunAtMs": 1792951200000,
-      "lastRunAtMs": 1792861200009,
+      "nextRunAtMs": 1793037600000,
+      "lastRunAtMs": 1792951200009,
       "lastRunStatus": "ok",
       "lastDelivered": true,
       "lastDeliveryStatus": "delivered",
       "lastFailureNotificationDeliveryStatus": "not-requested",
       "status": "ok"
-    },
-    {
-      "id": "ee694f3d-da96-4dc4-8148-1a5cf9523e65",
-      "name": "Pārbaude: atkaļķošanas šķidrums svētdien",
-      "description": "Vienreizējs Telegram jautājums Uģim svētdien par reversās osmozes aparāta atkaļķošanas šķidrumu",
-      "enabled": true,
-      "deleteAfterRun": true,
-      "createdAtMs": 1792522199755,
-      "updatedAtMs": 1792522199755,
-      "schedule": {
-        "kind": "at",
-        "at": "2026-10-25T20:00:00.000Z"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Nosūti lietotājam tikai šo īso jautājumu latviski, bez ievada un bez papildu teksta: Vai pārbaudīji atkaļķošanas šķidrumu reversās osmozes aparātam?",
-        "lightContext": true
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "181860584",
-        "accountId": "default"
-      },
-      "state": {
-        "nextRunAtMs": 1792958400000
-      },
-      "nextRunAtMs": 1792958400000,
-      "status": "idle"
     },
     {
       "id": "027e94e3-a260-40e3-b8ed-0283b11a2ca8",
@@ -398,6 +355,35 @@
       },
       "nextRunAtMs": 1793361600000,
       "status": "idle"
+    },
+    {
+      "id": "dc052f55-5c55-47cd-aa98-9643a0e36746",
+      "name": "Pārbaudīt šķidruma patēriņu",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1792958681511,
+      "updatedAtMs": 1792958681511,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-11-25T20:03:00.000Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Atgādini Ugim latviski: pirms mēneša, 2026-10-25, tika ielieti 10 l šķidruma. Tagad pārbaudi, cik daudz ir izlietots un cik ātri šķidrums pazūd."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "181860584",
+        "accountId": "default"
+      },
+      "state": {
+        "nextRunAtMs": 1795636980000
+      },
+      "nextRunAtMs": 1795636980000,
+      "status": "idle"
     }
   ],
   "total": 9,
@@ -430,15 +416,15 @@
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     },
-    "ee694f3d-da96-4dc4-8148-1a5cf9523e65": {
-      "label": "announce -> telegram:181860584",
-      "detail": "explicit"
-    },
     "027e94e3-a260-40e3-b8ed-0283b11a2ca8": {
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     },
     "773dac8a-0367-48b7-8918-c04f38912496": {
+      "label": "announce -> telegram:181860584",
+      "detail": "explicit"
+    },
+    "dc052f55-5c55-47cd-aa98-9643a0e36746": {
       "label": "announce -> telegram:181860584",
       "detail": "explicit"
     }
